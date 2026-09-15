@@ -23,9 +23,7 @@ class LED {
 
     void toggle() {
       state = !state;
-      Serial.println(state ? "LED ON" + String(name) : "LED OFF" + String(name));
-      Serial.println("LED state: " + String(state));
-      Serial.println("LED pin: " + String(pin));
+      Serial.println(state ? "LED ON " + String(name) : "LED OFF " + String(name));
       digitalWrite(pin, state);
     }
 };

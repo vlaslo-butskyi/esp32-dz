@@ -1,0 +1,60 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x4bc
+load:0x403c9700,len:0xbd8
+load:0x403cc700,len:0x2a0c
+entry 0x403c98d0
+
+=== DZ 1.5: debounced button ===
+GPIO 16, INPUT_PULLUP, interrupt on CHANGE, debounce 10 ms
+PRESS   #1   edges: 1   ignored: 0   (released for 261759 ms)
+RELEASE #1   edges: 1   ignored: 0   (held for 77 ms)
+PRESS   #2   edges: 1   ignored: 0   (released for 364 ms)
+RELEASE #2   edges: 1   ignored: 0   (held for 46 ms)
+PRESS   #3   edges: 1   ignored: 0   (released for 380 ms)
+RELEASE #3   edges: 20  ignored: 19  (held for 561 ms)
+PRESS   #4   edges: 1   ignored: 0   (released for 281 ms)
+RELEASE #4   edges: 1   ignored: 0   (held for 366 ms)
+PRESS   #5   edges: 1   ignored: 0   (released for 163 ms)
+RELEASE #5   edges: 1   ignored: 0   (held for 142 ms)
+PRESS   #6   edges: 1   ignored: 0   (released for 326 ms)
+RELEASE #6   edges: 1   ignored: 0   (held for 51 ms)
+PRESS   #7   edges: 1   ignored: 0   (released for 140 ms)
+RELEASE #7   edges: 1   ignored: 0   (held for 263 ms)
+PRESS   #8   edges: 3   ignored: 2   (released for 209 ms)
+RELEASE #8   edges: 1   ignored: 0   (held for 355 ms)
+PRESS   #9   edges: 1   ignored: 0   (released for 224 ms)
+RELEASE #9   edges: 1   ignored: 0   (held for 378 ms)
+PRESS   #10  edges: 1   ignored: 0   (released for 330 ms)
+RELEASE #10  edges: 1   ignored: 0   (held for 30 ms)
+PRESS   #11  edges: 1   ignored: 0   (released for 371 ms)
+RELEASE #11  edges: 1   ignored: 0   (held for 17 ms)
+PRESS   #12  edges: 1   ignored: 0   (released for 426 ms)
+RELEASE #12  edges: 7   ignored: 6   (held for 35 ms)
+PRESS   #13  edges: 1   ignored: 0   (released for 400 ms)
+RELEASE #13  edges: 1   ignored: 0   (held for 33 ms)
+PRESS   #14  edges: 1   ignored: 0   (released for 387 ms)
+RELEASE #14  edges: 1   ignored: 0   (held for 36 ms)
+PRESS   #15  edges: 1   ignored: 0   (released for 349 ms)
+RELEASE #15  edges: 1   ignored: 0   (held for 41 ms)
+PRESS   #16  edges: 1   ignored: 0   (released for 395 ms)
+RELEASE #16  edges: 1   ignored: 0   (held for 565 ms)
+PRESS   #17  edges: 1   ignored: 0   (released for 597 ms)
+RELEASE #17  edges: 10  ignored: 9   (held for 228 ms)
+PRESS   #18  edges: 1   ignored: 0   (released for 733 ms)
+RELEASE #18  edges: 5   ignored: 4   (held for 169 ms)
+PRESS   #19  edges: 1   ignored: 0   (released for 92 ms)
+RELEASE #19  edges: 2   ignored: 1   (held for 186 ms)
+PRESS   #20  edges: 1   ignored: 0   (released for 57 ms)
+RELEASE #20  edges: 1   ignored: 0   (held for 47 ms)
+PRESS   #21  edges: 1   ignored: 0   (released for 96 ms)
+RELEASE #21  edges: 1   ignored: 0   (held for 55 ms)
+PRESS   #22  edges: 1   ignored: 0   (released for 77 ms)
+RELEASE #22  edges: 1   ignored: 0   (held for 248 ms)
+PRESS   #23  edges: 1   ignored: 0   (released for 111 ms)
+RELEASE #23  edges: 1   ignored: 0   (held for 184 ms)
+PRESS   #24  edges: 1   ignored: 0   (released for 232 ms)
+RELEASE #24  edges: 1   ignored: 0   (held for 458 ms)

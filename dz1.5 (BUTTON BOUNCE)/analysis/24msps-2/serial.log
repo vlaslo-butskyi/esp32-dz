@@ -1,0 +1,39 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x4bc
+load:0x403c9700,len:0xbd8
+load:0x403cc700,len:0x2a0c
+entry 0x403c98d0
+
+=== DZ 1.5: button bounce counter ===
+GPIO 16, INPUT_PULLUP, interrupt on FALLING, burst gap 30 ms
+PRESS/HOLD = pin LOW after burst, RELEASE = pin HIGH after burst, TAP = press+release inside one burst
+PRESS   #1  FALLING: 1   span:    0.000 ms  total: 1
+RELEASE #1  FALLING: 0   (clean)
+PRESS   #2  FALLING: 1   span:    0.000 ms  total: 2
+RELEASE #2  FALLING: 1   span:    0.000 ms  total: 3
+PRESS   #3  FALLING: 1   span:    0.000 ms  total: 4
+RELEASE #3  FALLING: 4   span:    0.390 ms  total: 8
+         edges, us: 0 219 291 390
+PRESS   #4  FALLING: 1   span:    0.000 ms  total: 9
+RELEASE #4  FALLING: 3   span:    0.179 ms  total: 12
+         edges, us: 0 90 179
+PRESS   #5  FALLING: 1   span:    0.000 ms  total: 13
+RELEASE #5  FALLING: 6   span:    0.655 ms  total: 19
+         edges, us: 0 334 349 548 555 655
+PRESS   #6  FALLING: 1   span:    0.000 ms  total: 20
+RELEASE #6  FALLING: 19  span:    2.451 ms  total: 39
+         edges, us: 0 106 595 804 816 949 1023 1456 1782 1876 1917 1967 2058 2121 2161 2188 2232 2363 2451
+PRESS   #7  FALLING: 1   span:    0.000 ms  total: 40
+RELEASE #7  FALLING: 0   (clean)
+PRESS   #8  FALLING: 1   span:    0.000 ms  total: 41
+RELEASE #8  FALLING: 0   (clean)
+PRESS   #9  FALLING: 1   span:    0.000 ms  total: 42
+RELEASE #9  FALLING: 0   (clean)
+PRESS   #10 FALLING: 1   span:    0.000 ms  total: 43
+RELEASE #10 FALLING: 0   (clean)
+PRESS   #11 FALLING: 1   span:    0.000 ms  total: 44
+RELEASE #11 FALLING: 1   span:    0.000 ms  total: 45

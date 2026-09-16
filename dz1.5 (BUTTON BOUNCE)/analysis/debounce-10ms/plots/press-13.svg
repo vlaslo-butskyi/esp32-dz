@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="150" viewBox="0 0 900 150">
+<style>.title{font:600 13px sans-serif;fill:#1f2328}.axis{font:11px sans-serif;fill:#59636e}.grid{stroke:#d1d9e0;stroke-width:1}.wave{fill:none;stroke:#0969da;stroke-width:1.5}</style>
+<rect width="900" height="150" fill="#ffffff"/>
+<text x="30" y="18" class="title">#13 натискання: 2 імп. (3 фронти), 0.001 мс</text>
+<text x="22" y="49" class="axis" text-anchor="end">1</text>
+<text x="22" y="109" class="axis" text-anchor="end">0</text>
+<line x1="30" y1="117" x2="430" y2="117" class="grid"/>
+<line x1="126.19" y1="38" x2="126.19" y2="117" class="grid"/>
+<text x="126.19" y="131" class="axis" text-anchor="middle">-0.005</text>
+<line x1="222.38" y1="38" x2="222.38" y2="117" class="grid"/>
+<text x="222.38" y="131" class="axis" text-anchor="middle">0</text>
+<line x1="318.57" y1="38" x2="318.57" y2="117" class="grid"/>
+<text x="318.57" y="131" class="axis" text-anchor="middle">0.005</text>
+<line x1="414.76" y1="38" x2="414.76" y2="117" class="grid"/>
+<text x="414.76" y="131" class="axis" text-anchor="middle">0.01</text>
+<polyline points="30.00,45 222.38,45 222.38,105 228.00,105 228.00,45 237.62,45 237.62,105 430.00,105" class="wave"/>
+<text x="470" y="18" class="title">відпускання: 0 імп. (1 фронт), 0.000 мс</text>
+<text x="462" y="49" class="axis" text-anchor="end">1</text>
+<text x="462" y="109" class="axis" text-anchor="end">0</text>
+<line x1="470" y1="117" x2="870" y2="117" class="grid"/>
+<line x1="570.00" y1="38" x2="570.00" y2="117" class="grid"/>
+<text x="570.00" y="131" class="axis" text-anchor="middle">-0.005</text>
+<line x1="670.00" y1="38" x2="670.00" y2="117" class="grid"/>
+<text x="670.00" y="131" class="axis" text-anchor="middle">0</text>
+<line x1="770.00" y1="38" x2="770.00" y2="117" class="grid"/>
+<text x="770.00" y="131" class="axis" text-anchor="middle">0.005</text>
+<line x1="870.00" y1="38" x2="870.00" y2="117" class="grid"/>
+<text x="870.00" y="131" class="axis" text-anchor="middle">0.01</text>
+<polyline points="470.00,105 670.00,105 670.00,45 870.00,45" class="wave"/>
+<text x="888" y="144" class="axis" text-anchor="end">мс від першого фронту</text>
+</svg>

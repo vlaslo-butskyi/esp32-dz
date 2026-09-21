@@ -6,7 +6,7 @@
 
 <a href="video.mp4"><img src="demo.gif" width="420" alt="Демо: датчик накривають, реле клацає і вмикає навантаження"></a>
 
-▶️ [Відео в повній якості (MP4)](video.mp4)
+https://github.com/user-attachments/assets/ce361e3b-713f-4368-b7a4-91b5092e6031
 
 ## Схема та фото
 

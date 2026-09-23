@@ -175,4 +175,4 @@ PATH="/opt/homebrew/opt/lld/bin:$PATH" make
 | [`photo.jpeg`](photo.jpeg), [`photo-dark.jpeg`](photo-dark.jpeg) | фото зібраної схеми до і під час спрацювання |
 | [`demo.gif`](demo.gif), [`video.mp4`](video.mp4) | відео роботи |
 
-Інший варіант цього ДЗ: [**twilight_with_modes**](../twilight_with_modes/) — та сама схема плюс кнопка, яка перемикає автомат / постійно увімкнено / вимкнено, і три світлодіоди-індикатори.
+Інші варіанти цього ДЗ: [**twilight_with_modes**](../twilight_with_modes/) — та сама схема плюс кнопка, яка перемикає автомат / постійно увімкнено / вимкнено, і три світлодіоди-індикатори; [**twilight_with_modes_rgb**](../twilight_with_modes_rgb/) — ті самі режими, але індикатор на вбудованому RGB.

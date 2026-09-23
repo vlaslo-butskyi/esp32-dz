@@ -14,7 +14,7 @@
 
 <a href="video.mp4"><img src="demo.gif" width="420" alt="Демо: кнопка перемикає режими, вбудований RGB міняє колір, реле клацає"></a>
 
-▶️ [Відео в повній якості (MP4)](video.mp4)
+https://github.com/user-attachments/assets/25c5ec04-97f5-4b2b-8090-36260e2f3c6b
 
 ## Схема
 

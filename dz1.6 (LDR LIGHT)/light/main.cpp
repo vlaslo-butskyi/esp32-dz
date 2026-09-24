@@ -1,14 +1,14 @@
 #include <Arduino.h>
 
 // Подільник як в умові: 3V3 → LDR → середня точка → 10 кОм → GND. Середня точка на GPIO 1 (ADC1_CH0)
-#define LDR_AIN 1
+constexpr uint8_t LDR_AIN = 1;
 
-#define SAMPLE_PERIOD_MS 100   // Період вимірювання з умови ДЗ
-#define ADC_MAX 4095.0         // ADCmax для 12-бітного АЦП
-#define UREF_MV 3100.0         // Uref з умови, мВ (3.1 В)
-#define HEADER_EVERY 20        // Через скільки рядків підбивати підсумок і повторювати шапку
+constexpr uint8_t SAMPLE_PERIOD_MS = 100;   // Період вимірювання з умови ДЗ
+constexpr double ADC_MAX = 4095.0;           // ADCmax для 12-бітного АЦП
+constexpr double UREF_MV = 3100.0;           // Uref з умови, мВ (3.1 В)
+constexpr uint8_t HEADER_EVERY = 20;         // Через скільки рядків підбивати підсумок і повторювати шапку
 
-unsigned long last_sample_ms = 0;
+uint32_t last_sample_ms = 0;
 uint32_t sample_number = 0;
 
 // Статистика похибки в межах одного блоку таблиці

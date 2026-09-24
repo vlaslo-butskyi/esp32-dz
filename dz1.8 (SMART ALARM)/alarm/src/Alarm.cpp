@@ -123,7 +123,7 @@ void processCodeInput() {
 }
 
 
-void changeState(AlarmState nextState, unsigned long now) {
+void changeState(AlarmState nextState, uint32_t now) {
   currentState = nextState;
 
   yellowLED.resetBlink(now);
@@ -139,7 +139,7 @@ void changeState(AlarmState nextState, unsigned long now) {
   }
 }
 
-void updateIndicators(unsigned long now) {
+void updateIndicators(uint32_t now) {
   greenLED.turnOn();
 
   switch (currentState) {
@@ -166,7 +166,7 @@ void updateIndicators(unsigned long now) {
 }
 
 
-void startArming(unsigned long now) {
+void startArming(uint32_t now) {
   resetCodeEntry();
   codeAccepted = false;
 
@@ -181,7 +181,7 @@ void startArming(unsigned long now) {
   Serial.println("Transitioning to ARMING");
 }
 
-void disarm(unsigned long now) {
+void disarm(uint32_t now) {
   entryPhase = EntryPhase::WAITING;
   codeAccepted = false;
 
@@ -197,7 +197,7 @@ void disarm(unsigned long now) {
   Serial.println("Correct code: alarm disarmed");
 }
 
-void triggerAlarm(unsigned long now) {
+void triggerAlarm(uint32_t now) {
   entryPhase = EntryPhase::WAITING;
 
   resetCodeEntry();
@@ -212,7 +212,7 @@ void triggerAlarm(unsigned long now) {
 }
 
 
-void updateDisarmed(unsigned long now) {
+void updateDisarmed(uint32_t now) {
   const bool bothHeld =
       leftButton.isPressed() &&
       rightButton.isPressed() &&
@@ -225,7 +225,7 @@ void updateDisarmed(unsigned long now) {
   }
 }
 
-void updateArming(unsigned long now) {
+void updateArming(uint32_t now) {
   if (player.isPlaying()) {
     return;
   }
@@ -286,7 +286,7 @@ void updateArming(unsigned long now) {
   }
 }
 
-void updateArmed(unsigned long now) {
+void updateArmed(uint32_t now) {
   // Give a completed valid code priority over the sensor.
   if (isCodeCorrect()) {
     disarm(now);
@@ -300,7 +300,7 @@ void updateArmed(unsigned long now) {
   }
 }
 
-void updateAlarm(unsigned long now) {
+void updateAlarm(uint32_t now) {
   if (isCodeCorrect()) {
     disarm(now);
     return;
@@ -378,7 +378,7 @@ namespace Alarm {
         leftButton.init();
         rightButton.init();
 
-        const unsigned long now = millis();
+        const uint32_t now = millis();
 
         changeState(AlarmState::DISARMED, now);
         updateIndicators(now);
@@ -389,7 +389,7 @@ namespace Alarm {
     void update() {
         player.update();
 
-        const unsigned long now = millis();
+        const uint32_t now = millis();
 
         leftButton.update(now);
         rightButton.update(now);

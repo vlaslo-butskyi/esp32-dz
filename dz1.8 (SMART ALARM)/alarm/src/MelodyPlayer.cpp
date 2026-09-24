@@ -11,7 +11,7 @@ void MelodyPlayer::init() {
 void MelodyPlayer::start(
     const int (*notes)[2],
     size_t count,
-    unsigned long tempoBpm
+    uint32_t tempoBpm
 ) {
   stop();
 
@@ -41,12 +41,12 @@ void MelodyPlayer::startNote() {
   sounding_ = false;
 
   const int frequency = notes_[index_][0];
-  const long denominator = notes_[index_][1];
+  const int32_t denominator = notes_[index_][1];
 
-  const unsigned long divisor =
+  const uint32_t divisor =
       denominator < 0
-          ? static_cast<unsigned long>(-denominator)
-          : static_cast<unsigned long>(denominator);
+          ? static_cast<uint32_t>(-denominator)
+          : static_cast<uint32_t>(denominator);
 
   noteDurationMs_ = wholeNoteMs_ / divisor;
 
@@ -79,7 +79,7 @@ void MelodyPlayer::update() {
     return;
   }
 
-  const unsigned long now = millis();
+  const uint32_t now = millis();
 
   // Catch up if a loop iteration took longer than one note.
   while (now - noteStartMs_ >= noteDurationMs_) {
@@ -95,7 +95,7 @@ void MelodyPlayer::update() {
   }
 
   // Sound for 90% of the note, then leave a short gap.
-  const unsigned long soundDurationMs =
+  const uint32_t soundDurationMs =
       noteDurationMs_ * 9 / 10;
 
   if (sounding_ && now - noteStartMs_ >= soundDurationMs) {

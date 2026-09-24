@@ -25,11 +25,11 @@ void LED::toggle() {
     setState(!state_);
 }
 
-void LED::resetBlink(unsigned long time) {
+void LED::resetBlink(uint32_t time) {
     lastBlinkTime_ = time;
 }
 
-void LED::blink(unsigned long time, unsigned long intervalMs) {
+void LED::blink(uint32_t time, uint32_t intervalMs) {
     if (intervalMs == 0) return;
 
     if (time - lastBlinkTime_ >= intervalMs) {

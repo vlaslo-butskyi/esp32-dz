@@ -10,16 +10,16 @@ class MelodyPlayer {
     size_t count_ = 0;
     size_t index_ = 0;
 
-    unsigned long wholeNoteMs_ = 0;
-    unsigned long noteStartMs_ = 0;
-    unsigned long noteDurationMs_ = 0;
+    uint32_t wholeNoteMs_ = 0;
+    uint32_t noteStartMs_ = 0;
+    uint32_t noteDurationMs_ = 0;
 
     bool sounding_ = false;
 
     void start(
         const int (*notes)[2],
         size_t count,
-        unsigned long tempoBpm
+        uint32_t tempoBpm
     );
     void startNote();
 
@@ -31,7 +31,7 @@ class MelodyPlayer {
     template <size_t N>
     void play(
         const int (&melody)[N][2], 
-        unsigned long tempoBpm
+        uint32_t tempoBpm
     ) {
         start(melody, N, tempoBpm);
     }

@@ -2,8 +2,8 @@
 
 Button::Button(
     const uint8_t pin,
-    unsigned long debounceMs,
-    unsigned long clickMaxMs
+    uint32_t debounceMs,
+    uint32_t clickMaxMs
 ): 
     pin_(pin),
     debounceMs_(debounceMs),
@@ -21,7 +21,7 @@ void Button::init() {
   pressedAt_ = 0;
 }
 
-void Button::update(unsigned long time) {
+void Button::update(uint32_t time) {
   clicked_ = false;
 
   const bool reading = digitalRead(pin_) == LOW;
@@ -53,7 +53,7 @@ bool Button::wasClicked() const {
   return clicked_;
 }
 
-unsigned long Button::heldFor(unsigned long time) const {
+uint32_t Button::heldFor(uint32_t time) const {
   if (!pressed_) {
     return 0;
   }

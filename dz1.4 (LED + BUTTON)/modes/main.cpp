@@ -1,12 +1,12 @@
 #include <Arduino.h>
 
-#define BTN_MODE_FAST_PIN 7
-#define BTN_MODE_SLOW_PIN 15
+constexpr uint8_t BTN_MODE_FAST_PIN = 7;
+constexpr uint8_t BTN_MODE_SLOW_PIN = 15;
 
-#define BLUE_LED_PIN 16
-#define RED_LED_PIN 3
+constexpr uint8_t BLUE_LED_PIN = 16;
+constexpr uint8_t RED_LED_PIN = 3;
 
-#define DEBOUNCE_DELAY 50 // milliseconds
+constexpr uint8_t DEBOUNCE_DELAY = 50; // milliseconds
 
 
 class LED {
@@ -54,7 +54,7 @@ class Mode {
     virtual ~Mode() = default;
 
     virtual const char* name() const = 0;
-    virtual unsigned long interval() const = 0;
+    virtual uint32_t interval() const = 0;
     virtual void step() = 0;
 
     void reset() {
@@ -69,7 +69,7 @@ class FastMode : public Mode {
     const char* name() const override {
       return "Fast Mode";
     }
-    unsigned long interval() const override {
+    uint32_t interval() const override {
       return 200; // milliseconds
     }
 
@@ -88,7 +88,7 @@ class SlowMode: public Mode {
       return "Slow Mode";
     }
 
-    unsigned long interval() const override {
+    uint32_t interval() const override {
       return 1000; // milliseconds
     }
 
@@ -126,10 +126,10 @@ void pullButtons() {
   }
 }
 
-void waitWithButtons(unsigned long duration) {
+void waitWithButtons(uint32_t duration) {
   Mode* lastMode = currentMode;
-  unsigned long startTime = millis();
-  while (millis() - startTime < duration) {
+  const uint32_t startTime = static_cast<uint32_t>(millis());
+  while (static_cast<uint32_t>(millis()) - startTime < duration) {
     pullButtons();
     if (currentMode != lastMode) return; // Exit if mode changed
     delay(DEBOUNCE_DELAY); // Small delay to avoid busy waiting

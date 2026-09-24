@@ -1,18 +1,18 @@
 #include <Arduino.h>
 
-#define LDR_PIN 1
-#define RELAY_PIN 2
+constexpr uint8_t LDR_PIN = 1;
+constexpr uint8_t RELAY_PIN = 2;
 
-#define RELAY_ON_LEVEL HIGH
+constexpr uint8_t RELAY_ON_LEVEL = HIGH;
 
-#define THRESHOLD_DARK 1200
-#define THRESHOLD_LIGHT 1800
+constexpr uint16_t THRESHOLD_DARK = 1200;
+constexpr uint16_t THRESHOLD_LIGHT = 1800;
 
-#define SAMPLE_INTERVAL_MS 200
-#define LOG_EVERY_N_SAMPLES 10
+constexpr uint8_t SAMPLE_INTERVAL_MS = 200;
+constexpr uint8_t LOG_EVERY_N_SAMPLES = 10;
 
 bool relayOn = false;
-unsigned long lastSampleMs = 0;
+uint32_t lastSampleMs = 0;
 uint16_t sampleNumber = 0;
 
 void applyRelay(bool on) {
@@ -58,7 +58,7 @@ void setup() {
 }
 
 void loop() {
-  const unsigned long now = millis();
+  const uint32_t now = millis();
   if (now - lastSampleMs < SAMPLE_INTERVAL_MS) return;
   lastSampleMs = now;
 

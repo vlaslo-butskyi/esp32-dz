@@ -1,30 +1,30 @@
 #include <Arduino.h>
 
-#define LDR_PIN 1
-#define RELAY_PIN 2
+constexpr uint8_t LDR_PIN = 1;
+constexpr uint8_t RELAY_PIN = 2;
 
-#define BUTTON_PIN 3
-#define GREEN_LED_PIN 4
-#define RED_LED_PIN 5
-#define YELLOW_LED_PIN 6
+constexpr uint8_t BUTTON_PIN = 3;
+constexpr uint8_t GREEN_LED_PIN = 4;
+constexpr uint8_t RED_LED_PIN = 5;
+constexpr uint8_t YELLOW_LED_PIN = 6;
 
-#define RELAY_ON_LEVEL HIGH
+constexpr uint8_t RELAY_ON_LEVEL = HIGH;
 
-#define THRESHOLD_DARK 1200
-#define THRESHOLD_LIGHT 1800
+constexpr uint16_t THRESHOLD_DARK = 1200;
+constexpr uint16_t THRESHOLD_LIGHT = 1800;
 
-#define SAMPLE_INTERVAL_MS 200
-#define LOG_EVERY_N_SAMPLES 10
+constexpr uint8_t SAMPLE_INTERVAL_MS = 200;
+constexpr uint8_t LOG_EVERY_N_SAMPLES = 10;
 
-#define BTN_DEBOUNCE_MS 50
+constexpr uint8_t BTN_DEBOUNCE_MS = 50;
 
 bool relayOn = false;
-uint64_t lastSampleMs = 0;
+uint32_t lastSampleMs = 0;
 uint16_t sampleNumber = 0;
 
 bool buttonReading = false;
 bool buttonStable = false;
-uint64_t lastButtonPressMs = 0;
+uint32_t lastButtonPressMs = 0;
 
 enum RelayState {
   OFF,
@@ -115,7 +115,7 @@ void setup() {
 }
 
 void loop() {
-  const uint64_t now = millis();
+  const uint32_t now = millis();
   const bool btnReading = digitalRead(BUTTON_PIN);
 
   if (btnReading != buttonReading) {

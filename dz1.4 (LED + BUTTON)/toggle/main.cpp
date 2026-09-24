@@ -1,12 +1,12 @@
 #include <Arduino.h>
 
-#define BLUE_BTN_PIN 7
-#define RED_BTN_PIN 15
+constexpr uint8_t BLUE_BTN_PIN = 7;
+constexpr uint8_t RED_BTN_PIN = 15;
 
-#define BLUE_LED_PIN 16
-#define RED_LED_PIN 3
+constexpr uint8_t BLUE_LED_PIN = 16;
+constexpr uint8_t RED_LED_PIN = 3;
 
-#define DEBOUNCE_DELAY 50 // milliseconds
+constexpr uint8_t DEBOUNCE_DELAY = 50; // milliseconds
 
 
 class LED {
@@ -33,7 +33,7 @@ class Button {
     uint8_t pin;
     int lastState;
     int currentState;
-    unsigned long lastDebounceTime;
+    uint32_t lastDebounceTime;
     LED* led;
 
   public:
@@ -42,7 +42,7 @@ class Button {
     }
 
     void update() {
-      uint8_t now = millis();
+      uint32_t now = millis();
       int reading = digitalRead(pin);
       if (reading != lastState) {
         lastDebounceTime = now;
@@ -66,10 +66,6 @@ LED ledBlue(BLUE_LED_PIN, "Blue");
 
 Button btnRed(RED_BTN_PIN, &ledRed);
 Button btnBlue(BLUE_BTN_PIN, &ledBlue);
-
-#define PWM_CHANNEL 0
-#define PWM_FREQUENCY 5000
-#define PWM_RESOLUTION 8
 
 void setup() {
   Serial.begin(115200);

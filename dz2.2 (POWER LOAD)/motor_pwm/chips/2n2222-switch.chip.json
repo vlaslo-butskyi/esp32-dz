@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "2N2222A (NPN)",
+  "author": "Vlaslo Butskyi",
+  "license": "MIT",
+  "pins": [
+    "C",
+    "B",
+    "E"
+  ],
+  "display": {
+    "width": 64,
+    "height": 24
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "author": "Vlaslo Butskyi",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": 38.4,
+      "left": -235.2,
+      "attrs": { "value": "0" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rb",
+      "top": 110.4,
+      "left": 95.45,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    { "type": "chip-2n2222-switch", "id": "vt1", "top": 220.8, "left": 153.6, "attrs": {} },
+    { "type": "chip-dc-motor", "id": "motor1", "top": 33.6, "left": 297.6, "attrs": {} },
+    { "type": "chip-flyback-diode", "id": "d1", "top": 148.8, "left": 307.2, "attrs": {} },
+    { "type": "chip-electrolytic-cap", "id": "c1", "top": 230.4, "left": 326.4, "attrs": {} },
+    {
+      "type": "wokwi-logic-analyzer",
+      "id": "logic1",
+      "top": 288.35,
+      "left": -134.4,
+      "attrs": { "channelNames": "PWM" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pot1:VCC", "esp:3V3.1", "red", [ "v8.3", "h176.6", "v-86.22" ] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v27.5", "h177.4", "v96.18" ] ],
+    [ "pot1:SIG", "esp:1", "orange", [ "v17.9", "h52.2", "v-153.6", "h249.6", "v86.58" ] ],
+    [ "esp:2", "rb:1", "green", [] ],
+    [ "rb:2", "vt1:B", "green", [ "h-0.55", "v88.98" ] ],
+    [ "vt1:E", "esp:GND.4", "black", [ "h16.21", "v-37.38", "h-172.8", "v28.98" ] ],
+    [ "vt1:C", "motor1:NEG", "blue", [ "h-14.4", "v-177.6" ] ],
+    [ "motor1:POS", "esp:5V", "red", [ "h-14.4", "v236.22", "h-307.2", "v-57.42" ] ],
+    [ "d1:A", "motor1:NEG", "blue", [] ],
+    [ "d1:K", "motor1:POS", "red", [ "h-43.2", "v-124.8" ] ],
+    [ "c1:POS", "esp:5V", "red", [ "h-14.4", "v39.42", "h-336", "v-57.42" ] ],
+    [ "esp:2", "logic1:D0", "magenta", [] ],
+    [ "logic1:GND", "esp:GND.4", "black", [ "h-9.6", "v19.2", "h249.6", "v-163.02" ] ],
+    [ "c1:NEG", "esp:GND.4", "black", [ "v58.62", "h-225.6", "v-76.62" ] ],
+    [ "c1:POS", "c1:NEG", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}

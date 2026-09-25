@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "470 uF electrolytic",
+  "author": "Vlaslo Butskyi",
+  "license": "MIT",
+  "pins": [
+    "POS",
+    "NEG"
+  ],
+  "display": {
+    "width": 48,
+    "height": 40
+  }
+}

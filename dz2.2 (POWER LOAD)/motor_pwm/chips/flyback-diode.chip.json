@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "1N4007 (flyback)",
+  "author": "Vlaslo Butskyi",
+  "license": "MIT",
+  "pins": [
+    "A",
+    "K"
+  ],
+  "display": {
+    "width": 64,
+    "height": 32
+  }
+}

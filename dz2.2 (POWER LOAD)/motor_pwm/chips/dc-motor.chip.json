@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "TT gear motor (DC)",
+  "author": "Vlaslo Butskyi",
+  "license": "MIT",
+  "pins": [
+    "POS",
+    "NEG"
+  ],
+  "display": {
+    "width": 80,
+    "height": 48
+  }
+}

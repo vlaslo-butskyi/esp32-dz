@@ -1,0 +1,20 @@
+[wokwi]
+version = 1
+firmware = '../../.pio/build/esp32-s3-devkitc-1/firmware.bin'
+elf = '../../.pio/build/esp32-s3-devkitc-1/firmware.elf'
+
+[[chip]]
+name = "2n2222-switch"
+binary = "chips/2n2222-switch.chip.wasm"
+
+[[chip]]
+name = "dc-motor"
+binary = "chips/dc-motor.chip.wasm"
+
+[[chip]]
+name = "flyback-diode"
+binary = "chips/flyback-diode.chip.wasm"
+
+[[chip]]
+name = "electrolytic-cap"
+binary = "chips/electrolytic-cap.chip.wasm"

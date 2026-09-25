@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "author": "Vlaslo Butskyi",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "rled",
+      "top": 43.2,
+      "left": 105.05,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 111.6,
+      "left": 99.8,
+      "attrs": { "color": "red", "label": "TX" }
+    },
+    {
+      "type": "wokwi-logic-analyzer",
+      "id": "logic1",
+      "top": 175,
+      "left": -154.15,
+      "rotate": 90,
+      "attrs": { "channelNames": "TX" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:17", "rled:1", "orange", [ "h-43.48", "v-124.98", "h172.8" ] ],
+    [ "rled:2", "led1:A", "orange", [ "v75.6" ] ],
+    [ "led1:C", "esp:GND.1", "black", [ "v144", "h-124.4", "v-67.02" ] ],
+    [ "esp:17", "esp:7", "green", [ "h-24.28", "v-28.8" ] ],
+    [ "esp:17", "logic1:D0", "magenta", [ "v-0.18", "h-302.68" ] ],
+    [ "logic1:GND", "esp:GND.1", "black", [ "v-9.6", "h105.6", "v96.18" ] ]
+  ],
+  "dependencies": {}
+}

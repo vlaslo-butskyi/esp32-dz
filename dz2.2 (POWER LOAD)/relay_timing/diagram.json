@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "author": "Vlaslo Butskyi",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay1",
+      "top": -131.4,
+      "left": 138,
+      "rotate": 270,
+      "attrs": { "transistor": "pnp" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 100.8,
+      "left": 85.85,
+      "rotate": 90,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": -62.95,
+      "left": 27.4,
+      "rotate": 180,
+      "attrs": { "value": "10000" }
+    },
+    { "type": "chip-bc547-switch", "id": "vt1", "top": 125.82, "left": 158.4, "attrs": {} },
+    {
+      "type": "wokwi-logic-analyzer",
+      "id": "logic1",
+      "top": 79,
+      "left": -173.35,
+      "rotate": 90,
+      "attrs": { "channelNames": "COIL,CONTACT,RELAY_IN" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "r3:2", "vt1:B", "green", [ "v-0.3", "v8.7" ] ],
+    [ "vt1:C", "relay1:IN", "blue", [ "v-76.8", "h48", "v-96" ] ],
+    [ "vt1:C", "r4:1", "red", [ "h-28.8", "v-48", "v-288" ] ],
+    [ "r4:2", "esp:5V", "red", [ "h-46.8", "v278.58" ] ],
+    [ "vt1:E", "esp:GND.4", "black", [ "h11.41", "v86.58" ] ],
+    [ "relay1:VCC", "esp:5V", "red", [ "h-211.2", "v259.2", "h24.28" ] ],
+    [ "relay1:GND", "esp:GND.4", "black", [ "v57.6", "h76.4", "v211.38" ] ],
+    [ "relay1:COM", "esp:GND.1", "black", [ "v-20.4", "h-231.8", "v403.38" ] ],
+    [ "r3:1", "esp:8", "gold", [ "v-86.4", "h-124.8", "v144.18" ] ],
+    [ "logic1:D0", "esp:8", "magenta", [ "v-9.6", "h19.2", "v96.18" ] ],
+    [ "relay1:NO", "esp:2", "green", [ "h27", "v219.78" ] ],
+    [ "logic1:D1", "esp:2", "magenta", [ "v-67.2", "h172.8", "v86.58" ] ],
+    [ "vt1:C", "logic1:D2", "magenta", [ "h-9.6", "v-211.2", "h-230.4" ] ],
+    [ "logic1:GND", "esp:GND.1", "black", [ "v-9.6", "h-19.2", "v192.18" ] ]
+  ],
+  "dependencies": {}
+}

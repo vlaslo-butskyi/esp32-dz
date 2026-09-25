@@ -195,9 +195,24 @@ static void selfTest() {
 
 // --- серія вимірювань --------------------------------------------------------
 
+// printf вирівнює по БАЙТАХ, а не по символах, а кирилиця в UTF-8 займає два
+// байти на літеру. Тому "%-26s" на українській мітці мовчки не працює: рядок
+// із 20 символів важить 30 байтів, формат вважає його задовгим і не додає
+// нічого. Рахуємо символи самі — перший байт символу завжди має біти 10xxxxxx
+// нульовими, продовження — ні.
+static void printPadded(const char* text, uint8_t width) {
+  uint8_t chars = 0;
+  for (const char* p = text; *p != '\0'; ++p) {
+    if ((static_cast<uint8_t>(*p) & 0xC0) != 0x80) ++chars;
+  }
+
+  Serial.print(text);
+  for (; chars < width; ++chars) Serial.print(' ');
+}
+
 static void printSummaryLine(const char* label, const Stats& s) {
-  Serial.printf("%-26s avg %6u us (%u.%02u ms) | min %6u us | max %6u us\r\n",
-                label,
+  printPadded(label, 24);
+  Serial.printf("avg %6u us (%u.%02u ms) | min %6u us | max %6u us\r\n",
                 s.average(), s.average() / 1000, (s.average() % 1000) / 10,
                 s.minimum(), s.maximum());
 }
@@ -249,12 +264,14 @@ static void runSeries() {
   printSummaryLine("брязкіт при вимкненні", offBounce);
 
   if (onFirst.count() > 0) {
-    Serial.printf("фронтів при увімкненні: %u на %u вимірів (%u.%u на спрацювання)\r\n",
+    printPadded("фронтів при увімкненні:", 24);
+    Serial.printf("%u на %u вимірів (%u.%u на спрацювання)\r\n",
                   onEdgesTotal, onFirst.count(),
                   onEdgesTotal / onFirst.count(), (onEdgesTotal * 10 / onFirst.count()) % 10);
   }
   if (offFirst.count() > 0) {
-    Serial.printf("фронтів при вимкненні:  %u на %u вимірів (%u.%u на спрацювання)\r\n",
+    printPadded("фронтів при вимкненні:", 24);
+    Serial.printf("%u на %u вимірів (%u.%u на спрацювання)\r\n",
                   offEdgesTotal, offFirst.count(),
                   offEdgesTotal / offFirst.count(), (offEdgesTotal * 10 / offFirst.count()) % 10);
   }

@@ -6,7 +6,7 @@
 
 <a href="video.mp4"><img src="demo.gif" width="420" alt="Демо: поворот ручки потенціометра плавно змінює оберти двигуна"></a>
 
-▶️ [Відео в повній якості (MP4)](video.mp4)
+https://github.com/user-attachments/assets/bf001ae6-3650-4b70-83be-98d9b4d83f29
 
 ## Схема та фото
 

@@ -6,7 +6,7 @@
 
 <a href="video.mp4"><img src="demo.gif" width="420" alt="Демо: реле клацає раз на 300 мс, індикатор на модулі блимає в такт серії вимірювань"></a>
 
-▶️ [Відео в повній якості (MP4)](video.mp4)
+https://github.com/user-attachments/assets/638f5a57-5c12-4a43-8604-ffe7c11162df
 
 ## Схема та фото
 

@@ -223,8 +223,8 @@ static void runSeries() {
   uint16_t failures = 0;
 
   Serial.println();
-  Serial.println("   # | on: t1 | on: ts | on: bnc | n | off: t1 | off: ts | off: bnc | n");
-  Serial.println("-----+--------+--------+---------+---+---------+---------+----------+---");
+  Serial.println("   # | on: t1 | on: ts | on: bnc |  n | off: t1 | off: ts | off: bnc |  n");
+  Serial.println("-----+--------+--------+---------+----+---------+---------+----------+---");
 
   for (uint16_t i = 1; i <= Config::CYCLES; ++i) {
     const Measurement on = switchRelay(true);
@@ -233,7 +233,7 @@ static void runSeries() {
     const Measurement off = switchRelay(false);
     delay(Config::HOLD_MS);
 
-    Serial.printf("%4u | %6u | %6u | %7u | %u | %7u | %7u | %8u | %u%s\r\n",
+    Serial.printf("%4u | %6u | %6u | %7u | %2u | %7u | %7u | %8u | %2u%s\r\n",
                   i,
                   on.firstUs, on.settleUs, on.settleUs - on.firstUs, on.edges,
                   off.firstUs, off.settleUs, off.settleUs - off.firstUs, off.edges,

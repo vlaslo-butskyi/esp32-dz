@@ -237,8 +237,8 @@ void setup() {
   Serial.printf("поштовх при старті: %u %% протягом %u ms\r\n",
                 Config::KICK_DUTY, Config::KICK_MS);
   Serial.println();
-  Serial.println("   ADC | ціль | зараз | high us | low us | фронт/с | ШІМ late | max | ADC avg | max | print");
-  Serial.println("-------+------+-------+---------+--------+---------+----------+------+---------+-----+------");
+  Serial.println("   ADC | ціль | зараз | high us | low us | фронт/с | ШІМ late |  max | ADC avg |  max |  print");
+  Serial.println("-------+------+-------+---------+--------+---------+----------+------+---------+------+-------");
 }
 
 // Плавний розгін: заповнення не стрибає за ручкою, а доганяє її кроками. Різкий

@@ -205,3 +205,5 @@ sizeof(Led) = 3 B, sizeof(LedState) = 1 B
 | [`schema.png`](schema.png) | скриншот схеми |
 | [`photo.jpeg`](photo.jpeg) | фото зібраної схеми |
 | [`demo.gif`](demo.gif), [`video.mp4`](video.mp4) | відео роботи |
+
+Поза завданням у цій же папці лежить [**blink_mmio**](../blink_mmio/) — те саме блимання через регістри GPIO, з розбором бітових масок і `volatile` у дизасемблері.

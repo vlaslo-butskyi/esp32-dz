@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "author": "Vlaslo Butskyi",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 92.78,
+      "left": -140,
+      "attrs": { "color": "green", "xray": "1", "label": "GPIO 16" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 6,
+      "left": 272.6,
+      "attrs": { "color": "red", "label": "GPIO 4" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 61.6,
+      "left": 230.4,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-logic-analyzer",
+      "id": "logic1",
+      "top": 221.15,
+      "left": -297.6,
+      "attrs": { "channelNames": "BUTTON,LED" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "btn1:1.r", "esp:16", "green", [] ],
+    [ "btn1:2.r", "esp:GND.1", "black", [ "h28.8", "v105.79" ] ],
+
+    [ "esp:4", "r1:1", "orange", [] ],
+    [ "r1:2", "led1:A", "orange", [] ],
+    [ "led1:C", "esp:GND.2", "black", [] ],
+
+    [ "btn1:1.l", "logic1:D0", "orange", [ "h-57.6" ] ],
+    [ "btn1:2.l", "logic1:GND", "black", [ "h-176.8", "v181.27" ] ],
+    [ "led1:A", "logic1:D1", "magenta", [] ]
+  ],
+  "dependencies": {}
+}

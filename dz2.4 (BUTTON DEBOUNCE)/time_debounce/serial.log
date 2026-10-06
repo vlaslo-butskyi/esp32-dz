@@ -1,0 +1,32 @@
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x4bc
+load:0x403c9700,len:0xbd8
+load:0x403cc700,len:0x2a0c
+entry 0x403c98d0
+Accepted button events: 1, total interrupts: 1
+Accepted button events: 2, total interrupts: 2
+Accepted button events: 3, total interrupts: 3
+Accepted button events: 4, total interrupts: 4
+Rejected button event at: 9828720 us
+Accepted button events: 5, total interrupts: 6
+Accepted button events: 6, total interrupts: 7
+Accepted button events: 7, total interrupts: 8
+Accepted button events: 8, total interrupts: 9
+Accepted button events: 9, total interrupts: 10
+Accepted button events: 10, total interrupts: 11
+Accepted button events: 11, total interrupts: 12
+Accepted button events: 12, total interrupts: 13
+Accepted button events: 13, total interrupts: 14
+Accepted button events: 14, total interrupts: 15
+Accepted button events: 15, total interrupts: 16
+Accepted button events: 16, total interrupts: 17
+Accepted button events: 17, total interrupts: 18
+Accepted button events: 18, total interrupts: 19
+Accepted button events: 19, total interrupts: 20
+Accepted button events: 20, total interrupts: 21
+Accepted button events: 21, total interrupts: 22
+Accepted button events: 22, total interrupts: 23
+Accepted button events: 23, total interrupts: 24
+Accepted button events: 24, total interrupts: 25
+Accepted button events: 25, total interrupts: 26
+Accepted button events: 26, total interrupts: 27

@@ -1,0 +1,12 @@
+[wokwi]
+version = 1
+firmware = '../../.pio/build/esp32-s3-devkitc-1/firmware.bin'
+elf = '../../.pio/build/esp32-s3-devkitc-1/firmware.elf'
+vcdFile = 'logic-capture.vcd'
+
+# Конденсатора в Wokwi немає, тому 100 нФ — кастомний чип на два виводи.
+# Він нічого не фільтрує, лише показує, куди ввімкнено деталь.
+# Джерела спільні для всіх чотирьох RC-варіантів: ../chips/
+[[chip]]
+name = "ceramic-cap"
+binary = "chips/ceramic-cap.chip.wasm"

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "100 nF ceramic",
+  "author": "Vlaslo Butskyi",
+  "license": "MIT",
+  "pins": [
+    "1",
+    "2"
+  ],
+  "display": {
+    "width": 48,
+    "height": 40
+  }
+}

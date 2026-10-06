@@ -1,0 +1,58 @@
+entry 0x403c98d0
+Accepted button events: 1, total interrupts: 1
+Accepted button events: 2, total interrupts: 7
+Rejected button event at: 17625327 us
+Accepted button events: 3, total interrupts: 9
+Accepted button events: 4, total interrupts: 16
+Rejected button event at: 18175554 us
+Accepted button events: 5, total interrupts: 18
+Accepted button events: 6, total interrupts: 24
+Rejected button event at: 18653247 us
+Accepted button events: 7, total interrupts: 26
+Accepted button events: 8, total interrupts: 27
+Rejected button event at: 19229547 us
+Accepted button events: 9, total interrupts: 34
+Accepted button events: 10, total interrupts: 41
+Rejected button event at: 19491976 us
+Accepted button events: 11, total interrupts: 43
+Accepted button events: 12, total interrupts: 50
+Rejected button event at: 19750776 us
+Accepted button events: 13, total interrupts: 52
+Accepted button events: 14, total interrupts: 58
+Rejected button event at: 20380181 us
+Accepted button events: 15, total interrupts: 60
+Accepted button events: 16, total interrupts: 67
+Rejected button event at: 20946340 us
+Accepted button events: 17, total interrupts: 69
+Accepted button events: 18, total interrupts: 76
+Rejected button event at: 21518429 us
+Accepted button events: 19, total interrupts: 78
+Accepted button events: 20, total interrupts: 85
+Rejected button event at: 21936983 us
+Accepted button events: 21, total interrupts: 87
+Accepted button events: 22, total interrupts: 93
+Rejected button event at: 22182388 us
+Accepted button events: 23, total interrupts: 95
+Accepted button events: 24, total interrupts: 101
+Rejected button event at: 22506334 us
+Accepted button events: 25, total interrupts: 103
+Accepted button events: 26, total interrupts: 104
+Rejected button event at: 23031046 us
+Accepted button events: 27, total interrupts: 114
+Accepted button events: 28, total interrupts: 121
+Rejected button event at: 23788830 us
+Accepted button events: 29, total interrupts: 123
+Accepted button events: 30, total interrupts: 130
+Rejected button event at: 24369892 us
+Accepted button events: 31, total interrupts: 132
+Accepted button events: 32, total interrupts: 138
+Rejected button event at: 24650066 us
+Accepted button events: 33, total interrupts: 140
+Accepted button events: 34, total interrupts: 147
+Rejected button event at: 25548702 us
+Accepted button events: 35, total interrupts: 149
+Accepted button events: 36, total interrupts: 154
+Rejected button event at: 26559327 us
+Accepted button events: 37, total interrupts: 156
+Accepted button events: 38, total interrupts: 162
+Rejected button event at: 27657246 us

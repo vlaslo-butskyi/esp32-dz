@@ -1,0 +1,24 @@
+[wokwi]
+version = 1
+firmware = '../../.pio/build/esp32-s3-devkitc-1/firmware.bin'
+elf = '../../.pio/build/esp32-s3-devkitc-1/firmware.elf'
+vcdFile = 'wokwi.vcd'
+
+# Силової частини витяжки в Wokwi немає жодної деталі, тому всі чотири — кастомні
+# чипи рівно з тими виводами, що в деталей на платі. Джерела спільні: ../chips/,
+# збирати через  make -C "dz2.5 (TIMERS)/chips" install
+[[chip]]
+name = "bc547-switch"
+binary = "chips/bc547-switch.chip.wasm"
+
+[[chip]]
+name = "dc-motor"
+binary = "chips/dc-motor.chip.wasm"
+
+[[chip]]
+name = "flyback-diode"
+binary = "chips/flyback-diode.chip.wasm"
+
+[[chip]]
+name = "electrolytic-cap"
+binary = "chips/electrolytic-cap.chip.wasm"

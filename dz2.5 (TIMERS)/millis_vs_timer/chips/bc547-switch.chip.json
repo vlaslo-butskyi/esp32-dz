@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "BC547B (NPN)",
+  "author": "Vlaslo Butskyi",
+  "license": "MIT",
+  "pins": [
+    "C",
+    "B",
+    "E"
+  ],
+  "display": {
+    "width": 64,
+    "height": 24
+  }
+}

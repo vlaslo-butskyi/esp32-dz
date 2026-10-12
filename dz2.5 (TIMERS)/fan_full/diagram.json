@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "author": "Vlaslo Butskyi",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": -146.67,
+      "left": -40.48,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rb",
+      "top": 129.05,
+      "left": -135.8,
+      "rotate": 180,
+      "attrs": { "value": "10000" }
+    },
+    { "type": "chip-bc547-switch", "id": "vt1", "top": 173.82, "left": -148.8, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "rpu",
+      "top": 147.95,
+      "left": -76.8,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay1",
+      "top": 86.6,
+      "left": 134.4,
+      "attrs": { "transistor": "pnp" }
+    },
+    { "type": "chip-dc-motor", "id": "motor1", "top": -56.58, "left": 360, "attrs": {} },
+    { "type": "chip-flyback-diode", "id": "d1", "top": 58.62, "left": 360, "attrs": {} },
+    { "type": "chip-electrolytic-cap", "id": "c1", "top": 173.82, "left": 139.2, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 61.85,
+      "left": -193.4,
+      "rotate": 180,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -13.2,
+      "left": -303.4,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 81.05,
+      "left": -155,
+      "rotate": 180,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 34.8,
+      "left": -284.2,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-logic-analyzer",
+      "id": "logic1",
+      "top": -172.45,
+      "left": -67.2,
+      "attrs": { "channelNames": "RELAY,FAN,IDLE,WARN,BUTTON" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btn1",
+      "top": 77.8,
+      "left": -24.8,
+      "rotate": 90,
+      "attrs": { "color": "blue", "xray": "1" }
+    },
+    { "type": "wokwi-led", "id": "led3", "top": 73.2, "left": -265, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 100.25,
+      "left": -145.4,
+      "rotate": 180,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:8", "rb:1", "gold", [ "v105.65", "h-86.4" ] ],
+    [ "rb:2", "vt1:B", "green", [ "h-28.8", "v75.6" ] ],
+    [ "vt1:C", "relay1:IN", "blue", [ "v-19.2", "h268.8", "v-38.2" ] ],
+    [ "vt1:C", "rpu:1", "red", [ "h-9.6", "v-28.8", "h86.4" ] ],
+    [ "rpu:2", "esp:5V", "red", [] ],
+    [ "relay1:VCC", "esp:5V", "red", [ "h-38.4", "v-76.85" ] ],
+    [ "motor1:POS", "esp:5V", "red", [ "h-124.8", "v96", "h-144" ] ],
+    [ "motor1:NEG", "relay1:COM", "blue", [ "h-96", "v155" ] ],
+    [ "relay1:NO", "esp:GND.1", "black", [ "h30", "v-49.8", "h-172.8" ] ],
+    [ "d1:K", "motor1:POS", "red", [ "h-28.8", "v-124.8" ] ],
+    [ "d1:A", "motor1:NEG", "black", [ "h-9.6", "v-105.6" ] ],
+    [ "c1:POS", "esp:5V", "red", [] ],
+    [ "esp:4", "r1:1", "gold", [ "v38.45", "h-67.2" ] ],
+    [ "r1:2", "led1:A", "gold", [ "h-8.4", "v-28.8", "h-76.8" ] ],
+    [ "led1:C", "esp:GND.1", "black", [ "v96", "h394" ] ],
+    [ "esp:5", "r2:1", "gold", [ "v57.65", "h-38.4" ] ],
+    [ "r2:2", "led2:A", "yellow", [ "h-27.6", "v96" ] ],
+    [ "led2:C", "esp:GND.1", "black", [ "v48", "h374.8" ] ],
+    [ "esp:GND.1", "vt1:E", "black", [ "v0" ] ],
+    [ "esp:GND.1", "c1:NEG", "black", [ "v0" ] ],
+    [ "relay1:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "esp:16", "btn1:2.l", "green", [ "v0" ] ],
+    [ "btn1:1.l", "esp:GND.1", "black", [ "v-9.6", "h105.6" ] ],
+    [ "esp:6", "r3:1", "gold", [ "v0" ] ],
+    [ "r3:2", "led3:A", "gold", [ "v0" ] ],
+    [ "led3:C", "esp:GND.1", "black", [ "v9.6", "h355.6" ] ],
+    [ "logic1:D0", "esp:8", "magenta", [ "h-96", "v220.8", "h172.8" ] ],
+    [ "logic1:D1", "esp:4", "magenta", [ "h-86.4", "v182.35" ] ],
+    [ "logic1:D2", "esp:5", "magenta", [ "h-76.8", "v182.4", "h86.4" ] ],
+    [ "logic1:D3", "esp:6", "magenta", [ "h-67.2", "v182.4", "h86.4" ] ],
+    [ "logic1:D4", "esp:16", "magenta", [] ],
+    [ "esp:GND.2", "logic1:GND", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

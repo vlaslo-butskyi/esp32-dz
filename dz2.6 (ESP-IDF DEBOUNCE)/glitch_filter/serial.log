@@ -1,0 +1,171 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x370
+load:0x403c9700,len:0x900
+load:0x403cc700,len:0x2364
+entry 0x403c98ac
+I (13) cpu_start: Multicore app
+I (11) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (13) cpu_start: Pro cpu start user code
+I (14) cpu_start: cpu freq: 160000000 Hz
+I (14) app_init: Application information:
+I (17) app_init: Project name:     dz-espidf
+I (21) app_init: App version:      75bb37e-dirty
+I (25) app_init: Compile time:     Oct 21 2026 12:08:48
+I (30) app_init: ELF file SHA256:  f21469177...
+I (34) app_init: ESP-IDF:          6.1.0
+I (38) efuse_init: Min chip rev:     v0.0
+I (42) efuse_init: Max chip rev:     v0.99 
+I (46) efuse_init: Chip rev:         v0.0
+I (50) heap_init: Initializing. RAM available for dynamic allocation:
+I (56) heap_init: At 3FC94070 len 000556A0 (341 KiB): RAM
+I (61) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (66) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (71) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (78) spi_flash: detected chip: gd
+I (79) spi_flash: flash io: dio
+I (83) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (90) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (96) main_task: Started on CPU0
+I (96) main_task: Calling app_main()
+I (106) glitch_filter: ready, hardware pin glitch filter on GPIO 16, no software debounce
+I (416) glitch_filter: Button interrupt count: 3
+I (416) glitch_filter: Button interrupt count: 68
+I (416) glitch_filter: Button interrupt count: 77
+I (666) glitch_filter: Button interrupt count: 78
+I (666) glitch_filter: Button interrupt count: 101
+I (666) glitch_filter: Button interrupt count: 119
+I (1066) glitch_filter: Button interrupt count: 120
+I (1066) glitch_filter: Button interrupt count: 173
+I (1066) glitch_filter: Button interrupt count: 191
+I (1316) glitch_filter: Button interrupt count: 192
+I (1316) glitch_filter: Button interrupt count: 197
+I (1316) glitch_filter: Button interrupt count: 203
+I (1316) glitch_filter: Button interrupt count: 207
+I (1716) glitch_filter: Button interrupt count: 210
+I (1716) glitch_filter: Button interrupt count: 273
+I (1716) glitch_filter: Button interrupt count: 280
+I (1966) glitch_filter: Button interrupt count: 281
+I (1966) glitch_filter: Button interrupt count: 306
+I (1966) glitch_filter: Button interrupt count: 316
+I (2366) glitch_filter: Button interrupt count: 317
+I (2366) glitch_filter: Button interrupt count: 347
+I (2366) glitch_filter: Button interrupt count: 363
+I (2616) glitch_filter: Button interrupt count: 364
+I (2616) glitch_filter: Button interrupt count: 373
+I (2616) glitch_filter: Button interrupt count: 381
+I (2616) glitch_filter: Button interrupt count: 385
+I (3016) glitch_filter: Button interrupt count: 386
+I (3016) glitch_filter: Button interrupt count: 387
+I (3266) glitch_filter: Button interrupt count: 388
+I (3266) glitch_filter: Button interrupt count: 437
+I (3266) glitch_filter: Button interrupt count: 457
+I (3666) glitch_filter: Button interrupt count: 458
+I (3666) glitch_filter: Button interrupt count: 475
+I (3666) glitch_filter: Button interrupt count: 491
+I (3666) glitch_filter: Button interrupt count: 492
+I (3816) glitch_filter: Button interrupt count: 493
+I (3816) glitch_filter: Button interrupt count: 496
+I (3816) glitch_filter: Button interrupt count: 497
+I (3816) glitch_filter: Button interrupt count: 498
+I (4116) glitch_filter: Button interrupt count: 499
+I (4116) glitch_filter: Button interrupt count: 546
+I (4116) glitch_filter: Button interrupt count: 567
+I (4266) glitch_filter: Button interrupt count: 568
+I (4266) glitch_filter: Button interrupt count: 618
+I (4266) glitch_filter: Button interrupt count: 635
+I (4566) glitch_filter: Button interrupt count: 637
+I (4566) glitch_filter: Button interrupt count: 685
+I (4566) glitch_filter: Button interrupt count: 695
+I (4716) glitch_filter: Button interrupt count: 696
+I (4716) glitch_filter: Button interrupt count: 741
+I (4716) glitch_filter: Button interrupt count: 758
+I (5016) glitch_filter: Button interrupt count: 762
+I (5016) glitch_filter: Button interrupt count: 834
+I (5166) glitch_filter: Button interrupt count: 835
+I (5166) glitch_filter: Button interrupt count: 846
+I (5166) glitch_filter: Button interrupt count: 853
+I (5466) glitch_filter: Button interrupt count: 854
+I (5466) glitch_filter: Button interrupt count: 879
+I (5466) glitch_filter: Button interrupt count: 898
+I (5616) glitch_filter: Button interrupt count: 899
+I (5616) glitch_filter: Button interrupt count: 907
+I (5616) glitch_filter: Button interrupt count: 922
+I (5916) glitch_filter: Button interrupt count: 923
+I (5916) glitch_filter: Button interrupt count: 937
+I (5916) glitch_filter: Button interrupt count: 952
+I (5916) glitch_filter: Button interrupt count: 953
+I (5976) glitch_filter: Button interrupt count: 956
+I (5976) glitch_filter: Button interrupt count: 990
+I (5976) glitch_filter: Button interrupt count: 1013
+I (6226) glitch_filter: Button interrupt count: 1014
+I (6226) glitch_filter: Button interrupt count: 1036
+I (6226) glitch_filter: Button interrupt count: 1053
+I (6286) glitch_filter: Button interrupt count: 1054
+I (6286) glitch_filter: Button interrupt count: 1066
+I (6286) glitch_filter: Button interrupt count: 1074
+I (6286) glitch_filter: Button interrupt count: 1075
+I (6536) glitch_filter: Button interrupt count: 1076
+I (6536) glitch_filter: Button interrupt count: 1089
+I (6536) glitch_filter: Button interrupt count: 1102
+I (6596) glitch_filter: Button interrupt count: 1103
+I (6596) glitch_filter: Button interrupt count: 1112
+I (6596) glitch_filter: Button interrupt count: 1120
+I (6596) glitch_filter: Button interrupt count: 1123
+I (6846) glitch_filter: Button interrupt count: 1124
+I (6846) glitch_filter: Button interrupt count: 1135
+I (6846) glitch_filter: Button interrupt count: 1144
+I (6906) glitch_filter: Button interrupt count: 1145
+I (6906) glitch_filter: Button interrupt count: 1207
+I (6906) glitch_filter: Button interrupt count: 1222
+I (7156) glitch_filter: Button interrupt count: 1224
+I (7156) glitch_filter: Button interrupt count: 1267
+I (7156) glitch_filter: Button interrupt count: 1281
+I (7216) glitch_filter: Button interrupt count: 1282
+I (7216) glitch_filter: Button interrupt count: 1283
+I (7216) glitch_filter: Button interrupt count: 1285
+I (7216) glitch_filter: Button interrupt count: 1287
+I (7466) glitch_filter: Button interrupt count: 1289
+I (7466) glitch_filter: Button interrupt count: 1358
+I (7466) glitch_filter: Button interrupt count: 1361
+I (7486) glitch_filter: Button interrupt count: 1362
+I (7496) glitch_filter: Button interrupt count: 1422
+I (7496) glitch_filter: Button interrupt count: 1429
+I (7686) glitch_filter: Button interrupt count: 1430
+I (7686) glitch_filter: Button interrupt count: 1445
+I (7696) glitch_filter: Button interrupt count: 1463
+I (7716) glitch_filter: Button interrupt count: 1464
+I (7716) glitch_filter: Button interrupt count: 1469
+I (7716) glitch_filter: Button interrupt count: 1474
+I (7716) glitch_filter: Button interrupt count: 1479
+I (7916) glitch_filter: Button interrupt count: 1481
+I (7916) glitch_filter: Button interrupt count: 1528
+I (7916) glitch_filter: Button interrupt count: 1537
+I (7936) glitch_filter: Button interrupt count: 1538
+I (7936) glitch_filter: Button interrupt count: 1567
+I (7946) glitch_filter: Button interrupt count: 1574
+I (8136) glitch_filter: Button interrupt count: 1575
+I (8146) glitch_filter: Button interrupt count: 1639
+I (8146) glitch_filter: Button interrupt count: 1651
+I (8166) glitch_filter: Button interrupt count: 1652
+I (8166) glitch_filter: Button interrupt count: 1682
+I (8166) glitch_filter: Button interrupt count: 1699
+I (8366) glitch_filter: Button interrupt count: 1700
+I (8366) glitch_filter: Button interrupt count: 1761
+I (8366) glitch_filter: Button interrupt count: 1766
+I (8386) glitch_filter: Button interrupt count: 1767
+I (8396) glitch_filter: Button interrupt count: 1853
+I (8586) glitch_filter: Button interrupt count: 1857
+I (8596) glitch_filter: Button interrupt count: 1925
+I (8606) glitch_filter: Button interrupt count: 1926
+I (8606) glitch_filter: Button interrupt count: 1945
+I (8616) glitch_filter: Button interrupt count: 1957
+I (8626) glitch_filter: Button interrupt count: 1958
+I (8626) glitch_filter: Button interrupt count: 1976
+I (8626) glitch_filter: Button interrupt count: 1988
+I (8726) glitch_filter: Button interrupt count: 1989
+I (8726) glitch_filter: Button interrupt count: 2043
+I (8726) glitch_filter: Button interrupt count: 2057

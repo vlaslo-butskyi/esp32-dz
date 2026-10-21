@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+firmware = '../../.pio/build/idf_time_debounce/firmware.bin'
+elf = '../../.pio/build/idf_time_debounce/firmware.elf'
+vcdFile = 'wokwi.vcd'

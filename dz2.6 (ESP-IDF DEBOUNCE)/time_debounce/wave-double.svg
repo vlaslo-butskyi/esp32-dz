@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 230" width="920" height="230" font-family="-apple-system,Segoe UI,Helvetica,sans-serif">
+<rect width="920" height="230" fill="#fff"/>
+<text x="90" y="20" font-size="14" fill="#111">time_debounce: другий спад через 35 мс потрапив у вікно 50 мс — світлодіод не реагує</text>
+<text x="80" y="66" font-size="12" text-anchor="end" fill="#555">кнопка</text>
+<line x1="90" y1="82" x2="900" y2="82" stroke="#eee"/>
+<polyline fill="none" stroke="#2d7dd2" stroke-width="1.6" points="90.00,42.00 128.70,42.00 128.70,82.00 356.87,82.00 356.87,42.00 528.00,42.00 528.00,82.00 900.00,82.00"/>
+<text x="80" y="152" font-size="12" text-anchor="end" fill="#555">світлодіод</text>
+<line x1="90" y1="168" x2="900" y2="168" stroke="#eee"/>
+<polyline fill="none" stroke="#d64550" stroke-width="1.6" points="90.00,168.00 129.10,168.00 129.10,128.00 900.00,128.00"/>
+<line x1="90.0" y1="34" x2="90.0" y2="206" stroke="#f0f0f0"/>
+<text x="90.0" y="222" font-size="11" fill="#777" text-anchor="middle">8614.0 мс</text>
+<line x1="292.5" y1="34" x2="292.5" y2="206" stroke="#f0f0f0"/>
+<text x="292.5" y="222" font-size="11" fill="#777" text-anchor="middle">8631.8 мс</text>
+<line x1="495.0" y1="34" x2="495.0" y2="206" stroke="#f0f0f0"/>
+<text x="495.0" y="222" font-size="11" fill="#777" text-anchor="middle">8649.5 мс</text>
+<line x1="697.5" y1="34" x2="697.5" y2="206" stroke="#f0f0f0"/>
+<text x="697.5" y="222" font-size="11" fill="#777" text-anchor="middle">8667.2 мс</text>
+<line x1="900.0" y1="34" x2="900.0" y2="206" stroke="#f0f0f0"/>
+<text x="900.0" y="222" font-size="11" fill="#777" text-anchor="middle">8685.0 мс</text>
+</svg>

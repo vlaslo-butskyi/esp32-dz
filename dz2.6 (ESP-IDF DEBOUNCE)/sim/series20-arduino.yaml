@@ -1,0 +1,245 @@
+name: 'dz2.6 debounce series (Arduino baseline)'
+version: 1
+author: 'Vlaslo Butskyi'
+
+# 20 одиночних натискань різної довжини плюс одне подвійне. Серія однакова
+# для всіх шести прошивок, тож числа між ними порівнювані.
+#
+# Запуск: sim/run-arduino.sh — еталон raw_interrupt із ДЗ 2.4
+
+steps:
+  # Прошивка з ДЗ 2.4 нічого не друкує на старті, тож просто чекаємо
+  # завантаження — решта серії збігається з series20.yaml до мілісекунди.
+  - delay: 2000ms
+
+  # 5 × довгі: утримання 250 мс, пауза 400 мс
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 250ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 400ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 250ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 400ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 250ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 400ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 250ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 400ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 250ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 400ms
+
+  # 5 × середні: утримання 150 мс, пауза 300 мс
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 150ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 300ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 150ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 300ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 150ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 300ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 150ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 300ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 150ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 300ms
+
+  # 5 × короткі: утримання 60 мс, пауза 250 мс
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 60ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 250ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 60ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 250ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 60ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 250ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 60ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 250ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 60ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 250ms
+
+  # 5 × ледь-ледь: утримання 25 мс, пауза 200 мс
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 25ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 200ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 25ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 200ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 25ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 200ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 25ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 200ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 25ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 200ms
+
+  # Окремо, 21-ша подія: подвійне натискання, де другий спад приходить через
+  # 35 мс після першого — коротше за вікно 50 мс у time_debounce. На платі
+  # така пара трапилась один раз випадково, тут вона задана свідомо.
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 20ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 15ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 1
+  - delay: 100ms
+  - set-control:
+      part-id: btn1
+      control: pressed
+      value: 0
+  - delay: 600ms

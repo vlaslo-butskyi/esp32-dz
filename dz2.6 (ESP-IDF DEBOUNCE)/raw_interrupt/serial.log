@@ -1,0 +1,177 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x370
+load:0x403c9700,len:0x900
+load:0x403cc700,len:0x2364
+entry 0x403c98ac
+I (13) cpu_start: Multicore app
+I (11) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (13) cpu_start: Pro cpu start user code
+I (14) cpu_start: cpu freq: 160000000 Hz
+I (14) app_init: Application information:
+I (17) app_init: Project name:     dz-espidf
+I (21) app_init: App version:      75bb37e-dirty
+I (25) app_init: Compile time:     Oct 14 2026 17:18:49
+I (30) app_init: ELF file SHA256:  9696bb185...
+I (34) app_init: ESP-IDF:          6.1.0
+I (38) efuse_init: Min chip rev:     v0.0
+I (42) efuse_init: Max chip rev:     v0.99 
+I (46) efuse_init: Chip rev:         v0.0
+I (50) heap_init: Initializing. RAM available for dynamic allocation:
+I (56) heap_init: At 3FC93F10 len 00055800 (342 KiB): RAM
+I (61) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (66) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (71) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (78) spi_flash: detected chip: gd
+I (79) spi_flash: flash io: dio
+I (83) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (90) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (96) main_task: Started on CPU0
+I (96) main_task: Calling app_main()
+I (106) raw_interrupt: ready, no debounce at all
+I (416) raw_interrupt: Button interrupt count: 1
+I (416) raw_interrupt: Button interrupt count: 9
+I (416) raw_interrupt: Button interrupt count: 15
+I (416) raw_interrupt: Button interrupt count: 19
+I (666) raw_interrupt: Button interrupt count: 20
+I (666) raw_interrupt: Button interrupt count: 25
+I (666) raw_interrupt: Button interrupt count: 28
+I (666) raw_interrupt: Button interrupt count: 29
+I (1066) raw_interrupt: Button interrupt count: 30
+I (1066) raw_interrupt: Button interrupt count: 85
+I (1066) raw_interrupt: Button interrupt count: 100
+I (1316) raw_interrupt: Button interrupt count: 102
+I (1316) raw_interrupt: Button interrupt count: 182
+I (1716) raw_interrupt: Button interrupt count: 183
+I (1716) raw_interrupt: Button interrupt count: 214
+I (1716) raw_interrupt: Button interrupt count: 230
+I (1966) raw_interrupt: Button interrupt count: 231
+I (1966) raw_interrupt: Button interrupt count: 252
+I (1966) raw_interrupt: Button interrupt count: 270
+I (2366) raw_interrupt: Button interrupt count: 271
+I (2366) raw_interrupt: Button interrupt count: 275
+I (2366) raw_interrupt: Button interrupt count: 281
+I (2366) raw_interrupt: Button interrupt count: 284
+I (2616) raw_interrupt: Button interrupt count: 285
+I (2616) raw_interrupt: Button interrupt count: 300
+I (2616) raw_interrupt: Button interrupt count: 313
+I (2616) raw_interrupt: Button interrupt count: 315
+I (3016) raw_interrupt: Button interrupt count: 316
+I (3016) raw_interrupt: Button interrupt count: 331
+I (3016) raw_interrupt: Button interrupt count: 343
+I (3016) raw_interrupt: Button interrupt count: 348
+I (3266) raw_interrupt: Button interrupt count: 349
+I (3266) raw_interrupt: Button interrupt count: 393
+I (3266) raw_interrupt: Button interrupt count: 410
+I (3666) raw_interrupt: Button interrupt count: 411
+I (3666) raw_interrupt: Button interrupt count: 419
+I (3666) raw_interrupt: Button interrupt count: 423
+I (3666) raw_interrupt: Button interrupt count: 425
+I (3816) raw_interrupt: Button interrupt count: 426
+I (3816) raw_interrupt: Button interrupt count: 491
+I (3816) raw_interrupt: Button interrupt count: 497
+I (4116) raw_interrupt: Button interrupt count: 498
+I (4116) raw_interrupt: Button interrupt count: 501
+I (4116) raw_interrupt: Button interrupt count: 504
+I (4116) raw_interrupt: Button interrupt count: 508
+I (4266) raw_interrupt: Button interrupt count: 509
+I (4266) raw_interrupt: Button interrupt count: 517
+I (4266) raw_interrupt: Button interrupt count: 523
+I (4266) raw_interrupt: Button interrupt count: 526
+I (4566) raw_interrupt: Button interrupt count: 527
+I (4566) raw_interrupt: Button interrupt count: 528
+I (4716) raw_interrupt: Button interrupt count: 529
+I (4716) raw_interrupt: Button interrupt count: 583
+I (4716) raw_interrupt: Button interrupt count: 600
+I (5016) raw_interrupt: Button interrupt count: 601
+I (5016) raw_interrupt: Button interrupt count: 612
+I (5016) raw_interrupt: Button interrupt count: 626
+I (5016) raw_interrupt: Button interrupt count: 627
+I (5166) raw_interrupt: Button interrupt count: 628
+I (5166) raw_interrupt: Button interrupt count: 645
+I (5166) raw_interrupt: Button interrupt count: 656
+I (5466) raw_interrupt: Button interrupt count: 658
+I (5466) raw_interrupt: Button interrupt count: 721
+I (5466) raw_interrupt: Button interrupt count: 735
+I (5616) raw_interrupt: Button interrupt count: 736
+I (5616) raw_interrupt: Button interrupt count: 738
+I (5616) raw_interrupt: Button interrupt count: 740
+I (5616) raw_interrupt: Button interrupt count: 742
+I (5916) raw_interrupt: Button interrupt count: 744
+I (5916) raw_interrupt: Button interrupt count: 815
+I (5916) raw_interrupt: Button interrupt count: 818
+I (5976) raw_interrupt: Button interrupt count: 819
+I (5976) raw_interrupt: Button interrupt count: 833
+I (5976) raw_interrupt: Button interrupt count: 843
+I (5976) raw_interrupt: Button interrupt count: 844
+I (6226) raw_interrupt: Button interrupt count: 845
+I (6226) raw_interrupt: Button interrupt count: 902
+I (6226) raw_interrupt: Button interrupt count: 921
+I (6286) raw_interrupt: Button interrupt count: 922
+I (6286) raw_interrupt: Button interrupt count: 983
+I (6286) raw_interrupt: Button interrupt count: 998
+I (6536) raw_interrupt: Button interrupt count: 1000
+I (6536) raw_interrupt: Button interrupt count: 1042
+I (6536) raw_interrupt: Button interrupt count: 1058
+I (6596) raw_interrupt: Button interrupt count: 1059
+I (6596) raw_interrupt: Button interrupt count: 1070
+I (6596) raw_interrupt: Button interrupt count: 1078
+I (6846) raw_interrupt: Button interrupt count: 1079
+I (6846) raw_interrupt: Button interrupt count: 1140
+I (6846) raw_interrupt: Button interrupt count: 1151
+I (6906) raw_interrupt: Button interrupt count: 1152
+I (6906) raw_interrupt: Button interrupt count: 1178
+I (6906) raw_interrupt: Button interrupt count: 1191
+I (7156) raw_interrupt: Button interrupt count: 1192
+I (7156) raw_interrupt: Button interrupt count: 1193
+I (7156) raw_interrupt: Button interrupt count: 1195
+I (7216) raw_interrupt: Button interrupt count: 1196
+I (7216) raw_interrupt: Button interrupt count: 1207
+I (7216) raw_interrupt: Button interrupt count: 1215
+I (7216) raw_interrupt: Button interrupt count: 1218
+I (7466) raw_interrupt: Button interrupt count: 1219
+I (7466) raw_interrupt: Button interrupt count: 1272
+I (7466) raw_interrupt: Button interrupt count: 1281
+I (7486) raw_interrupt: Button interrupt count: 1282
+I (7486) raw_interrupt: Button interrupt count: 1285
+I (7496) raw_interrupt: Button interrupt count: 1291
+I (7686) raw_interrupt: Button interrupt count: 1292
+I (7696) raw_interrupt: Button interrupt count: 1366
+I (7696) raw_interrupt: Button interrupt count: 1367
+I (7716) raw_interrupt: Button interrupt count: 1369
+I (7716) raw_interrupt: Button interrupt count: 1402
+I (7716) raw_interrupt: Button interrupt count: 1416
+I (7916) raw_interrupt: Button interrupt count: 1417
+I (7916) raw_interrupt: Button interrupt count: 1418
+I (7936) raw_interrupt: Button interrupt count: 1419
+I (7936) raw_interrupt: Button interrupt count: 1446
+I (7946) raw_interrupt: Button interrupt count: 1465
+I (8136) raw_interrupt: Button interrupt count: 1466
+I (8146) raw_interrupt: Button interrupt count: 1543
+I (8146) raw_interrupt: Button interrupt count: 1548
+I (8166) raw_interrupt: Button interrupt count: 1550
+I (8166) raw_interrupt: Button interrupt count: 1567
+I (8166) raw_interrupt: Button interrupt count: 1583
+I (8366) raw_interrupt: Button interrupt count: 1584
+I (8366) raw_interrupt: Button interrupt count: 1614
+I (8366) raw_interrupt: Button interrupt count: 1626
+I (8386) raw_interrupt: Button interrupt count: 1627
+I (8386) raw_interrupt: Button interrupt count: 1641
+I (8396) raw_interrupt: Button interrupt count: 1654
+I (8586) raw_interrupt: Button interrupt count: 1655
+I (8586) raw_interrupt: Button interrupt count: 1670
+I (8596) raw_interrupt: Button interrupt count: 1685
+I (8596) raw_interrupt: Button interrupt count: 1686
+I (8606) raw_interrupt: Button interrupt count: 1687
+I (8606) raw_interrupt: Button interrupt count: 1702
+I (8616) raw_interrupt: Button interrupt count: 1717
+I (8626) raw_interrupt: Button interrupt count: 1718
+I (8626) raw_interrupt: Button interrupt count: 1763
+I (8626) raw_interrupt: Button interrupt count: 1775
+I (8726) raw_interrupt: Button interrupt count: 1776
+I (8726) raw_interrupt: Button interrupt count: 1786
+I (8726) raw_interrupt: Button interrupt count: 1794
+I (8726) raw_interrupt: Button interrupt count: 1798

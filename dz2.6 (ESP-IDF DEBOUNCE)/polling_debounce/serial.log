@@ -1,0 +1,76 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x370
+load:0x403c9700,len:0x900
+load:0x403cc700,len:0x2364
+entry 0x403c98ac
+I (13) cpu_start: Multicore app
+I (11) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (13) cpu_start: Pro cpu start user code
+I (13) cpu_start: cpu freq: 160000000 Hz
+I (14) app_init: Application information:
+I (17) app_init: Project name:     dz-espidf
+I (21) app_init: App version:      75bb37e-dirty
+I (25) app_init: Compile time:     Oct 21 2026 12:05:39
+I (30) app_init: ELF file SHA256:  cddbef266...
+I (34) app_init: ESP-IDF:          6.1.0
+I (38) efuse_init: Min chip rev:     v0.0
+I (42) efuse_init: Max chip rev:     v0.99 
+I (46) efuse_init: Chip rev:         v0.0
+I (50) heap_init: Initializing. RAM available for dynamic allocation:
+I (56) heap_init: At 3FC93D10 len 00055A00 (342 KiB): RAM
+I (61) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (66) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (71) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (78) spi_flash: detected chip: gd
+I (79) spi_flash: flash io: dio
+I (83) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (90) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (96) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+I (101) polling_debounce: ready, polling every 5 ms, 4 samples to confirm
+I (433) polling_debounce: Button pressed: 1
+I (683) polling_debounce: Button released
+I (1088) polling_debounce: Button pressed: 2
+I (1333) polling_debounce: Button released
+I (1733) polling_debounce: Button pressed: 3
+I (1983) polling_debounce: Button released
+I (2383) polling_debounce: Button pressed: 4
+I (2633) polling_debounce: Button released
+I (3033) polling_debounce: Button pressed: 5
+I (3283) polling_debounce: Button released
+I (3683) polling_debounce: Button pressed: 6
+I (3833) polling_debounce: Button released
+I (4133) polling_debounce: Button pressed: 7
+I (4283) polling_debounce: Button released
+I (4583) polling_debounce: Button pressed: 8
+I (4733) polling_debounce: Button released
+I (5033) polling_debounce: Button pressed: 9
+I (5183) polling_debounce: Button released
+I (5483) polling_debounce: Button pressed: 10
+I (5633) polling_debounce: Button released
+I (5938) polling_debounce: Button pressed: 11
+I (5993) polling_debounce: Button released
+I (6243) polling_debounce: Button pressed: 12
+I (6303) polling_debounce: Button released
+I (6553) polling_debounce: Button pressed: 13
+I (6613) polling_debounce: Button released
+I (6863) polling_debounce: Button pressed: 14
+I (6923) polling_debounce: Button released
+I (7173) polling_debounce: Button pressed: 15
+I (7233) polling_debounce: Button released
+I (7483) polling_debounce: Button pressed: 16
+I (7508) polling_debounce: Button released
+I (7708) polling_debounce: Button pressed: 17
+I (7733) polling_debounce: Button released
+I (7933) polling_debounce: Button pressed: 18
+I (7958) polling_debounce: Button released
+I (8158) polling_debounce: Button pressed: 19
+I (8183) polling_debounce: Button released
+I (8383) polling_debounce: Button pressed: 20
+I (8408) polling_debounce: Button released
+I (8608) polling_debounce: Button pressed: 21
+I (8743) polling_debounce: Button released

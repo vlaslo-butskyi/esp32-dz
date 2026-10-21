@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+firmware = '../../.pio/build/idf_raw_interrupt/firmware.bin'
+elf = '../../.pio/build/idf_raw_interrupt/firmware.elf'
+vcdFile = 'wokwi.vcd'

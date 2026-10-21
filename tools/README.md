@@ -18,6 +18,83 @@ dzX.Y (ТЕМА)/
     └── demo.gif       ← tools/media.sh
 ```
 
+ESP-IDF ДЗ (2.6 і далі) мають іншу структуру варіанту — це повноцінний CMake-проєкт:
+
+```
+dzX.Y (ТЕМА)/
+└── варіант/
+    ├── README.md
+    ├── CMakeLists.txt       ← проєкт ESP-IDF
+    ├── main/
+    │   ├── main.cpp
+    │   └── CMakeLists.txt   ← idf_component_register(SRCS "main.cpp")
+    ├── sdkconfig.defaults    ← CONFIG_IDF_TARGET і те, що відрізняє варіант
+    ├── diagram.json
+    └── wokwi.toml            ← шлях до .pio/build/idf_<варіант>/firmware.bin
+```
+
+`sdkconfig` у репо не лежить: його генерують і `idf.py`, і `pio`.
+
+## ESP-IDF (ДЗ 2.6 і далі)
+
+Ці ДЗ збираються не PlatformIO, а нативним `idf.py`. Кожен варіант — окремий CMake-проєкт: `CMakeLists.txt`, `main/main.cpp`, `main/CMakeLists.txt`, `sdkconfig.defaults`.
+
+ESP-IDF поставлений менеджером версій eim від Espressif:
+
+```sh
+brew tap espressif/eim
+brew install --cask eim-gui          # /Applications/eim.app + CLI `eim` у $(brew --prefix)/bin
+brew install dfu-util                # пререквізит, без нього eim install не стартує
+eim install -n true -i v5.5.5 -t esp32s3
+```
+
+Де що лежить: IDF у `~/.espressif/v5.5.5/esp-idf`, тулчейни в `~/.espressif/tools`, python-venv у `~/.espressif/tools/python/v5.5.5/venv`, активаційний скрипт `~/.espressif/tools/activate_idf_v5.5.5.sh`. `eim list` показує встановлені версії, `eim select` перемикає активну.
+
+```sh
+./tools/idf.sh "dz2.6 (ESP-IDF DEBOUNCE)/raw_interrupt" build
+./tools/idf.sh "dz2.6 (ESP-IDF DEBOUNCE)/raw_interrupt" flash monitor
+./tools/idf.sh "dz2.6 (ESP-IDF DEBOUNCE)/raw_interrupt" menuconfig
+```
+
+`idf.sh` існує через три речі:
+
+- активує середовище скриптом від eim, який сам виставляє `IDF_PATH` і `IDF_PYTHON_ENV_PATH`. Старий `export.sh` із ручної установки падав через `~/.platformio/penv/bin` на початку `PATH` (`can not create a virtual environment again`) — з eim цього немає;
+- кличе `idf.py` без `exec`: активаційний скрипт робить його shell-функцією, а не кладе на `PATH`;
+- виносить build-каталог у `~/.cache/idf-<номер ДЗ>/<варіант>` (перебивається `IDF_BUILD_DIR`). У назві папки ДЗ є дужки, а CMake і ninja підставляють шляхи в `/bin/sh`, екрануючи пробіли й не екрануючи `(`, тож збірка всередині папки ДЗ падає. Заодно в репо не лишається `build/`.
+
+Версія прибита в скрипті; інша — через `IDF_ACTIVATE=~/.espressif/tools/activate_idf_<версія>.sh`. Порт прошитий той самий, що в `platformio.ini`; інший — через `ESPPORT`.
+
+### Той самий код через PlatformIO
+
+ESP-IDF прошивки збираються і звичним `pio` — у `platformio.ini` є env на кожен варіант:
+
+```sh
+pio run -e idf_raw_interrupt -t upload
+pio device monitor -e idf_raw_interrupt
+```
+
+Код не дублюється: env читає той самий `main/main.cpp` і той самий `sdkconfig.defaults`, що й нативна збірка. Новий варіант — три рядки:
+
+```ini
+[env:idf_<варіант>]
+extends = espidf
+custom_dz_variant = dzX.Y (ТЕМА)/<варіант>
+board_build.esp-idf.sdkconfig_path = .pio/build/idf_<варіант>/sdkconfig
+```
+
+Як це працює: `tools/pio_idf_variant.py` (pre-script у секції `[espidf]`) кладе `custom_dz_variant` у змінні середовища `DZ_VARIANT` і `SDKCONFIG_DEFAULTS`, а `src/CMakeLists.txt` реєструє рівно один файл прошивки. Через `-D` у `board_build.cmake_extra_args` це не працює: ESP-IDF під час expansion компонентів включає `src/CMakeLists.txt` окремим процесом `cmake -P`, куди визначення з командного рядка не доходять.
+
+Що варто знати про цей шлях:
+
+- IDF тут не той, що в нативній збірці, а з пакета `framework-espidf` — зараз 6.1.0, і версія змінюється разом із платформою. Заміри знімаю на нативній 5.5.5, PlatformIO — для зручності й Wokwi;
+- `pio run` без `-e` збирає тільки Arduino-env: у `[platformio]` стоїть `default_envs`;
+- будь-яка правка `platformio.ini` змушує PlatformIO стерти всі каталоги в `.pio/build` — перша збірка після цього довга;
+- корневий `CMakeLists.txt` і `src/CMakeLists.txt` потрібні саме цьому шляху. У `.git/info/exclude` для них додані винятки — решта кореня, як і раніше, не трекається.
+
+Після зміни версії IDF видали `sdkconfig` у папках прошивок: згенерований старою версією, він дає попередження про неіснуючі або переназвані опції (`SOC_SDM_GROUPS`, `LWIP_DHCP_OPTIONS_LEN`). `sdkconfig.defaults` чіпати не треба.
+
+Для code insight в IDEA компіляційна база генерується сама при збірці — `~/.cache/idf-<номер ДЗ>/<варіант>/compile_commands.json`, `tools/compiledb.sh` для цих проєктів не потрібен.
+
 ## Новий README
 
 ```sh

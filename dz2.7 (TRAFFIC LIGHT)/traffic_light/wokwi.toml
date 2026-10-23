@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+firmware = '../../.pio/build/idf_traffic_light/firmware.bin'
+elf = '../../.pio/build/idf_traffic_light/firmware.elf'
+vcdFile = 'wokwi.vcd'

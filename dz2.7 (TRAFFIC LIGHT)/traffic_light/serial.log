@@ -1,0 +1,71 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x2b (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xde4
+load:0x403cb700,len:0x2f58
+entry 0x403c88fc
+I (24) boot: ESP-IDF 6.1.0 2nd stage bootloader
+I (25) boot: compile time Oct 21 2026 13:05:43
+I (25) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (28) boot: efuse block revision: v1.4
+I (31) boot.esp32s3: Boot SPI Speed : 80MHz
+I (35) boot.esp32s3: SPI Mode       : DIO
+I (39) boot.esp32s3: SPI Flash Size : 8MB
+I (43) boot: Enabling RNG early entropy source...
+I (47) boot: Partition Table:
+I (50) boot: ## Label            Usage          Type ST Offset   Length
+I (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (63) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (69) boot:  2 factory          factory app      00 00 00010000 00100000
+I (76) boot: End of partition table
+I (79) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0a180h ( 41344) map
+I (94) esp_image: segment 1: paddr=0001a1a8 vaddr=3fc90700 size=031dch ( 12764) load
+I (97) esp_image: segment 2: paddr=0001d38c vaddr=40374000 size=02c8ch ( 11404) load
+I (104) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=12fdch ( 77788) map
+I (123) esp_image: segment 4: paddr=00033004 vaddr=40376c8c size=09a0ch ( 39436) load
+I (132) esp_image: segment 5: paddr=0003ca18 vaddr=50000000 size=00024h (    36) load
+I (138) boot: Loaded app from partition at offset 0x10000
+I (138) boot: Disabling RNG early entropy source...
+I (150) cpu_start: Multicore app
+I (158) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (159) cpu_start: Pro cpu start user code
+I (159) cpu_start: cpu freq: 160000000 Hz
+I (161) app_init: Application information:
+I (165) app_init: Project name:     dz-espidf
+I (169) app_init: App version:      5f722e2-dirty
+I (173) app_init: Compile time:     Oct 21 2026 13:05:29
+I (178) app_init: ELF file SHA256:  7317dd107...
+I (182) app_init: ESP-IDF:          6.1.0
+I (186) efuse_init: Min chip rev:     v0.0
+I (190) efuse_init: Max chip rev:     v0.99 
+I (194) efuse_init: Chip rev:         v0.2
+I (198) heap_init: Initializing. RAM available for dynamic allocation:
+I (204) heap_init: At 3FC94370 len 000553A0 (340 KiB): RAM
+I (209) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (214) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (220) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (226) spi_flash: detected chip: boya
+I (228) spi_flash: flash io: dio
+W (231) spi_flash: Detected size(16384k) larger than the size in the binary image header(8192k). Using the size in the binary image header.
+I (244) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (250) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (257) main_task: Started on CPU0
+I (275) main_task: Calling app_main()
+I (276) traffic: ready: PDR cycle 10000+3000+3000+10000+2000 ms, blink half-period 500 ms, button GPIO 16 toggles blinking yellow
+I (279) traffic: RED             [R..] 10000 ms
+I (10280) traffic: RED+YELLOW      [RY.]  2000 ms
+I (12281) traffic: cycle 1 starts
+I (12281) traffic: GREEN           [..G] 10000 ms
+I (22282) traffic: GREEN BLINKING  [..g]  3000 ms
+I (25283) traffic: YELLOW          [.Y.]  3000 ms
+I (28284) traffic: RED             [R..] 10000 ms
+I (34455) traffic: mode: blinking yellow requested, applies after the red phase (edges: 1)
+I (38285) traffic: mode: entering blinking yellow after red
+I (38285) traffic: YELLOW BLINKING [.y.]  until the mode is switched back
+I (45415) traffic: mode: leaving blinking yellow through a steady yellow (edges: 3)
+I (45416) traffic: YELLOW          [.Y.]  3000 ms
+I (48417) traffic: RED             [R..] 10000 ms

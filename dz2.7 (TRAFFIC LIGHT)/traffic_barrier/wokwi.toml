@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+firmware = '../../.pio/build/idf_traffic_barrier/firmware.bin'
+elf = '../../.pio/build/idf_traffic_barrier/firmware.elf'
+vcdFile = 'wokwi.vcd'

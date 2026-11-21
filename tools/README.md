@@ -95,6 +95,17 @@ board_build.esp-idf.sdkconfig_path = .pio/build/idf_<варіант>/sdkconfig
 
 Для code insight в IDEA компіляційна база генерується сама при збірці — `~/.cache/idf-<номер ДЗ>/<варіант>/compile_commands.json`, `tools/compiledb.sh` для цих проєктів не потрібен.
 
+### SEGGER SystemView (ДЗ 6.2 і далі)
+
+```sh
+ESPPORT=/dev/cu.usbmodem1301 ./tools/idf.sh "dz6.2 (RTOS SCHEDULER)/four_tasks_sysview" build flash
+python3 tools/sysview.py "dz6.2 (RTOS SCHEDULER)/four_tasks_sysview" 14
+```
+
+`sysview.py` запускає OpenOCD з eim-поставки ESP-IDF 5.5.5 (`board/esp32s3-builtin.cfg`), через Tcl-порт 6666 скидає плату, зупиняє її на `app_main`, вмикає `esp sysview_mcore` і кладе `trace.SVDat` у папку прошивки, а поруч `trace_core1.SVDat` тільки з ядром 1: у двоядерному файлі SystemView 4.10b не показує імена задач ядра 1 (`python3 tools/sysview.py <папка> split` робить його з наявного `trace.SVDat`). Кабель — у порт USB плати, не UART. `SYSVIEW_DEBUG=1` друкує повний лог OpenOCD.
+
+Тільки нативна збірка: у `framework-espidf` 6.1 SystemView винесли з `app_trace` у компонент реєстру, опції `CONFIG_APPTRACE_SV_*` там немає. Деталі й пастки — у [README four_tasks_sysview](../dz6.2%20%28RTOS%20SCHEDULER%29/four_tasks_sysview/).
+
 ## Новий README
 
 ```sh

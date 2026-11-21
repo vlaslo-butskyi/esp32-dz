@@ -5,6 +5,7 @@
   2. Заповни всі плейсхолдери в подвійних фігурних дужках.
      Перевірка, що нічого не лишилось:  grep -n '{{' "dzX.Y (ТЕМА)/варіант/README.md"
   3. Видали зайві рядки та розділи і цей коментар.
+  4. Пиши за tools/README-style.md і перевір:  python3 tools/readme_lint.py "dzX.Y (ТЕМА)/варіант/README.md"
 
   Файли, які очікує шаблон: main.cpp, diagram.json, wokwi.toml, schema.png, photo.jpeg, video.MOV.
   demo.gif і video.mp4 генерує:  tools/media.sh "dzX.Y (ТЕМА)/варіант"

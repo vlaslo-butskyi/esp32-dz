@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "author": "Vlaslo Butskyi",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": -175.47,
+      "left": -2.08,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 61.3,
+      "left": -6.9,
+      "rotate": 270,
+      "attrs": { "color": "green", "xray": "1", "label": "PART" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "boot",
+      "top": 61.3,
+      "left": 79.5,
+      "rotate": 270,
+      "attrs": { "color": "black", "xray": "1", "label": "BOOT" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 88,
+      "left": -53.4,
+      "rotate": 180,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 43.2,
+      "left": -67.75,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": 155.7,
+      "left": -75.8,
+      "rotate": 180,
+      "attrs": { "value": "512" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "btn1:1.r", "esp:16", "green", [ "v-9.8", "h-67.2" ] ],
+    [ "btn1:2.r", "esp:GND.1", "black", [ "v-9.8", "h38.6", "v-28.8", "h76.8" ] ],
+    [ "boot:1.r", "esp:0", "blue", [ "v-29", "h96", "v-124.8", "h-124.8" ] ],
+    [ "boot:2.r", "esp:GND.1", "black", [] ],
+    [ "esp:4", "r1:1", "orange", [ "v9.65", "h-9.6" ] ],
+    [ "r1:2", "led1:A", "orange", [ "v19.2" ] ],
+    [ "led1:C", "esp:GND.1", "black", [ "v-9.6", "h9.2", "v-67.2", "h163.2" ] ],
+    [ "pot1:VCC", "esp:3V3.1", "red", [] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v-19.2", "h172.8" ] ],
+    [ "pot1:SIG", "esp:1", "purple", [ "v-18.8", "h-57.2", "v-240.4", "h67.2" ] ]
+  ],
+  "dependencies": {}
+}

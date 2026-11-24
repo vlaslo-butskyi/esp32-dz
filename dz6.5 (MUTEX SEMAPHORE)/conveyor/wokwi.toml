@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = '../../.pio/build/idf_conveyor/firmware.bin'
+elf = '../../.pio/build/idf_conveyor/firmware.elf'

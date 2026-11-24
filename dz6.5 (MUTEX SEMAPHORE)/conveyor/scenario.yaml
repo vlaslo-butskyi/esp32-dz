@@ -1,0 +1,99 @@
+name: conveyor
+version: 1
+author: Vlaslo Butskyi
+steps:
+  - wait-serial: 'emergency stop BOOT'
+  - set-control: { part-id: pot1, control: position, value: 0.5 }
+  - delay: 1500ms
+  # 10 parts, one per 500 ms = 120/min
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 350ms
+  # no parts for 3 s, pot to 20 %
+  - set-control: { part-id: pot1, control: position, value: 0.2 }
+  - delay: 3000ms
+  # 10 parts, one per 250 ms = 240/min, pot to 90 %
+  - set-control: { part-id: pot1, control: position, value: 0.9 }
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 100ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 150ms
+  - delay: 1500ms
+  # emergency stop
+  - set-control: { part-id: boot, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: boot, control: pressed, value: 0 }
+  - delay: 2500ms

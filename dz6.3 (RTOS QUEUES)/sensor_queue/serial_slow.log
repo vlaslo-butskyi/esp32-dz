@@ -1,0 +1,236 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2eec
+entry 0x403c8924
+I (24) boot: ESP-IDF v5.5.5 2nd stage bootloader
+I (25) boot: compile time Nov 23 2026 22:24:28
+I (25) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (28) boot: efuse block revision: v1.4
+I (31) boot.esp32s3: Boot SPI Speed : 80MHz
+I (35) boot.esp32s3: SPI Mode       : DIO
+I (39) boot.esp32s3: SPI Flash Size : 2MB
+I (43) boot: Enabling RNG early entropy source...
+I (47) boot: Partition Table:
+I (50) boot: ## Label            Usage          Type ST Offset   Length
+I (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (63) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (69) boot:  2 factory          factory app      00 00 00010000 00100000
+I (76) boot: End of partition table
+I (79) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0bc04h ( 48132) map
+I (95) esp_image: segment 1: paddr=0001bc2c vaddr=3fc92900 size=02fc0h ( 12224) load
+I (98) esp_image: segment 2: paddr=0001ebf4 vaddr=40374000 size=01424h (  5156) load
+I (102) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=17e20h ( 97824) map
+I (127) esp_image: segment 4: paddr=00037e48 vaddr=40375424 size=0d45ch ( 54364) load
+I (139) esp_image: segment 5: paddr=000452ac vaddr=50000000 size=00020h (    32) load
+I (145) boot: Loaded app from partition at offset 0x10000
+I (145) boot: Disabling RNG early entropy source...
+I (157) cpu_start: Multicore app
+I (165) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (166) cpu_start: Pro cpu start user code
+I (166) cpu_start: cpu freq: 160000000 Hz
+I (168) app_init: Application information:
+I (172) app_init: Project name:     sensor_queue
+I (176) app_init: App version:      103c32d-dirty
+I (180) app_init: Compile time:     Nov 23 2026 22:24:23
+I (185) app_init: ELF file SHA256:  f02259ca7...
+I (190) app_init: ESP-IDF:          v5.5.5
+I (194) efuse_init: Min chip rev:     v0.0
+I (197) efuse_init: Max chip rev:     v0.99 
+I (201) efuse_init: Chip rev:         v0.2
+I (205) heap_init: Initializing. RAM available for dynamic allocation:
+I (212) heap_init: At 3FC96240 len 000534D0 (333 KiB): RAM
+I (217) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (222) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (227) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (233) spi_flash: detected chip: boya
+I (236) spi_flash: flash io: dio
+W (239) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (251) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (257) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (264) main_task: Started on CPU0
+I (282) main_task: Calling app_main()
+I (283) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+I (286) queue: temp, pot on core 0 -> queue of 8 -> consumer on core 1, BOOT button via ISR
+I (289) main_task: Returned from app_main()
+    272  pot    #0    1676 mV   core 0, wait 1 ms
+    772  pot    #1    1677 mV   core 0, wait 251 ms
+   1272  pot    #2    1676 mV   core 0, wait 501 ms
+   1772  temp   #0    24.40 C   core 0, wait 751 ms
+   2272  pot    no data for 750 ms
+   2272  pot    back online
+   2272  pot    #3    1676 mV   core 0, wait 1251 ms
+   2772  pot    #4    1676 mV   core 0, wait 1501 ms
+   3031  pot    queue full, #11 dropped
+   3272  pot    #5    1677 mV   core 0, wait 1751 ms
+   3531  pot    queue full, #13 dropped
+   3772  pot    #6    1676 mV   core 0, wait 2001 ms
+   4031  temp   queue full, #3 dropped
+   4031  pot    queue full, #15 dropped
+   4272  temp   #1    24.40 C   core 0, wait 2251 ms
+   4531  pot    queue full, #17 dropped
+   4772  pot    no data for 750 ms
+   4772  pot    back online
+   4772  pot    #7    1676 mV   core 0, wait 2751 ms
+   5031  temp   queue full, #4 dropped
+   5031  pot    queue full, #19 dropped
+   5272  pot    #8    1675 mV   core 0, wait 3001 ms
+   5531  pot    queue full, #21 dropped
+   5772  pot    #9    1676 mV   core 0, wait 3251 ms
+   6031  temp   queue full, #5 dropped
+   6031  pot    queue full, #23 dropped
+   6272  pot    #10   1675 mV   core 0, wait 3501 ms
+   6531  pot    queue full, #25 dropped
+   6772  temp   #2    24.40 C   core 0, wait 3751 ms
+   7031  temp   queue full, #6 dropped
+   7031  pot    queue full, #27 dropped
+   7272  pot    no data for 750 ms
+   7272  pot    lost 1 before #12
+   7272  pot    back online
+   7272  pot    #12   1675 mV   core 0, wait 4001 ms
+   7531  pot    queue full, #29 dropped
+   7774  pot    lost 1 before #14
+   7774  pot    #14   1673 mV   core 0, wait 4003 ms
+   8031  temp   queue full, #7 dropped
+   8031  pot    queue full, #31 dropped
+   8274  pot    lost 1 before #16
+   8274  pot    #16   1676 mV   core 0, wait 4003 ms
+   8531  pot    queue full, #33 dropped
+   8774  pot    lost 1 before #18
+   8774  pot    #18   1675 mV   core 0, wait 4003 ms
+   9031  temp   queue full, #8 dropped
+   9031  pot    queue full, #35 dropped
+   9274  pot    lost 1 before #20
+   9274  pot    #20   1673 mV   core 0, wait 4003 ms
+   9531  pot    queue full, #37 dropped
+   9774  temp   no data for 3000 ms
+   9774  pot    lost 1 before #22
+   9774  pot    #22   1676 mV   core 0, wait 4003 ms
+  10031  temp   queue full, #9 dropped
+  10031  pot    queue full, #39 dropped
+  10274  stats  temp   received 3, lost 0
+  10274  stats  pot    received 17, lost 6
+  10274  stats  button received 0, lost 0
+  10274  stats  queue  peak 8 of 8, ISR dropped 0
+  10279  pot    lost 1 before #24
+  10282  pot    #24   1677 mV   core 0, wait 4011 ms
+  10531  pot    queue full, #41 dropped
+  10781  pot    queue full, #42 dropped
+  10786  pot    lost 1 before #26
+  10786  pot    #26   1676 mV   core 0, wait 4015 ms
+  11031  pot    queue full, #43 dropped
+  11281  pot    queue full, #44 dropped
+  11286  pot    lost 1 before #28
+  11286  pot    #28   1676 mV   core 0, wait 4015 ms
+  11781  pot    queue full, #46 dropped
+  11786  pot    lost 1 before #30
+  11786  pot    #30   1673 mV   core 0, wait 4015 ms
+  12031  pot    queue full, #47 dropped
+  12281  pot    queue full, #48 dropped
+  12286  pot    lost 1 before #32
+  12286  pot    #32   1675 mV   core 0, wait 4015 ms
+  12781  pot    queue full, #50 dropped
+  12786  pot    lost 1 before #34
+  12786  pot    #34   1677 mV   core 0, wait 4015 ms
+  13031  pot    queue full, #51 dropped
+  13281  pot    queue full, #52 dropped
+  13286  pot    lost 1 before #36
+  13286  pot    #36   1676 mV   core 0, wait 4015 ms
+  13781  pot    queue full, #54 dropped
+  13786  pot    lost 1 before #38
+  13786  pot    #38   1676 mV   core 0, wait 4015 ms
+  14031  pot    queue full, #55 dropped
+  14281  pot    queue full, #56 dropped
+  14286  pot    lost 1 before #40
+  14286  pot    #40   1676 mV   core 0, wait 4015 ms
+  14781  pot    queue full, #58 dropped
+  14786  temp   lost 7 before #10
+  14786  temp   back online
+  14786  temp   #10   24.40 C   core 0, wait 3765 ms
+  15031  pot    queue full, #59 dropped
+  15281  pot    queue full, #60 dropped
+  15286  pot    no data for 750 ms
+  15286  pot    lost 4 before #45
+  15286  pot    back online
+  15286  pot    #45   1673 mV   core 0, wait 3765 ms
+  15781  pot    queue full, #62 dropped
+  15788  temp   #11   24.40 C   core 0, wait 3767 ms
+  16031  pot    queue full, #63 dropped
+  16281  pot    queue full, #64 dropped
+  16288  pot    no data for 750 ms
+  16288  pot    lost 3 before #49
+  16288  pot    back online
+  16288  pot    #49   1677 mV   core 0, wait 3767 ms
+  16781  pot    queue full, #66 dropped
+  16790  temp   #12   24.40 C   core 0, wait 3769 ms
+  17031  pot    queue full, #67 dropped
+  17281  pot    queue full, #68 dropped
+  17290  pot    no data for 750 ms
+  17290  pot    lost 3 before #53
+  17290  pot    back online
+  17290  pot    #53   1673 mV   core 0, wait 3769 ms
+  17781  pot    queue full, #70 dropped
+  17792  temp   #13   24.40 C   core 0, wait 3771 ms
+  18031  pot    queue full, #71 dropped
+  18281  pot    queue full, #72 dropped
+  18292  pot    no data for 750 ms
+  18292  pot    lost 3 before #57
+  18292  pot    back online
+  18292  pot    #57   1673 mV   core 0, wait 3771 ms
+  18781  pot    queue full, #74 dropped
+  18794  temp   #14   24.40 C   core 0, wait 3773 ms
+  19031  pot    queue full, #75 dropped
+  19281  pot    queue full, #76 dropped
+  19294  pot    no data for 750 ms
+  19294  pot    lost 3 before #61
+  19294  pot    back online
+  19294  pot    #61   1675 mV   core 0, wait 3773 ms
+  19781  pot    queue full, #78 dropped
+  19796  temp   #15   24.40 C   core 0, wait 3775 ms
+  20031  pot    queue full, #79 dropped
+  20281  pot    queue full, #80 dropped
+  20296  pot    no data for 750 ms
+  20296  stats  temp   received 9, lost 7
+  20296  stats  pot    received 31, lost 31
+  20296  stats  button received 0, lost 0
+  20299  stats  queue  peak 8 of 8, ISR dropped 0
+  20304  pot    lost 3 before #65
+  20307  pot    back online
+  20309  pot    #65   1676 mV   core 0, wait 3788 ms
+  20781  pot    queue full, #82 dropped
+  20814  temp   #16   24.40 C   core 0, wait 3793 ms
+  21031  pot    queue full, #83 dropped
+  21281  pot    queue full, #84 dropped
+  21314  pot    no data for 750 ms
+  21314  pot    lost 3 before #69
+  21314  pot    back online
+  21314  pot    #69   1676 mV   core 0, wait 3793 ms
+  21781  pot    queue full, #86 dropped
+  21816  temp   #17   24.40 C   core 0, wait 3795 ms
+  22031  pot    queue full, #87 dropped
+  22281  pot    queue full, #88 dropped
+  22316  pot    no data for 750 ms
+  22316  pot    lost 3 before #73
+  22316  pot    back online
+  22316  pot    #73   1675 mV   core 0, wait 3795 ms
+  22781  pot    queue full, #90 dropped
+  22818  temp   #18   24.40 C   core 0, wait 3797 ms
+  23031  pot    queue full, #91 dropped
+  23281  pot    queue full, #92 dropped
+  23318  pot    no data for 750 ms
+  23318  pot    lost 3 before #77
+  23318  pot    back online
+  23318  pot    #77   1677 mV   core 0, wait 3797 ms
+  23781  pot    queue full, #94 dropped
+  23820  temp   #19   24.40 C   core 0, wait 3799 ms
+  24031  pot    queue full, #95 dropped
+  24281  pot    queue full, #96 dropped
+  24320  pot    no data for 750 ms
+  24320  pot    lost 3 before #81
+  24320  pot    back online
+  24320  pot    #81   1676 mV   core 0, wait 3799 ms

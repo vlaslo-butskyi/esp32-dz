@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "author": "Vlaslo Butskyi",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": -89.07,
+      "left": 74.72,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": 165.3,
+      "left": -8.6,
+      "rotate": 180,
+      "attrs": { "value": "512" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "boot",
+      "top": 176,
+      "left": 147.2,
+      "rotate": 270,
+      "attrs": { "color": "black", "label": "BOOT" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pot1:VCC", "esp:3V3.1", "red", [ "h0.8", "v-67.2" ] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v-67.2", "h177.4", "h5" ] ],
+    [ "pot1:SIG", "esp:1", "orange", [ "v-48", "h-47.6", "v-134.4", "h67.2" ] ],
+    [ "boot:1.r", "esp:0", "green", [ "v-29", "h105.6", "v-153.6", "h-124.8" ] ],
+    [ "boot:2.r", "esp:GND.1", "black", [ "v-9.8", "h38.6" ] ]
+  ],
+  "dependencies": {}
+}

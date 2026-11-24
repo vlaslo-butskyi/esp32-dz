@@ -1,0 +1,545 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2eec
+entry 0x403c8924
+I (24) boot: ESP-IDF v5.5.5 2nd stage bootloader
+I (25) boot: compile time Nov 23 2026 22:24:28
+I (25) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (28) boot: efuse block revision: v1.4
+I (31) boot.esp32s3: Boot SPI Speed : 80MHz
+I (35) boot.esp32s3: SPI Mode       : DIO
+I (39) boot.esp32s3: SPI Flash Size : 2MB
+I (43) boot: Enabling RNG early entropy source...
+I (47) boot: Partition Table:
+I (50) boot: ## Label            Usage          Type ST Offset   Length
+I (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (63) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (69) boot:  2 factory          factory app      00 00 00010000 00100000
+I (76) boot: End of partition table
+I (79) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0bc04h ( 48132) map
+I (95) esp_image: segment 1: paddr=0001bc2c vaddr=3fc92900 size=02fc0h ( 12224) load
+I (98) esp_image: segment 2: paddr=0001ebf4 vaddr=40374000 size=01424h (  5156) load
+I (102) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=17e14h ( 97812) map
+I (127) esp_image: segment 4: paddr=00037e3c vaddr=40375424 size=0d45ch ( 54364) load
+I (139) esp_image: segment 5: paddr=000452a0 vaddr=50000000 size=00020h (    32) load
+I (145) boot: Loaded app from partition at offset 0x10000
+I (145) boot: Disabling RNG early entropy source...
+I (157) cpu_start: Multicore app
+I (165) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (166) cpu_start: Pro cpu start user code
+I (166) cpu_start: cpu freq: 160000000 Hz
+I (168) app_init: Application information:
+I (172) app_init: Project name:     sensor_queue
+I (176) app_init: App version:      103c32d-dirty
+I (180) app_init: Compile time:     Nov 23 2026 22:24:23
+I (185) app_init: ELF file SHA256:  6db3902ef...
+I (190) app_init: ESP-IDF:          v5.5.5
+I (194) efuse_init: Min chip rev:     v0.0
+I (197) efuse_init: Max chip rev:     v0.99 
+I (201) efuse_init: Chip rev:         v0.2
+I (205) heap_init: Initializing. RAM available for dynamic allocation:
+I (212) heap_init: At 3FC96240 len 000534D0 (333 KiB): RAM
+I (217) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (222) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (227) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (233) spi_flash: detected chip: boya
+I (236) spi_flash: flash io: dio
+W (239) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (251) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (257) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (264) main_task: Started on CPU0
+I (282) main_task: Calling app_main()
+I (283) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+I (286) queue: temp, pot on core 0 -> queue of 8 -> consumer on core 1, BOOT button via ISR
+I (289) main_task: Returned from app_main()
+    272  pot    #0    0 mV   core 0, wait 1 ms
+    521  pot    #1    0 mV   core 0, wait 0 ms
+    771  pot    #2    0 mV   core 0, wait 0 ms
+   1021  temp   #0    23.40 C   core 0, wait 0 ms
+   1022  pot    #3    0 mV   core 0, wait 1 ms
+   1271  pot    #4    0 mV   core 0, wait 0 ms
+   1521  pot    #5    0 mV   core 0, wait 0 ms
+   1771  pot    #6    0 mV   core 0, wait 0 ms
+   2021  temp   #1    23.40 C   core 0, wait 0 ms
+   2021  pot    #7    0 mV   core 0, wait 0 ms
+   2271  pot    #8    0 mV   core 0, wait 0 ms
+   2521  pot    #9    0 mV   core 0, wait 0 ms
+   2771  pot    #10   0 mV   core 0, wait 0 ms
+   3021  temp   #2    23.40 C   core 0, wait 0 ms
+   3021  pot    #11   0 mV   core 0, wait 0 ms
+   3271  pot    #12   0 mV   core 0, wait 0 ms
+   3521  pot    #13   0 mV   core 0, wait 0 ms
+   3771  pot    #14   0 mV   core 0, wait 0 ms
+   4021  temp   #3    23.40 C   core 0, wait 0 ms
+   4021  pot    #15   0 mV   core 0, wait 0 ms
+   4271  pot    #16   0 mV   core 0, wait 0 ms
+   4521  pot    #17   0 mV   core 0, wait 0 ms
+   4771  pot    #18   0 mV   core 0, wait 0 ms
+   5021  temp   #4    23.40 C   core 0, wait 0 ms
+   5021  pot    #19   0 mV   core 0, wait 0 ms
+   5271  pot    #20   0 mV   core 0, wait 0 ms
+   5521  pot    #21   0 mV   core 0, wait 0 ms
+   5771  pot    #22   0 mV   core 0, wait 0 ms
+   6021  temp   #5    23.40 C   core 0, wait 0 ms
+   6021  pot    #23   0 mV   core 0, wait 0 ms
+   6271  pot    #24   0 mV   core 0, wait 0 ms
+   6521  pot    #25   0 mV   core 0, wait 0 ms
+   6771  pot    #26   0 mV   core 0, wait 0 ms
+   7021  temp   #6    23.40 C   core 0, wait 0 ms
+   7021  pot    #27   0 mV   core 0, wait 0 ms
+   7271  pot    #28   0 mV   core 0, wait 0 ms
+   7521  pot    #29   0 mV   core 0, wait 0 ms
+   7771  pot    #30   0 mV   core 0, wait 0 ms
+   8021  temp   #7    23.40 C   core 0, wait 0 ms
+   8021  pot    #31   0 mV   core 0, wait 0 ms
+   8271  pot    #32   0 mV   core 0, wait 0 ms
+   8521  pot    #33   0 mV   core 0, wait 0 ms
+   8771  pot    #34   0 mV   core 0, wait 0 ms
+   9021  temp   #8    23.40 C   core 0, wait 0 ms
+   9021  pot    #35   0 mV   core 0, wait 0 ms
+   9271  pot    #36   0 mV   core 0, wait 0 ms
+   9521  pot    #37   0 mV   core 0, wait 0 ms
+   9771  pot    #38   0 mV   core 0, wait 0 ms
+  10021  temp   #9    23.40 C   core 0, wait 0 ms
+  10021  stats  temp   received 10, lost 0
+  10021  stats  pot    received 39, lost 0
+  10022  stats  button received 0, lost 0
+  10025  stats  queue  peak 1 of 8, ISR dropped 0
+  10030  pot    #39   0 mV   core 0, wait 9 ms
+  10271  pot    #40   0 mV   core 0, wait 0 ms
+  10521  pot    #41   0 mV   core 0, wait 0 ms
+  10771  pot    #42   0 mV   core 0, wait 0 ms
+  11021  temp   #10   23.40 C   core 0, wait 0 ms
+  11021  pot    #43   0 mV   core 0, wait 0 ms
+  11271  pot    #44   0 mV   core 0, wait 0 ms
+  11521  pot    #45   0 mV   core 0, wait 0 ms
+  11771  pot    #46   0 mV   core 0, wait 0 ms
+  12021  temp   #11   23.40 C   core 0, wait 0 ms
+  12021  pot    #47   0 mV   core 0, wait 0 ms
+  12271  pot    #48   0 mV   core 0, wait 0 ms
+  12521  pot    #49   0 mV   core 0, wait 0 ms
+  12771  pot    #50   0 mV   core 0, wait 0 ms
+  13021  temp   #12   23.40 C   core 0, wait 0 ms
+  13021  pot    #51   0 mV   core 0, wait 0 ms
+  13271  pot    #52   0 mV   core 0, wait 0 ms
+  13521  pot    #53   0 mV   core 0, wait 0 ms
+  13771  pot    #54   0 mV   core 0, wait 0 ms
+  14021  temp   #13   23.40 C   core 0, wait 0 ms
+  14021  pot    #55   0 mV   core 0, wait 0 ms
+  14271  pot    #56   0 mV   core 0, wait 0 ms
+  14521  pot    #57   0 mV   core 0, wait 0 ms
+  14771  pot    #58   0 mV   core 0, wait 0 ms
+  15021  temp   #14   23.40 C   core 0, wait 0 ms
+  15021  pot    #59   0 mV   core 0, wait 0 ms
+  15271  pot    #60   0 mV   core 0, wait 0 ms
+  15521  pot    #61   0 mV   core 0, wait 0 ms
+  15771  pot    #62   0 mV   core 0, wait 0 ms
+  16021  temp   #15   23.40 C   core 0, wait 0 ms
+  16021  pot    #63   0 mV   core 0, wait 0 ms
+  16271  pot    #64   0 mV   core 0, wait 0 ms
+  16521  pot    #65   0 mV   core 0, wait 0 ms
+  16771  pot    #66   0 mV   core 0, wait 0 ms
+  17021  temp   #16   23.40 C   core 0, wait 0 ms
+  17021  pot    #67   0 mV   core 0, wait 0 ms
+  17271  pot    #68   0 mV   core 0, wait 0 ms
+  17521  pot    #69   0 mV   core 0, wait 0 ms
+  17771  pot    #70   0 mV   core 0, wait 0 ms
+  18021  temp   #17   23.40 C   core 0, wait 0 ms
+  18021  pot    #71   0 mV   core 0, wait 0 ms
+  18271  pot    #72   0 mV   core 0, wait 0 ms
+  18521  pot    #73   0 mV   core 0, wait 0 ms
+  18771  pot    #74   0 mV   core 0, wait 0 ms
+  19021  temp   #18   23.40 C   core 0, wait 0 ms
+  19021  pot    #75   0 mV   core 0, wait 0 ms
+  19271  pot    #76   0 mV   core 0, wait 0 ms
+  19521  pot    #77   0 mV   core 0, wait 0 ms
+  19771  pot    #78   0 mV   core 0, wait 0 ms
+  20021  temp   #19   23.40 C   core 0, wait 0 ms
+  20021  stats  temp   received 20, lost 0
+  20021  stats  pot    received 79, lost 0
+  20022  stats  button received 0, lost 0
+  20025  stats  queue  peak 1 of 8, ISR dropped 0
+  20030  pot    #79   0 mV   core 0, wait 9 ms
+  20271  pot    #80   55 mV   core 0, wait 0 ms
+  20521  pot    #81   539 mV   core 0, wait 0 ms
+  20771  pot    #82   1050 mV   core 0, wait 0 ms
+  21021  temp   #20   23.40 C   core 0, wait 0 ms
+  21021  pot    #83   1636 mV   core 0, wait 0 ms
+  21271  pot    #84   1924 mV   core 0, wait 0 ms
+  21521  pot    #85   1927 mV   core 0, wait 0 ms
+  21771  pot    #86   1941 mV   core 0, wait 0 ms
+  22021  temp   #21   23.40 C   core 0, wait 0 ms
+  22021  pot    #87   2432 mV   core 0, wait 0 ms
+  22271  pot    #88   3019 mV   core 0, wait 0 ms
+  22521  pot    #89   3147 mV   core 0, wait 0 ms
+  22771  pot    #90   3147 mV   core 0, wait 0 ms
+  23021  temp   #22   23.40 C   core 0, wait 0 ms
+  23021  pot    #91   3147 mV   core 0, wait 0 ms
+  23271  pot    #92   3147 mV   core 0, wait 0 ms
+  23521  pot    #93   3147 mV   core 0, wait 0 ms
+  23771  pot    #94   3147 mV   core 0, wait 0 ms
+  24021  temp   #23   23.40 C   core 0, wait 0 ms
+  24021  pot    #95   3147 mV   core 0, wait 0 ms
+  24271  pot    #96   3069 mV   core 0, wait 0 ms
+  24521  pot    #97   2769 mV   core 0, wait 0 ms
+  24771  pot    #98   2389 mV   core 0, wait 0 ms
+  25021  temp   #24   23.40 C   core 0, wait 0 ms
+  25021  pot    #99   2192 mV   core 0, wait 0 ms
+  25271  pot    #100  2190 mV   core 0, wait 0 ms
+  25521  pot    #101  2056 mV   core 0, wait 0 ms
+  25771  pot    #102  1772 mV   core 0, wait 0 ms
+  26021  temp   #25   23.40 C   core 0, wait 0 ms
+  26021  pot    #103  1447 mV   core 0, wait 0 ms
+  26271  pot    #104  1078 mV   core 0, wait 0 ms
+  26521  pot    #105  944 mV   core 0, wait 0 ms
+  26771  pot    #106  944 mV   core 0, wait 0 ms
+  27021  temp   #26   23.40 C   core 0, wait 0 ms
+  27021  pot    #107  689 mV   core 0, wait 0 ms
+  27271  pot    #108  212 mV   core 0, wait 0 ms
+  27521  pot    #109  0 mV   core 0, wait 0 ms
+  27771  pot    #110  0 mV   core 0, wait 0 ms
+  28021  temp   #27   23.40 C   core 0, wait 0 ms
+  28021  pot    #111  0 mV   core 0, wait 0 ms
+  28271  pot    #112  0 mV   core 0, wait 0 ms
+  28521  pot    #113  200 mV   core 0, wait 0 ms
+  28771  pot    #114  514 mV   core 0, wait 0 ms
+  29021  temp   #28   23.40 C   core 0, wait 0 ms
+  29021  pot    #115  799 mV   core 0, wait 0 ms
+  29271  pot    #116  1178 mV   core 0, wait 0 ms
+  29521  pot    #117  1494 mV   core 0, wait 0 ms
+  29771  pot    #118  1662 mV   core 0, wait 0 ms
+  30021  temp   #29   23.40 C   core 0, wait 0 ms
+  30021  stats  temp   received 30, lost 0
+  30021  stats  pot    received 119, lost 0
+  30022  stats  button received 0, lost 0
+  30025  stats  queue  peak 1 of 8, ISR dropped 0
+  30030  pot    #119  1678 mV   core 0, wait 9 ms
+  30271  pot    #120  1678 mV   core 0, wait 0 ms
+  30521  pot    #121  1676 mV   core 0, wait 0 ms
+  30771  pot    #122  1675 mV   core 0, wait 0 ms
+  31021  temp   #30   23.40 C   core 0, wait 0 ms
+  31021  pot    #123  1673 mV   core 0, wait 0 ms
+  31271  pot    #124  1673 mV   core 0, wait 0 ms
+  31521  pot    #125  1676 mV   core 0, wait 0 ms
+  31771  pot    #126  1677 mV   core 0, wait 0 ms
+  32021  temp   #31   23.40 C   core 0, wait 0 ms
+  32021  pot    #127  1675 mV   core 0, wait 0 ms
+  32271  pot    #128  1673 mV   core 0, wait 0 ms
+  32521  pot    #129  1673 mV   core 0, wait 0 ms
+  32771  pot    #130  1675 mV   core 0, wait 0 ms
+  33021  temp   #32   23.40 C   core 0, wait 0 ms
+  33021  pot    #131  1675 mV   core 0, wait 0 ms
+  33271  pot    #132  1673 mV   core 0, wait 0 ms
+  33521  pot    #133  1673 mV   core 0, wait 0 ms
+  33771  pot    #134  1673 mV   core 0, wait 0 ms
+  34021  temp   #33   23.40 C   core 0, wait 0 ms
+  34021  pot    #135  1677 mV   core 0, wait 0 ms
+  34271  pot    #136  1673 mV   core 0, wait 0 ms
+  34492  button #0    pressed   core 0, wait 0 ms
+  34521  pot    #137  1676 mV   core 0, wait 0 ms
+  34771  pot    #138  1677 mV   core 0, wait 0 ms
+  35021  temp   #34   23.40 C   core 0, wait 0 ms
+  35021  pot    #139  1676 mV   core 0, wait 0 ms
+  35271  pot    #140  1675 mV   core 0, wait 0 ms
+  35295  button #1    pressed   core 0, wait 0 ms
+  35521  pot    #141  1675 mV   core 0, wait 0 ms
+  35771  pot    #142  1675 mV   core 0, wait 0 ms
+  36021  temp   #35   23.40 C   core 0, wait 0 ms
+  36021  pot    #143  1675 mV   core 0, wait 0 ms
+  36271  pot    #144  1679 mV   core 0, wait 0 ms
+  36521  pot    #145  1675 mV   core 0, wait 0 ms
+  36771  pot    #146  1673 mV   core 0, wait 0 ms
+  36878  button #2    pressed   core 0, wait 0 ms
+  37021  temp   #36   23.40 C   core 0, wait 0 ms
+  37021  pot    #147  1676 mV   core 0, wait 0 ms
+  37271  pot    #148  1673 mV   core 0, wait 0 ms
+  37521  pot    #149  1675 mV   core 0, wait 0 ms
+  37771  pot    #150  1673 mV   core 0, wait 0 ms
+  37898  button #3    pressed   core 0, wait 0 ms
+  38021  temp   #37   23.40 C   core 0, wait 0 ms
+  38021  pot    #151  1673 mV   core 0, wait 0 ms
+  38271  pot    #152  1675 mV   core 0, wait 0 ms
+  38521  pot    #153  1677 mV   core 0, wait 0 ms
+  38771  pot    #154  1672 mV   core 0, wait 0 ms
+  39021  temp   #38   23.40 C   core 0, wait 0 ms
+  39021  pot    #155  1673 mV   core 0, wait 0 ms
+  39070  button #4    pressed   core 0, wait 0 ms
+  39271  pot    #156  1675 mV   core 0, wait 0 ms
+  39276  button #5    pressed   core 0, wait 0 ms
+  39521  pot    #157  1673 mV   core 0, wait 0 ms
+  39771  pot    #158  1673 mV   core 0, wait 0 ms
+  40021  temp   #39   23.40 C   core 0, wait 0 ms
+  40021  stats  temp   received 40, lost 0
+  40021  stats  pot    received 159, lost 0
+  40022  stats  button received 6, lost 0
+  40025  stats  queue  peak 1 of 8, ISR dropped 0
+  40030  pot    #159  1676 mV   core 0, wait 9 ms
+  40271  pot    #160  1674 mV   core 0, wait 0 ms
+  40521  pot    #161  1675 mV   core 0, wait 0 ms
+  40771  pot    #162  1675 mV   core 0, wait 0 ms
+  41021  temp   #40   23.40 C   core 0, wait 0 ms
+  41021  pot    #163  1677 mV   core 0, wait 0 ms
+  41271  pot    #164  1673 mV   core 0, wait 0 ms
+  41521  pot    #165  1675 mV   core 0, wait 0 ms
+  41771  pot    #166  1675 mV   core 0, wait 0 ms
+  42021  temp   #41   23.40 C   core 0, wait 0 ms
+  42021  pot    #167  1673 mV   core 0, wait 0 ms
+  42271  pot    #168  1675 mV   core 0, wait 0 ms
+  42521  pot    #169  1673 mV   core 0, wait 0 ms
+  42771  pot    #170  1673 mV   core 0, wait 0 ms
+  43021  temp   #42   23.40 C   core 0, wait 0 ms
+  43021  pot    #171  1673 mV   core 0, wait 0 ms
+  43271  pot    #172  1673 mV   core 0, wait 0 ms
+  43521  pot    #173  1676 mV   core 0, wait 0 ms
+  43771  pot    #174  1676 mV   core 0, wait 0 ms
+  44021  temp   #43   23.40 C   core 0, wait 0 ms
+  44021  pot    #175  1676 mV   core 0, wait 0 ms
+  44271  pot    #176  1675 mV   core 0, wait 0 ms
+  44521  pot    #177  1677 mV   core 0, wait 0 ms
+  44771  pot    #178  1676 mV   core 0, wait 0 ms
+  45021  temp   #44   23.40 C   core 0, wait 0 ms
+  45021  pot    #179  1673 mV   core 0, wait 0 ms
+  45271  pot    #180  1675 mV   core 0, wait 0 ms
+  45521  pot    #181  1673 mV   core 0, wait 0 ms
+  45771  pot    #182  1675 mV   core 0, wait 0 ms
+  46021  temp   #45   23.40 C   core 0, wait 0 ms
+  46021  pot    #183  1673 mV   core 0, wait 0 ms
+  46271  pot    #184  1673 mV   core 0, wait 0 ms
+  46521  pot    #185  1675 mV   core 0, wait 0 ms
+  46771  pot    #186  1675 mV   core 0, wait 0 ms
+  47021  temp   #46   23.40 C   core 0, wait 0 ms
+  47021  pot    #187  1677 mV   core 0, wait 0 ms
+  47271  pot    #188  1675 mV   core 0, wait 0 ms
+  47521  pot    #189  1673 mV   core 0, wait 0 ms
+  47771  pot    #190  1673 mV   core 0, wait 0 ms
+  48021  temp   #47   23.40 C   core 0, wait 0 ms
+  48021  pot    #191  1675 mV   core 0, wait 0 ms
+  48271  pot    #192  1673 mV   core 0, wait 0 ms
+  48521  pot    #193  1673 mV   core 0, wait 0 ms
+  48771  pot    #194  1673 mV   core 0, wait 0 ms
+  49021  temp   #48   24.40 C   core 0, wait 0 ms
+  49021  pot    #195  1676 mV   core 0, wait 0 ms
+  49271  pot    #196  1673 mV   core 0, wait 0 ms
+  49521  pot    #197  1676 mV   core 0, wait 0 ms
+  49771  pot    #198  1673 mV   core 0, wait 0 ms
+  50021  temp   #49   23.40 C   core 0, wait 0 ms
+  50021  stats  temp   received 50, lost 0
+  50021  stats  pot    received 199, lost 0
+  50022  stats  button received 6, lost 0
+  50025  stats  queue  peak 1 of 8, ISR dropped 0
+  50030  pot    #199  1674 mV   core 0, wait 9 ms
+  50271  pot    #200  1673 mV   core 0, wait 0 ms
+  50521  pot    #201  1677 mV   core 0, wait 0 ms
+  50771  pot    #202  1676 mV   core 0, wait 0 ms
+  51021  temp   #50   23.40 C   core 0, wait 0 ms
+  51021  pot    #203  1675 mV   core 0, wait 0 ms
+  51271  pot    #204  1676 mV   core 0, wait 0 ms
+  51521  pot    #205  1673 mV   core 0, wait 0 ms
+  51771  pot    #206  1673 mV   core 0, wait 0 ms
+  52021  temp   #51   23.40 C   core 0, wait 0 ms
+  52021  pot    #207  1676 mV   core 0, wait 0 ms
+  52271  pot    #208  1673 mV   core 0, wait 0 ms
+  52521  pot    #209  1678 mV   core 0, wait 0 ms
+  52771  pot    #210  1675 mV   core 0, wait 0 ms
+  53021  temp   #52   23.40 C   core 0, wait 0 ms
+  53021  pot    #211  1673 mV   core 0, wait 0 ms
+  53271  pot    #212  1673 mV   core 0, wait 0 ms
+  53521  pot    #213  1675 mV   core 0, wait 0 ms
+  53771  pot    #214  1676 mV   core 0, wait 0 ms
+  54021  temp   #53   23.40 C   core 0, wait 0 ms
+  54021  pot    #215  1676 mV   core 0, wait 0 ms
+  54271  pot    #216  1673 mV   core 0, wait 0 ms
+  54521  pot    #217  1675 mV   core 0, wait 0 ms
+  54771  pot    #218  1678 mV   core 0, wait 0 ms
+  55021  temp   #54   24.40 C   core 0, wait 0 ms
+  55021  pot    #219  1673 mV   core 0, wait 0 ms
+  55271  pot    #220  1676 mV   core 0, wait 0 ms
+  55521  pot    #221  1675 mV   core 0, wait 0 ms
+  55771  pot    #222  1676 mV   core 0, wait 0 ms
+  56021  temp   #55   23.40 C   core 0, wait 0 ms
+  56021  pot    #223  1673 mV   core 0, wait 0 ms
+  56271  pot    #224  1675 mV   core 0, wait 0 ms
+  56521  pot    #225  1673 mV   core 0, wait 0 ms
+  56771  pot    #226  1676 mV   core 0, wait 0 ms
+  57021  temp   #56   24.40 C   core 0, wait 0 ms
+  57021  pot    #227  1675 mV   core 0, wait 0 ms
+  57271  pot    #228  1673 mV   core 0, wait 0 ms
+  57521  pot    #229  1675 mV   core 0, wait 0 ms
+  57771  pot    #230  1675 mV   core 0, wait 0 ms
+  58021  temp   #57   23.40 C   core 0, wait 0 ms
+  58021  pot    #231  1673 mV   core 0, wait 0 ms
+  58271  pot    #232  1674 mV   core 0, wait 0 ms
+  58521  pot    #233  1673 mV   core 0, wait 0 ms
+  58771  pot    #234  1676 mV   core 0, wait 0 ms
+  59021  temp   #58   23.40 C   core 0, wait 0 ms
+  59021  pot    #235  1673 mV   core 0, wait 0 ms
+  59271  pot    #236  1676 mV   core 0, wait 0 ms
+  59521  pot    #237  1676 mV   core 0, wait 0 ms
+  59771  pot    #238  1675 mV   core 0, wait 0 ms
+  60021  temp   #59   23.40 C   core 0, wait 0 ms
+  60021  stats  temp   received 60, lost 0
+  60021  stats  pot    received 239, lost 0
+  60022  stats  button received 6, lost 0
+  60025  stats  queue  peak 1 of 8, ISR dropped 0
+  60030  pot    #239  1673 mV   core 0, wait 9 ms
+  60271  pot    #240  1675 mV   core 0, wait 0 ms
+  60521  pot    #241  1673 mV   core 0, wait 0 ms
+  60771  pot    #242  1673 mV   core 0, wait 0 ms
+  61021  temp   #60   24.40 C   core 0, wait 0 ms
+  61021  pot    #243  1673 mV   core 0, wait 0 ms
+  61271  pot    #244  1675 mV   core 0, wait 0 ms
+  61521  pot    #245  1676 mV   core 0, wait 0 ms
+  61771  pot    #246  1675 mV   core 0, wait 0 ms
+  62021  temp   #61   24.40 C   core 0, wait 0 ms
+  62021  pot    #247  1675 mV   core 0, wait 0 ms
+  62271  pot    #248  1673 mV   core 0, wait 0 ms
+  62521  pot    #249  1675 mV   core 0, wait 0 ms
+  62771  pot    #250  1675 mV   core 0, wait 0 ms
+  63021  temp   #62   24.40 C   core 0, wait 0 ms
+  63021  pot    #251  1676 mV   core 0, wait 0 ms
+  63271  pot    #252  1677 mV   core 0, wait 0 ms
+  63521  pot    #253  1673 mV   core 0, wait 0 ms
+  63771  pot    #254  1676 mV   core 0, wait 0 ms
+  64021  temp   #63   24.40 C   core 0, wait 0 ms
+  64021  pot    #255  1675 mV   core 0, wait 0 ms
+  64271  pot    #256  1673 mV   core 0, wait 0 ms
+  64521  pot    #257  1673 mV   core 0, wait 0 ms
+  64771  pot    #258  1673 mV   core 0, wait 0 ms
+  65021  temp   #64   23.40 C   core 0, wait 0 ms
+  65021  pot    #259  1673 mV   core 0, wait 0 ms
+  65271  pot    #260  1677 mV   core 0, wait 0 ms
+  65521  pot    #261  1677 mV   core 0, wait 0 ms
+  65771  pot    #262  1675 mV   core 0, wait 0 ms
+  66021  temp   #65   24.40 C   core 0, wait 0 ms
+  66021  pot    #263  1676 mV   core 0, wait 0 ms
+  66271  pot    #264  1673 mV   core 0, wait 0 ms
+  66521  pot    #265  1674 mV   core 0, wait 0 ms
+  66771  pot    #266  1673 mV   core 0, wait 0 ms
+  67021  temp   #66   23.40 C   core 0, wait 0 ms
+  67021  pot    #267  1676 mV   core 0, wait 0 ms
+  67271  pot    #268  1673 mV   core 0, wait 0 ms
+  67521  pot    #269  1673 mV   core 0, wait 0 ms
+  67771  pot    #270  1676 mV   core 0, wait 0 ms
+  68021  temp   #67   24.40 C   core 0, wait 0 ms
+  68021  pot    #271  1676 mV   core 0, wait 0 ms
+  68271  pot    #272  1673 mV   core 0, wait 0 ms
+  68521  pot    #273  1675 mV   core 0, wait 0 ms
+  68771  pot    #274  1673 mV   core 0, wait 0 ms
+  69021  temp   #68   24.40 C   core 0, wait 0 ms
+  69021  pot    #275  1675 mV   core 0, wait 0 ms
+  69271  pot    #276  1675 mV   core 0, wait 0 ms
+  69521  pot    #277  1675 mV   core 0, wait 0 ms
+  69771  pot    #278  1677 mV   core 0, wait 0 ms
+  70021  temp   #69   24.40 C   core 0, wait 0 ms
+  70021  stats  temp   received 70, lost 0
+  70021  stats  pot    received 279, lost 0
+  70022  stats  button received 6, lost 0
+  70025  stats  queue  peak 1 of 8, ISR dropped 0
+  70030  pot    #279  1674 mV   core 0, wait 9 ms
+  70271  pot    #280  1677 mV   core 0, wait 0 ms
+  70521  pot    #281  1675 mV   core 0, wait 0 ms
+  70771  pot    #282  1673 mV   core 0, wait 0 ms
+  71021  temp   #70   24.40 C   core 0, wait 0 ms
+  71021  pot    #283  1673 mV   core 0, wait 0 ms
+  71271  pot    #284  1673 mV   core 0, wait 0 ms
+  71521  pot    #285  1676 mV   core 0, wait 0 ms
+  71771  pot    #286  1675 mV   core 0, wait 0 ms
+  72021  temp   #71   24.40 C   core 0, wait 0 ms
+  72021  pot    #287  1675 mV   core 0, wait 0 ms
+  72271  pot    #288  1673 mV   core 0, wait 0 ms
+  72521  pot    #289  1677 mV   core 0, wait 0 ms
+  72771  pot    #290  1673 mV   core 0, wait 0 ms
+  73021  temp   #72   24.40 C   core 0, wait 0 ms
+  73021  pot    #291  1673 mV   core 0, wait 0 ms
+  73271  pot    #292  1674 mV   core 0, wait 0 ms
+  73521  pot    #293  1673 mV   core 0, wait 0 ms
+  73771  pot    #294  1673 mV   core 0, wait 0 ms
+  74021  temp   #73   24.40 C   core 0, wait 0 ms
+  74021  pot    #295  1675 mV   core 0, wait 0 ms
+  74271  pot    #296  1675 mV   core 0, wait 0 ms
+  74521  pot    #297  1675 mV   core 0, wait 0 ms
+  74771  pot    #298  1674 mV   core 0, wait 0 ms
+  75021  temp   #74   24.40 C   core 0, wait 0 ms
+  75021  pot    #299  1675 mV   core 0, wait 0 ms
+  75271  pot    #300  1673 mV   core 0, wait 0 ms
+  75521  pot    #301  1673 mV   core 0, wait 0 ms
+  75771  pot    #302  1676 mV   core 0, wait 0 ms
+  76021  temp   #75   24.40 C   core 0, wait 0 ms
+  76021  pot    #303  1673 mV   core 0, wait 0 ms
+  76271  pot    #304  1675 mV   core 0, wait 0 ms
+  76521  pot    #305  1675 mV   core 0, wait 0 ms
+  76771  pot    #306  1673 mV   core 0, wait 0 ms
+  77021  temp   #76   24.40 C   core 0, wait 0 ms
+  77021  pot    #307  1675 mV   core 0, wait 0 ms
+  77271  pot    #308  1673 mV   core 0, wait 0 ms
+  77521  pot    #309  1675 mV   core 0, wait 0 ms
+  77771  pot    #310  1675 mV   core 0, wait 0 ms
+  78021  temp   #77   24.40 C   core 0, wait 0 ms
+  78021  pot    #311  1673 mV   core 0, wait 0 ms
+  78271  pot    #312  1676 mV   core 0, wait 0 ms
+  78521  pot    #313  1673 mV   core 0, wait 0 ms
+  78771  pot    #314  1676 mV   core 0, wait 0 ms
+  79021  temp   #78   24.40 C   core 0, wait 0 ms
+  79021  pot    #315  1673 mV   core 0, wait 0 ms
+  79271  pot    #316  1676 mV   core 0, wait 0 ms
+  79521  pot    #317  1673 mV   core 0, wait 0 ms
+  79771  pot    #318  1673 mV   core 0, wait 0 ms
+  80021  temp   #79   24.40 C   core 0, wait 0 ms
+  80021  stats  temp   received 80, lost 0
+  80021  stats  pot    received 319, lost 0
+  80022  stats  button received 6, lost 0
+  80025  stats  queue  peak 1 of 8, ISR dropped 0
+  80030  pot    #319  1673 mV   core 0, wait 9 ms
+  80271  pot    #320  1673 mV   core 0, wait 0 ms
+  80521  pot    #321  1675 mV   core 0, wait 0 ms
+  80771  pot    #322  1673 mV   core 0, wait 0 ms
+  81021  temp   #80   24.40 C   core 0, wait 0 ms
+  81021  pot    #323  1673 mV   core 0, wait 0 ms
+  81271  pot    #324  1676 mV   core 0, wait 0 ms
+  81521  pot    #325  1673 mV   core 0, wait 0 ms
+  81771  pot    #326  1675 mV   core 0, wait 0 ms
+  82021  temp   #81   24.40 C   core 0, wait 0 ms
+  82021  pot    #327  1674 mV   core 0, wait 0 ms
+  82271  pot    #328  1675 mV   core 0, wait 0 ms
+  82521  pot    #329  1673 mV   core 0, wait 0 ms
+  82771  pot    #330  1674 mV   core 0, wait 0 ms
+  83021  temp   #82   24.40 C   core 0, wait 0 ms
+  83021  pot    #331  1675 mV   core 0, wait 0 ms
+  83271  pot    #332  1673 mV   core 0, wait 0 ms
+  83521  pot    #333  1676 mV   core 0, wait 0 ms
+  83771  pot    #334  1673 mV   core 0, wait 0 ms
+  84021  temp   #83   23.40 C   core 0, wait 0 ms
+  84021  pot    #335  1675 mV   core 0, wait 0 ms
+  84271  pot    #336  1674 mV   core 0, wait 0 ms
+  84521  pot    #337  1676 mV   core 0, wait 0 ms
+  84771  pot    #338  1676 mV   core 0, wait 0 ms
+  85021  temp   #84   24.40 C   core 0, wait 0 ms
+  85021  pot    #339  1673 mV   core 0, wait 0 ms
+  85271  pot    #340  1676 mV   core 0, wait 0 ms
+  85521  pot    #341  1673 mV   core 0, wait 0 ms
+  85771  pot    #342  1675 mV   core 0, wait 0 ms
+  86021  temp   #85   24.40 C   core 0, wait 0 ms
+  86021  pot    #343  1673 mV   core 0, wait 0 ms
+  86271  pot    #344  1677 mV   core 0, wait 0 ms
+  86521  pot    #345  1673 mV   core 0, wait 0 ms
+  86771  pot    #346  1673 mV   core 0, wait 0 ms
+  87021  temp   #86   24.40 C   core 0, wait 0 ms
+  87021  pot    #347  1674 mV   core 0, wait 0 ms
+  87271  pot    #348  1675 mV   core 0, wait 0 ms
+  87521  pot    #349  1673 mV   core 0, wait 0 ms
+  87771  pot    #350  1675 mV   core 0, wait 0 ms
+  88021  temp   #87   24.40 C   core 0, wait 0 ms
+  88021  pot    #351  1675 mV   core 0, wait 0 ms
+  88271  pot    #352  1675 mV   core 0, wait 0 ms
+  88521  pot    #353  1673 mV   core 0, wait 0 ms
+  88771  pot    #354  1674 mV   core 0, wait 0 ms
+  89021  temp   #88   24.40 C   core 0, wait 0 ms
+  89021  pot    #355  1673 mV   core 0, wait 0 ms
+  89271  pot    #356  1673 mV   core 0, wait 0 ms
+  89521  pot    #357  1673 mV   core 0, wait 0 ms

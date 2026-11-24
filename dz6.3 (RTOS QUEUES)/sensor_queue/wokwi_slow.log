@@ -13,9 +13,9 @@ I (13) cpu_start: Pro cpu start user code
 I (14) cpu_start: cpu freq: 160000000 Hz
 I (14) app_init: Application information:
 I (17) app_init: Project name:     dz-espidf
-I (21) app_init: App version:      103c32d-dirty
-I (25) app_init: Compile time:     Nov 23 2026 22:23:43
-I (30) app_init: ELF file SHA256:  c07a9659c...
+I (21) app_init: App version:      8d691a6-dirty
+I (25) app_init: Compile time:     Nov 25 2026 00:49:11
+I (30) app_init: ELF file SHA256:  fef65603b...
 I (34) app_init: ESP-IDF:          6.1.0
 I (38) efuse_init: Min chip rev:     v0.0
 I (42) efuse_init: Max chip rev:     v0.99 
@@ -34,7 +34,7 @@ I (99) main_task: Calling app_main()
 I (101) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
 I (109) queue: temp, pot on core 0 -> queue of 8 -> consumer on core 1, BOOT button via ISR
 I (115) main_task: Returned from app_main()
-    262  pot    #0    1898 mV   core 0, wait 0 ms
+    263  pot    #0    1898 mV   core 0, wait 0 ms
     763  pot    #1    1898 mV   core 0, wait 251 ms
 E (1108) temperature_sensor: Exceeding temperature measure range.
    1014  temp   read error: ESP_FAIL
@@ -79,127 +79,127 @@ E (8108) temperature_sensor: Exceeding temperature measure range.
    8279  pot    #16   773 mV   core 0, wait 4017 ms
    8772  pot    queue full, #34 dropped
    8780  pot    lost 2 before #19
-   8781  pot    #19   773 mV   core 0, wait 3769 ms
+   8781  pot    #19   773 mV   core 0, wait 3768 ms
 E (9108) temperature_sensor: Exceeding temperature measure range.
    9014  temp   read error: ESP_FAIL
    9023  pot    queue full, #35 dropped
    9272  pot    queue full, #36 dropped
    9282  pot    lost 1 before #21
-   9283  pot    #21   3134 mV   core 0, wait 3771 ms
+   9283  pot    #21   3134 mV   core 0, wait 3770 ms
    9772  pot    queue full, #38 dropped
    9784  pot    lost 1 before #23
-   9785  pot    #23   3134 mV   core 0, wait 3773 ms
+   9785  pot    #23   3134 mV   core 0, wait 3772 ms
 E (10108) temperature_sensor: Exceeding temperature measure range.
   10014  temp   read error: ESP_FAIL
   10272  pot    queue full, #40 dropped
   10286  stats  temp   received 0, lost 0
   10287  stats  pot    received 20, lost 4
-  10287  stats  button received 0, lost 0
-  10288  stats  queue  peak 8 of 8, ISR dropped 3
+  10288  stats  button received 0, lost 0
+  10289  stats  queue  peak 8 of 8, ISR dropped 3
   10291  pot    lost 1 before #25
-  10294  pot    #25   3134 mV   core 0, wait 3782 ms
+  10295  pot    #25   3134 mV   core 0, wait 3779 ms
   10772  pot    queue full, #42 dropped
   10799  pot    lost 1 before #27
-  10800  pot    #27   3134 mV   core 0, wait 3788 ms
+  10800  pot    #27   3134 mV   core 0, wait 3787 ms
 E (11108) temperature_sensor: Exceeding temperature measure range.
   11014  temp   read error: ESP_FAIL
   11023  pot    queue full, #43 dropped
   11272  pot    queue full, #44 dropped
   11301  pot    lost 1 before #29
-  11302  pot    #29   3134 mV   core 0, wait 3790 ms
+  11302  pot    #29   3134 mV   core 0, wait 3789 ms
   11772  pot    queue full, #46 dropped
   11803  pot    lost 1 before #31
-  11804  pot    #31   3134 mV   core 0, wait 3792 ms
+  11804  pot    #31   3134 mV   core 0, wait 3791 ms
 E (12108) temperature_sensor: Exceeding temperature measure range.
   12014  temp   read error: ESP_FAIL
   12272  pot    queue full, #48 dropped
   12305  pot    lost 1 before #33
-  12306  pot    #33   3134 mV   core 0, wait 3794 ms
+  12306  pot    #33   3134 mV   core 0, wait 3793 ms
   12772  pot    queue full, #50 dropped
   12807  button lost 2 before #2
-  12808  button #2    pressed   core 0, wait 3930 ms
+  12808  button #2    pressed   core 0, wait 3929 ms
 E (13108) temperature_sensor: Exceeding temperature measure range.
   13014  temp   read error: ESP_FAIL
   13272  pot    queue full, #52 dropped
-  13308  pot    no data for 750 ms
-  13309  pot    lost 3 before #37
-  13309  pot    back online
-  13310  pot    #37   3134 mV   core 0, wait 3798 ms
+  13309  pot    no data for 750 ms
+  13310  pot    lost 3 before #37
+  13310  pot    back online
+  13311  pot    #37   3134 mV   core 0, wait 3798 ms
   13772  pot    queue full, #54 dropped
-  13811  pot    lost 1 before #39
-  13812  pot    #39   3134 mV   core 0, wait 3800 ms
+  13812  pot    lost 1 before #39
+  13813  pot    #39   3134 mV   core 0, wait 3800 ms
 E (14108) temperature_sensor: Exceeding temperature measure range.
   14014  temp   read error: ESP_FAIL
   14272  pot    queue full, #56 dropped
-  14313  pot    lost 1 before #41
-  14314  pot    #41   3134 mV   core 0, wait 3802 ms
+  14314  pot    lost 1 before #41
+  14315  pot    #41   3134 mV   core 0, wait 3802 ms
   14772  pot    queue full, #58 dropped
-  14815  button lost 1 before #4
-  14816  button #4    pressed   core 0, wait 3858 ms
+  14816  button lost 1 before #4
+  14817  button #4    pressed   core 0, wait 3858 ms
 E (15108) temperature_sensor: Exceeding temperature measure range.
   15014  temp   read error: ESP_FAIL
   15272  pot    queue full, #60 dropped
-  15316  pot    no data for 750 ms
-  15317  pot    lost 3 before #45
-  15317  pot    back online
-  15318  pot    #45   3134 mV   core 0, wait 3806 ms
+  15318  pot    no data for 750 ms
+  15319  pot    lost 3 before #45
+  15319  pot    back online
+  15320  pot    #45   3134 mV   core 0, wait 3807 ms
   15772  pot    queue full, #62 dropped
-  15819  pot    lost 1 before #47
-  15820  pot    #47   3134 mV   core 0, wait 3808 ms
+  15821  pot    lost 1 before #47
+  15822  pot    #47   3134 mV   core 0, wait 3809 ms
 E (16108) temperature_sensor: Exceeding temperature measure range.
   16014  temp   read error: ESP_FAIL
   16272  pot    queue full, #64 dropped
-  16321  pot    lost 1 before #49
-  16322  pot    #49   3134 mV   core 0, wait 3810 ms
+  16323  pot    lost 1 before #49
+  16324  pot    #49   3134 mV   core 0, wait 3811 ms
   16772  pot    queue full, #66 dropped
-  16823  pot    lost 1 before #51
-  16824  pot    #51   3134 mV   core 0, wait 3812 ms
+  16825  pot    lost 1 before #51
+  16826  pot    #51   3134 mV   core 0, wait 3813 ms
 E (17108) temperature_sensor: Exceeding temperature measure range.
   17014  temp   read error: ESP_FAIL
   17272  pot    queue full, #68 dropped
-  17325  pot    lost 1 before #53
-  17326  pot    #53   3134 mV   core 0, wait 3814 ms
+  17327  pot    lost 1 before #53
+  17328  pot    #53   3134 mV   core 0, wait 3815 ms
   17772  pot    queue full, #70 dropped
-  17827  pot    lost 1 before #55
-  17828  pot    #55   3134 mV   core 0, wait 3816 ms
+  17829  pot    lost 1 before #55
+  17830  pot    #55   3134 mV   core 0, wait 3817 ms
 E (18108) temperature_sensor: Exceeding temperature measure range.
   18014  temp   read error: ESP_FAIL
   18272  pot    queue full, #72 dropped
-  18329  pot    lost 1 before #57
-  18330  pot    #57   3134 mV   core 0, wait 3818 ms
+  18331  pot    lost 1 before #57
+  18332  pot    #57   3134 mV   core 0, wait 3819 ms
   18772  pot    queue full, #74 dropped
-  18831  pot    lost 1 before #59
-  18832  pot    #59   3134 mV   core 0, wait 3820 ms
+  18833  pot    lost 1 before #59
+  18834  pot    #59   3134 mV   core 0, wait 3821 ms
 E (19108) temperature_sensor: Exceeding temperature measure range.
   19014  temp   read error: ESP_FAIL
   19272  pot    queue full, #76 dropped
-  19333  pot    lost 1 before #61
-  19334  pot    #61   3134 mV   core 0, wait 3822 ms
+  19335  pot    lost 1 before #61
+  19336  pot    #61   3134 mV   core 0, wait 3823 ms
   19772  pot    queue full, #78 dropped
-  19835  pot    lost 1 before #63
-  19836  pot    #63   3134 mV   core 0, wait 3824 ms
+  19837  pot    lost 1 before #63
+  19838  pot    #63   3134 mV   core 0, wait 3825 ms
 E (20108) temperature_sensor: Exceeding temperature measure range.
   20014  temp   read error: ESP_FAIL
   20272  pot    queue full, #80 dropped
-  20337  stats  temp   received 0, lost 0
-  20338  stats  pot    received 38, lost 26
-  20338  stats  button received 2, lost 3
-  20339  stats  queue  peak 8 of 8, ISR dropped 4
-  20342  pot    lost 1 before #65
-  20345  pot    #65   3134 mV   core 0, wait 3833 ms
+  20339  stats  temp   received 0, lost 0
+  20340  stats  pot    received 38, lost 26
+  20341  stats  button received 2, lost 3
+  20342  stats  queue  peak 8 of 8, ISR dropped 4
+  20344  pot    lost 1 before #65
+  20348  pot    #65   3134 mV   core 0, wait 3832 ms
   20772  pot    queue full, #82 dropped
-  20850  pot    lost 1 before #67
-  20851  pot    #67   3134 mV   core 0, wait 3839 ms
+  20852  pot    lost 1 before #67
+  20853  pot    #67   3134 mV   core 0, wait 3840 ms
 E (21108) temperature_sensor: Exceeding temperature measure range.
   21014  temp   read error: ESP_FAIL
   21272  pot    queue full, #84 dropped
-  21352  pot    lost 1 before #69
-  21353  pot    #69   3134 mV   core 0, wait 3841 ms
+  21354  pot    lost 1 before #69
+  21355  pot    #69   3134 mV   core 0, wait 3842 ms
   21772  pot    queue full, #86 dropped
-  21854  pot    lost 1 before #71
-  21855  pot    #71   3134 mV   core 0, wait 3843 ms
+  21856  pot    lost 1 before #71
+  21857  pot    #71   3134 mV   core 0, wait 3844 ms
 E (22108) temperature_sensor: Exceeding temperature measure range.
   22014  temp   read error: ESP_FAIL
   22272  pot    queue full, #88 dropped
-  22356  pot    lost 1 before #73
-  22357  pot    #73   3134 mV   core 0, wait 3845 ms
+  22358  pot    lost 1 before #73
+  22359  pot    #73   3134 mV   core 0, wait 3846 ms

@@ -13,9 +13,9 @@ I (13) cpu_start: Pro cpu start user code
 I (14) cpu_start: cpu freq: 160000000 Hz
 I (14) app_init: Application information:
 I (17) app_init: Project name:     dz-espidf
-I (21) app_init: App version:      103c32d-dirty
-I (25) app_init: Compile time:     Nov 23 2026 22:23:43
-I (30) app_init: ELF file SHA256:  ef37c9c9c...
+I (21) app_init: App version:      8d691a6-dirty
+I (25) app_init: Compile time:     Nov 25 2026 00:49:11
+I (30) app_init: ELF file SHA256:  1faf02c32...
 I (34) app_init: ESP-IDF:          6.1.0
 I (38) efuse_init: Min chip rev:     v0.0
 I (42) efuse_init: Max chip rev:     v0.99 
@@ -34,151 +34,151 @@ I (99) main_task: Calling app_main()
 I (101) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
 I (109) queue: temp, pot on core 0 -> queue of 8 -> consumer on core 1, BOOT button via ISR
 I (115) main_task: Returned from app_main()
-    262  pot    #0    1898 mV   core 0, wait 0 ms
-    512  pot    #1    1898 mV   core 0, wait 0 ms
-    762  pot    #2    1898 mV   core 0, wait 0 ms
+    263  pot    #0    1898 mV   core 0, wait 0 ms
+    513  pot    #1    1898 mV   core 0, wait 0 ms
+    763  pot    #2    1898 mV   core 0, wait 0 ms
 E (1108) temperature_sensor: Exceeding temperature measure range.
+   1014  pot    #3    1898 mV   core 0, wait 1 ms
    1014  temp   read error: ESP_FAIL
-   1013  pot    #3    1898 mV   core 0, wait 1 ms
-   1262  pot    #4    1898 mV   core 0, wait 0 ms
-   1512  pot    #5    1898 mV   core 0, wait 0 ms
-   1762  pot    #6    1898 mV   core 0, wait 0 ms
+   1263  pot    #4    1898 mV   core 0, wait 0 ms
+   1513  pot    #5    1898 mV   core 0, wait 0 ms
+   1763  pot    #6    1898 mV   core 0, wait 0 ms
 E (2108) temperature_sensor: Exceeding temperature measure range.
-   2013  pot    #7    1898 mV   core 0, wait 1 ms
+   2014  pot    #7    1898 mV   core 0, wait 1 ms
    2014  temp   read error: ESP_FAIL
-   2262  pot    #8    1898 mV   core 0, wait 0 ms
-   2512  pot    #9    1898 mV   core 0, wait 0 ms
-   2762  pot    #10   1898 mV   core 0, wait 0 ms
+   2263  pot    #8    1898 mV   core 0, wait 0 ms
+   2513  pot    #9    1898 mV   core 0, wait 0 ms
+   2763  pot    #10   1898 mV   core 0, wait 0 ms
 E (3108) temperature_sensor: Exceeding temperature measure range.
-   3013  pot    #11   1898 mV   core 0, wait 1 ms
-   3014  temp   no data for 3000 ms
+   3014  pot    #11   1898 mV   core 0, wait 1 ms
    3014  temp   read error: ESP_FAIL
-   3262  pot    #12   773 mV   core 0, wait 0 ms
-   3512  pot    #13   773 mV   core 0, wait 0 ms
-   3762  pot    #14   773 mV   core 0, wait 0 ms
+   3014  temp   no data for 3000 ms
+   3263  pot    #12   773 mV   core 0, wait 0 ms
+   3513  pot    #13   773 mV   core 0, wait 0 ms
+   3763  pot    #14   773 mV   core 0, wait 0 ms
 E (4108) temperature_sensor: Exceeding temperature measure range.
-   4013  pot    #15   773 mV   core 0, wait 1 ms
+   4014  pot    #15   773 mV   core 0, wait 1 ms
    4014  temp   read error: ESP_FAIL
-   4262  pot    #16   773 mV   core 0, wait 0 ms
-   4512  pot    #17   773 mV   core 0, wait 0 ms
-   4762  pot    #18   773 mV   core 0, wait 0 ms
+   4263  pot    #16   773 mV   core 0, wait 0 ms
+   4513  pot    #17   773 mV   core 0, wait 0 ms
+   4763  pot    #18   773 mV   core 0, wait 0 ms
 E (5108) temperature_sensor: Exceeding temperature measure range.
-   5013  pot    #19   773 mV   core 0, wait 1 ms
+   5014  pot    #19   773 mV   core 0, wait 1 ms
    5014  temp   read error: ESP_FAIL
-   5262  pot    #20   3134 mV   core 0, wait 0 ms
-   5512  pot    #21   3134 mV   core 0, wait 0 ms
-   5762  pot    #22   3134 mV   core 0, wait 0 ms
+   5263  pot    #20   3134 mV   core 0, wait 0 ms
+   5513  pot    #21   3134 mV   core 0, wait 0 ms
+   5763  pot    #22   3134 mV   core 0, wait 0 ms
 E (6108) temperature_sensor: Exceeding temperature measure range.
-   6013  pot    #23   3134 mV   core 0, wait 1 ms
+   6014  pot    #23   3134 mV   core 0, wait 1 ms
    6014  temp   read error: ESP_FAIL
-   6262  pot    #24   3134 mV   core 0, wait 0 ms
-   6512  pot    #25   3134 mV   core 0, wait 0 ms
-   6762  pot    #26   3134 mV   core 0, wait 0 ms
+   6263  pot    #24   3134 mV   core 0, wait 0 ms
+   6513  pot    #25   3134 mV   core 0, wait 0 ms
+   6763  pot    #26   3134 mV   core 0, wait 0 ms
 E (7108) temperature_sensor: Exceeding temperature measure range.
-   7013  pot    #27   3134 mV   core 0, wait 1 ms
+   7014  pot    #27   3134 mV   core 0, wait 1 ms
    7014  temp   read error: ESP_FAIL
    7028  button #0    pressed   core 0, wait 0 ms
-   7262  pot    #28   3134 mV   core 0, wait 0 ms
-   7512  pot    #29   3134 mV   core 0, wait 0 ms
-   7762  pot    #30   3134 mV   core 0, wait 0 ms
+   7263  pot    #28   3134 mV   core 0, wait 0 ms
+   7513  pot    #29   3134 mV   core 0, wait 0 ms
+   7763  pot    #30   3134 mV   core 0, wait 0 ms
 E (8108) temperature_sensor: Exceeding temperature measure range.
-   8013  pot    #31   3134 mV   core 0, wait 1 ms
+   8014  pot    #31   3134 mV   core 0, wait 1 ms
    8014  temp   read error: ESP_FAIL
    8028  button #1    pressed   core 0, wait 0 ms
-   8262  pot    #32   3134 mV   core 0, wait 0 ms
-   8512  pot    #33   3134 mV   core 0, wait 0 ms
-   8762  pot    #34   3134 mV   core 0, wait 0 ms
-   8878  button #2    pressed   core 0, wait 0 ms
+   8263  pot    #32   3134 mV   core 0, wait 0 ms
+   8513  pot    #33   3134 mV   core 0, wait 0 ms
+   8763  pot    #34   3134 mV   core 0, wait 0 ms
+   8880  button #2    pressed   core 0, wait 0 ms
 E (9108) temperature_sensor: Exceeding temperature measure range.
-   9013  pot    #35   3134 mV   core 0, wait 1 ms
+   9014  pot    #35   3134 mV   core 0, wait 1 ms
    9014  temp   read error: ESP_FAIL
-   9262  pot    #36   3134 mV   core 0, wait 0 ms
-   9512  pot    #37   3134 mV   core 0, wait 0 ms
+   9263  pot    #36   3134 mV   core 0, wait 0 ms
+   9513  pot    #37   3134 mV   core 0, wait 0 ms
    9658  button #3    pressed   core 0, wait 0 ms
-   9762  pot    #38   3134 mV   core 0, wait 0 ms
+   9763  pot    #38   3134 mV   core 0, wait 0 ms
 E (10108) temperature_sensor: Exceeding temperature measure range.
+  10014  pot    #39   3134 mV   core 0, wait 1 ms
   10014  temp   read error: ESP_FAIL
-  10013  pot    #39   3134 mV   core 0, wait 1 ms
-  10015  stats  temp   received 0, lost 0
+  10014  stats  temp   received 0, lost 0
   10019  stats  pot    received 40, lost 0
-  10022  stats  button received 4, lost 0
+  10023  stats  button received 4, lost 0
   10026  stats  queue  peak 1 of 8, ISR dropped 0
-  10262  pot    #40   3134 mV   core 0, wait 0 ms
-  10512  pot    #41   3134 mV   core 0, wait 0 ms
-  10762  pot    #42   3134 mV   core 0, wait 0 ms
+  10263  pot    #40   3134 mV   core 0, wait 0 ms
+  10513  pot    #41   3134 mV   core 0, wait 0 ms
+  10763  pot    #42   3134 mV   core 0, wait 0 ms
   10958  button #4    pressed   core 0, wait 0 ms
 E (11108) temperature_sensor: Exceeding temperature measure range.
+  11014  pot    #43   3134 mV   core 0, wait 1 ms
   11014  temp   read error: ESP_FAIL
-  11013  pot    #43   3134 mV   core 0, wait 1 ms
-  11262  pot    #44   3134 mV   core 0, wait 0 ms
-  11512  pot    #45   3134 mV   core 0, wait 0 ms
+  11263  pot    #44   3134 mV   core 0, wait 0 ms
+  11513  pot    #45   3134 mV   core 0, wait 0 ms
   11708  button #5    pressed   core 0, wait 0 ms
-  11762  pot    #46   3134 mV   core 0, wait 0 ms
+  11763  pot    #46   3134 mV   core 0, wait 0 ms
 E (12108) temperature_sensor: Exceeding temperature measure range.
+  12014  pot    #47   3134 mV   core 0, wait 1 ms
   12014  temp   read error: ESP_FAIL
-  12013  pot    #47   3134 mV   core 0, wait 1 ms
-  12262  pot    #48   3134 mV   core 0, wait 0 ms
-  12512  pot    #49   3134 mV   core 0, wait 0 ms
-  12762  pot    #50   3134 mV   core 0, wait 0 ms
+  12263  pot    #48   3134 mV   core 0, wait 0 ms
+  12513  pot    #49   3134 mV   core 0, wait 0 ms
+  12763  pot    #50   3134 mV   core 0, wait 0 ms
 E (13108) temperature_sensor: Exceeding temperature measure range.
+  13014  pot    #51   3134 mV   core 0, wait 1 ms
   13014  temp   read error: ESP_FAIL
-  13013  pot    #51   3134 mV   core 0, wait 1 ms
-  13262  pot    #52   3134 mV   core 0, wait 0 ms
-  13512  pot    #53   3134 mV   core 0, wait 0 ms
-  13762  pot    #54   3134 mV   core 0, wait 0 ms
+  13263  pot    #52   3134 mV   core 0, wait 0 ms
+  13513  pot    #53   3134 mV   core 0, wait 0 ms
+  13763  pot    #54   3134 mV   core 0, wait 0 ms
 E (14108) temperature_sensor: Exceeding temperature measure range.
+  14014  pot    #55   3134 mV   core 0, wait 1 ms
   14014  temp   read error: ESP_FAIL
-  14013  pot    #55   3134 mV   core 0, wait 1 ms
-  14262  pot    #56   3134 mV   core 0, wait 0 ms
-  14512  pot    #57   3134 mV   core 0, wait 0 ms
-  14762  pot    #58   3134 mV   core 0, wait 0 ms
+  14263  pot    #56   3134 mV   core 0, wait 0 ms
+  14513  pot    #57   3134 mV   core 0, wait 0 ms
+  14763  pot    #58   3134 mV   core 0, wait 0 ms
 E (15108) temperature_sensor: Exceeding temperature measure range.
+  15014  pot    #59   3134 mV   core 0, wait 1 ms
   15014  temp   read error: ESP_FAIL
-  15013  pot    #59   3134 mV   core 0, wait 1 ms
-  15262  pot    #60   3134 mV   core 0, wait 0 ms
-  15512  pot    #61   3134 mV   core 0, wait 0 ms
-  15762  pot    #62   3134 mV   core 0, wait 0 ms
+  15263  pot    #60   3134 mV   core 0, wait 0 ms
+  15513  pot    #61   3134 mV   core 0, wait 0 ms
+  15763  pot    #62   3134 mV   core 0, wait 0 ms
 E (16108) temperature_sensor: Exceeding temperature measure range.
+  16014  pot    #63   3134 mV   core 0, wait 1 ms
   16014  temp   read error: ESP_FAIL
-  16013  pot    #63   3134 mV   core 0, wait 1 ms
-  16262  pot    #64   3134 mV   core 0, wait 0 ms
-  16512  pot    #65   3134 mV   core 0, wait 0 ms
-  16762  pot    #66   3134 mV   core 0, wait 0 ms
+  16263  pot    #64   3134 mV   core 0, wait 0 ms
+  16513  pot    #65   3134 mV   core 0, wait 0 ms
+  16763  pot    #66   3134 mV   core 0, wait 0 ms
 E (17108) temperature_sensor: Exceeding temperature measure range.
+  17014  pot    #67   3134 mV   core 0, wait 1 ms
   17014  temp   read error: ESP_FAIL
-  17013  pot    #67   3134 mV   core 0, wait 1 ms
-  17262  pot    #68   3134 mV   core 0, wait 0 ms
-  17512  pot    #69   3134 mV   core 0, wait 0 ms
-  17762  pot    #70   3134 mV   core 0, wait 0 ms
+  17263  pot    #68   3134 mV   core 0, wait 0 ms
+  17513  pot    #69   3134 mV   core 0, wait 0 ms
+  17763  pot    #70   3134 mV   core 0, wait 0 ms
 E (18108) temperature_sensor: Exceeding temperature measure range.
+  18014  pot    #71   3134 mV   core 0, wait 1 ms
   18014  temp   read error: ESP_FAIL
-  18013  pot    #71   3134 mV   core 0, wait 1 ms
-  18262  pot    #72   3134 mV   core 0, wait 0 ms
-  18512  pot    #73   3134 mV   core 0, wait 0 ms
-  18762  pot    #74   3134 mV   core 0, wait 0 ms
+  18263  pot    #72   3134 mV   core 0, wait 0 ms
+  18513  pot    #73   3134 mV   core 0, wait 0 ms
+  18763  pot    #74   3134 mV   core 0, wait 0 ms
 E (19108) temperature_sensor: Exceeding temperature measure range.
+  19014  pot    #75   3134 mV   core 0, wait 1 ms
   19014  temp   read error: ESP_FAIL
-  19013  pot    #75   3134 mV   core 0, wait 1 ms
-  19262  pot    #76   3134 mV   core 0, wait 0 ms
-  19512  pot    #77   3134 mV   core 0, wait 0 ms
-  19762  pot    #78   3134 mV   core 0, wait 0 ms
+  19263  pot    #76   3134 mV   core 0, wait 0 ms
+  19513  pot    #77   3134 mV   core 0, wait 0 ms
+  19763  pot    #78   3134 mV   core 0, wait 0 ms
 E (20108) temperature_sensor: Exceeding temperature measure range.
+  20014  pot    #79   3134 mV   core 0, wait 1 ms
   20014  temp   read error: ESP_FAIL
-  20013  pot    #79   3134 mV   core 0, wait 1 ms
-  20015  stats  temp   received 0, lost 0
+  20014  stats  temp   received 0, lost 0
   20019  stats  pot    received 80, lost 0
-  20022  stats  button received 6, lost 0
+  20023  stats  button received 6, lost 0
   20026  stats  queue  peak 1 of 8, ISR dropped 0
-  20262  pot    #80   3134 mV   core 0, wait 0 ms
-  20512  pot    #81   3134 mV   core 0, wait 0 ms
-  20762  pot    #82   3134 mV   core 0, wait 0 ms
+  20263  pot    #80   3134 mV   core 0, wait 0 ms
+  20513  pot    #81   3134 mV   core 0, wait 0 ms
+  20763  pot    #82   3134 mV   core 0, wait 0 ms
 E (21108) temperature_sensor: Exceeding temperature measure range.
+  21014  pot    #83   3134 mV   core 0, wait 1 ms
   21014  temp   read error: ESP_FAIL
-  21013  pot    #83   3134 mV   core 0, wait 1 ms
-  21262  pot    #84   3134 mV   core 0, wait 0 ms
-  21512  pot    #85   3134 mV   core 0, wait 0 ms
-  21762  pot    #86   3134 mV   core 0, wait 0 ms
+  21263  pot    #84   3134 mV   core 0, wait 0 ms
+  21513  pot    #85   3134 mV   core 0, wait 0 ms
+  21763  pot    #86   3134 mV   core 0, wait 0 ms
 E (22108) temperature_sensor: Exceeding temperature measure range.
+  22014  pot    #87   3134 mV   core 0, wait 1 ms
   22014  temp   read error: ESP_FAIL
-  22013  pot    #87   3134 mV   core 0, wait 1 ms
-  22262  pot    #88   3134 mV   core 0, wait 0 ms
+  22263  pot    #88   3134 mV   core 0, wait 0 ms

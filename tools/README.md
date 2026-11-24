@@ -35,6 +35,33 @@ dzX.Y (ТЕМА)/
 
 `sdkconfig` у репо не лежить: його генерують і `idf.py`, і `pio`.
 
+## Спільний код кількох варіантів (ДЗ 6.4 і далі)
+
+Якщо ДЗ має версії для ESP32 і STM32, логіка без заліза лежить у папці `common` поруч з варіантами. Обидві прошивки збирають ті самі файли, тести на ПК - теж.
+
+```
+dzX.Y (ТЕМА)/
+├── common/
+│   ├── CMakeLists.txt      ← idf_component_register(SRCS "a.c" "b.c" INCLUDE_DIRS ".")
+│   ├── a.h, a.c, ...       ← чисті функції: без GPIO, HAL, FreeRTOS
+│   └── test/
+│       ├── run.sh          ← cc -std=c11 -Wall -Wextra -Wpedantic -Werror
+│       └── test_*.c
+├── варіант/                ← ESP32, ESP-IDF
+│   ├── CMakeLists.txt      ← set(EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/../common") до include(project.cmake)
+│   └── main/main.c         ← idf_component_register(SRCS "main.c")
+└── варіант_stm32/
+    └── main.c
+```
+
+| Збірка | Як бере `common` |
+|---|---|
+| `tools/idf.sh` (нативний ESP-IDF) | `EXTRA_COMPONENT_DIRS` у CMakeLists варіанту; компонент `main` бачить усі компоненти без `REQUIRES` |
+| `pio run -e idf_<варіант>` | `src/CMakeLists.txt` сам додає `*.c` і include з `<варіант>/../common`, якщо папка є |
+| `pio run -e stm32_<варіант>` | багаторядковий `build_src_filter` з `+<../dzX.Y (ТЕМА)/common/*.c>` і `build_flags = -I "dzX.Y (ТЕМА)/common"` |
+
+Зразок: `dz6.4 (STATE MACHINE)/common`. Підводний камінь: дві анонімні `enum` в одному `_Static_assert` gcc у ESP-IDF не порівнює (`-Werror=enum-compare`) - приведіть обидві до `int`.
+
 ## ESP-IDF (ДЗ 2.6 і далі)
 
 Ці ДЗ збираються не PlatformIO, а нативним `idf.py`. Кожен варіант — окремий CMake-проєкт: `CMakeLists.txt`, `main/main.cpp`, `main/CMakeLists.txt`, `sdkconfig.defaults`.

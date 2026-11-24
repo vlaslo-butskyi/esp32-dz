@@ -1,0 +1,180 @@
+=== dz6.3 sensor_queue_stm32: temp, pot, KEY -> queue of 8 -> consumer ===
+    253  pot    #0    1884 mV   wait 2 ms
+    757  pot    #1    1883 mV   wait 256 ms
+   1261  pot    #2    1883 mV   wait 510 ms
+   1765  temp   #0    24.65 C   wait 764 ms
+   2269  pot    no data for 750 ms
+   2272  pot    back online
+   2275  pot    #3    1883 mV   wait 1274 ms
+   2779  pot    #4    1884 mV   wait 1528 ms
+   3014  pot    queue full, #11 dropped
+   3263  pot    queue full, #12 dropped
+   3283  pot    #5    1883 mV   wait 1782 ms
+   3763  pot    queue full, #14 dropped
+   3787  pot    #6    1884 mV   wait 2036 ms
+   4014  pot    queue full, #15 dropped
+   4263  pot    queue full, #16 dropped
+   4291  temp   #1    24.34 C   wait 2290 ms
+   4763  pot    queue full, #18 dropped
+   4795  pot    no data for 750 ms
+   4798  pot    back online
+   4801  pot    #7    1884 mV   wait 2800 ms
+   5014  pot    queue full, #19 dropped
+   5263  pot    queue full, #20 dropped
+   5305  pot    #8    1882 mV   wait 3054 ms
+   5763  pot    queue full, #22 dropped
+   5809  pot    #9    1883 mV   wait 3308 ms
+   6014  pot    queue full, #23 dropped
+   6263  pot    queue full, #24 dropped
+   6313  pot    #10   1882 mV   wait 3562 ms
+   6763  pot    queue full, #26 dropped
+   6817  temp   #2    24.34 C   wait 3816 ms
+   7014  pot    queue full, #27 dropped
+   7263  pot    queue full, #28 dropped
+   7321  pot    no data for 750 ms
+   7324  pot    lost 2 before #13
+   7327  pot    back online
+   7330  pot    #13   1883 mV   wait 3829 ms
+   7763  pot    queue full, #30 dropped
+   7834  temp   #3    24.65 C   wait 3833 ms
+   8014  pot    queue full, #31 dropped
+   8263  pot    queue full, #32 dropped
+   8338  pot    no data for 750 ms
+   8341  pot    lost 3 before #17
+   8344  pot    back online
+   8347  pot    #17   1881 mV   wait 3846 ms
+   8763  pot    queue full, #34 dropped
+   8851  temp   #4    24.34 C   wait 3850 ms
+   9014  pot    queue full, #35 dropped
+   9263  pot    queue full, #36 dropped
+   9355  pot    no data for 750 ms
+   9358  pot    lost 3 before #21
+   9361  pot    back online
+   9364  pot    #21   1883 mV   wait 3863 ms
+   9763  pot    queue full, #38 dropped
+   9868  temp   #5    24.34 C   wait 3867 ms
+  10014  pot    queue full, #39 dropped
+  10263  pot    queue full, #40 dropped
+  10372  pot    no data for 750 ms
+  10375  stats  temp   received 6, lost 0
+  10379  stats  pot    received 14, lost 8
+  10383  stats  button received 0, lost 0
+  10387  stats  queue  peak 8 of 8, ISR dropped 0
+  10392  pot    lost 3 before #25
+  10395  pot    back online
+  10398  pot    #25   1884 mV   wait 3897 ms
+  10763  pot    queue full, #42 dropped
+  10902  temp   #6    24.65 C   wait 3901 ms
+  11014  pot    queue full, #43 dropped
+  11263  pot    queue full, #44 dropped
+  11406  pot    no data for 750 ms
+  11409  pot    lost 3 before #29
+  11412  pot    back online
+  11415  pot    #29   1883 mV   wait 3914 ms
+  11763  pot    queue full, #46 dropped
+  11919  temp   #7    24.34 C   wait 3918 ms
+  12014  pot    queue full, #47 dropped
+  12263  pot    queue full, #48 dropped
+  12423  pot    no data for 750 ms
+  12426  pot    lost 3 before #33
+  12429  pot    back online
+  12432  pot    #33   1883 mV   wait 3931 ms
+  12763  pot    queue full, #50 dropped
+  12936  temp   #8    24.02 C   wait 3935 ms
+  13014  pot    queue full, #51 dropped
+  13263  pot    queue full, #52 dropped
+  13440  pot    no data for 750 ms
+  13443  pot    lost 3 before #37
+  13446  pot    back online
+  13449  pot    #37   1884 mV   wait 3948 ms
+  13763  pot    queue full, #54 dropped
+  13953  temp   #9    24.65 C   wait 3952 ms
+  14014  pot    queue full, #55 dropped
+  14263  pot    queue full, #56 dropped
+  14457  pot    no data for 750 ms
+  14460  pot    lost 3 before #41
+  14463  pot    back online
+  14466  pot    #41   1883 mV   wait 3965 ms
+  14763  pot    queue full, #58 dropped
+  14970  temp   #10   24.97 C   wait 3969 ms
+  15014  pot    queue full, #59 dropped
+  15263  pot    queue full, #60 dropped
+  15474  pot    no data for 750 ms
+  15477  pot    lost 3 before #45
+  15480  pot    back online
+  15483  pot    #45   1883 mV   wait 3982 ms
+  15763  pot    queue full, #62 dropped
+  15987  temp   #11   24.34 C   wait 3986 ms
+  16014  pot    queue full, #63 dropped
+  16263  pot    queue full, #64 dropped
+  16491  pot    no data for 750 ms
+  16494  pot    lost 3 before #49
+  16497  pot    back online
+  16500  pot    #49   1883 mV   wait 3999 ms
+  16763  pot    queue full, #66 dropped
+  17004  temp   #12   24.34 C   wait 4003 ms
+  17018  pot    queue full, #67 dropped
+  17263  pot    queue full, #68 dropped
+  17508  pot    no data for 750 ms
+  17511  pot    lost 3 before #53
+  17514  pot    back online
+  17517  pot    #53   1884 mV   wait 4016 ms
+  17763  pot    queue full, #70 dropped
+  18011  temp   queue full, #17 dropped
+  18014  pot    queue full, #71 dropped
+  18021  temp   #13   24.65 C   wait 4020 ms
+  18513  pot    queue full, #73 dropped
+  18525  pot    no data for 750 ms
+  18528  pot    lost 3 before #57
+  18531  pot    back online
+  18534  pot    #57   1882 mV   wait 4033 ms
+  19011  temp   queue full, #18 dropped
+  19014  pot    queue full, #75 dropped
+  19038  temp   #14   24.34 C   wait 4037 ms
+  19513  pot    queue full, #77 dropped
+  19542  pot    no data for 750 ms
+  19545  pot    lost 3 before #61
+  19548  pot    back online
+  19551  pot    #61   1882 mV   wait 4050 ms
+  20011  temp   queue full, #19 dropped
+  20014  pot    queue full, #79 dropped
+  20055  stats  temp   received 15, lost 0
+  20059  stats  pot    received 24, lost 38
+  20063  stats  button received 0, lost 0
+  20067  stats  queue  peak 8 of 8, ISR dropped 0
+  20072  temp   #15   24.34 C   wait 4071 ms
+  20513  pot    queue full, #81 dropped
+  20576  pot    no data for 750 ms
+  20579  pot    lost 3 before #65
+  20582  pot    back online
+  20585  pot    #65   1882 mV   wait 4084 ms
+  21011  temp   queue full, #20 dropped
+  21014  pot    queue full, #83 dropped
+  21089  temp   #16   24.34 C   wait 4088 ms
+  21513  pot    queue full, #85 dropped
+  21593  pot    no data for 750 ms
+  21596  pot    lost 3 before #69
+  21599  pot    back online
+  21602  pot    #69   1882 mV   wait 4101 ms
+  22011  temp   queue full, #21 dropped
+  22014  pot    queue full, #87 dropped
+  22106  pot    lost 2 before #72
+  22109  pot    #72   1884 mV   wait 3858 ms
+  22513  pot    queue full, #89 dropped
+  22613  pot    lost 1 before #74
+  22616  pot    #74   1883 mV   wait 3865 ms
+  23011  temp   queue full, #22 dropped
+  23014  pot    queue full, #91 dropped
+  23120  pot    lost 1 before #76
+  23123  pot    #76   1883 mV   wait 3872 ms
+  23513  pot    queue full, #93 dropped
+  23627  pot    lost 1 before #78
+  23630  pot    #78   1882 mV   wait 3879 ms
+  24011  temp   queue full, #23 dropped
+  24014  pot    queue full, #95 dropped
+  24134  temp   no data for 3000 ms
+  24137  pot    lost 1 before #80
+  24140  pot    #80   1883 mV   wait 3889 ms
+  24513  pot    queue full, #97 dropped
+  24645  pot    lost 1 before #82
+  24648  pot    #82   1884 mV   wait 3897 ms

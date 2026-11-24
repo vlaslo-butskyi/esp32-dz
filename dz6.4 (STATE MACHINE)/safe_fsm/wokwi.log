@@ -1,0 +1,67 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x370
+load:0x403c9700,len:0x900
+load:0x403cc700,len:0x2364
+entry 0x403c98ac
+I (13) cpu_start: Multicore app
+I (11) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (13) cpu_start: Pro cpu start user code
+I (13) cpu_start: cpu freq: 160000000 Hz
+I (14) app_init: Application information:
+I (17) app_init: Project name:     dz-espidf
+I (21) app_init: App version:      520669d-dirty
+I (25) app_init: Compile time:     Nov 24 2026 15:28:45
+I (30) app_init: ELF file SHA256:  2d0a9d27e...
+I (34) app_init: ESP-IDF:          6.1.0
+I (38) efuse_init: Min chip rev:     v0.0
+I (42) efuse_init: Max chip rev:     v0.99 
+I (46) efuse_init: Chip rev:         v0.0
+I (50) heap_init: Initializing. RAM available for dynamic allocation:
+I (56) heap_init: At 3FC93D10 len 00055A00 (342 KiB): RAM
+I (61) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (66) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (71) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (78) spi_flash: detected chip: gd
+I (79) spi_flash: flash io: dio
+I (83) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (90) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (96) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+I (102) safe: password: SHORT SHORT LONG (>= 1000 ms), timeout 3000 ms
+I (107) main_task: Returned from app_main()
+I (1152) safe: PRESS            LOCKED
+I (1352) safe: SHORT    200 ms  LOCKED -> SHORT_1
+I (1752) safe: PRESS            SHORT_1, timer restarted
+I (1902) safe: SHORT    150 ms  SHORT_1 -> SHORT_2
+I (2302) safe: PRESS            SHORT_2, timer restarted
+I (3272) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
+I (8272) safe: TIMEOUT 5000 ms  OPEN -> LOCKED, safe is closed
+I (9802) safe: PRESS            LOCKED
+I (10002) safe: SHORT    200 ms  LOCKED -> SHORT_1
+I (10402) safe: PRESS            SHORT_1, timer restarted
+W (11372) safe: LONG    1000 ms  SHORT_1 -> LOCKED, wrong input
+I (13202) safe: PRESS            LOCKED
+I (13402) safe: SHORT    200 ms  LOCKED -> SHORT_1
+I (13802) safe: PRESS            SHORT_1, timer restarted
+I (14002) safe: SHORT    200 ms  SHORT_1 -> SHORT_2
+I (14402) safe: PRESS            SHORT_2, timer restarted
+W (14602) safe: SHORT    200 ms  SHORT_2 -> LOCKED, wrong input
+I (15002) safe: PRESS            LOCKED
+W (15972) safe: LONG    1000 ms  LOCKED -> LOCKED, wrong input
+I (17802) safe: PRESS            LOCKED
+I (18002) safe: SHORT    200 ms  LOCKED -> SHORT_1
+W (21002) safe: TIMEOUT 3000 ms  SHORT_1 -> LOCKED, input timeout
+I (21502) safe: PRESS            LOCKED
+W (22472) safe: LONG    1000 ms  LOCKED -> LOCKED, wrong input
+I (24302) safe: PRESS            LOCKED
+I (24502) safe: SHORT    200 ms  LOCKED -> SHORT_1
+I (24902) safe: PRESS            SHORT_1, timer restarted
+I (25102) safe: SHORT    200 ms  SHORT_1 -> SHORT_2
+I (27602) safe: PRESS            SHORT_2, timer restarted
+I (28572) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
+I (29802) safe: PRESS            OPEN, timer restarted
+I (30002) safe: SHORT    200 ms  OPEN -> LOCKED, safe is closed

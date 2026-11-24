@@ -1,0 +1,71 @@
+name: safe_fsm
+version: 1
+author: Vlaslo Butskyi
+steps:
+  - wait-serial: 'password: SHORT SHORT LONG'
+  - delay: 1000ms
+  # case 1 password S-S-L, then auto close
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 400ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 150ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 400ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 1500ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 6000ms
+  # case 2 wrong S-L
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 400ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 1300ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 1500ms
+  # case 3 wrong S-S-S-L
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 400ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 400ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 400ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 1300ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 1500ms
+  # case 4 timeout after S, then L
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 3500ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 1300ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 1500ms
+  # case 5 pause 2.5 s, then hold: PRESS restarts timer
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 400ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 2500ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 1600ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 600ms
+  - set-control: { part-id: btn1, control: pressed, value: 1 }
+  - delay: 200ms
+  - set-control: { part-id: btn1, control: pressed, value: 0 }
+  - delay: 1500ms

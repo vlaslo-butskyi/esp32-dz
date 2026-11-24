@@ -20,7 +20,9 @@
 
 ADC1 працює разом з Wi-Fi, ADC2 не працює. Тому потенціометр стоїть на GPIO 1. Вбудований датчик вимірює температуру кристала, а не повітря.
 
-<img src="photo.jpeg" width="500" alt="Фото: ESP32-S3-DevKitC-1 на макетній платі, потенціометр B10K підключений до 3V3, GND і GPIO 1">
+| Схема (Wokwi) | Зібрана плата |
+|---|---|
+| <img src="schema.png" width="400" alt="Схема у Wokwi: ESP32-S3-DevKitC-1, потенціометр на GPIO 1, окрема кнопка BOOT на GPIO 0"> | <img src="photo.jpeg" width="400" alt="Фото: ESP32-S3-DevKitC-1 на макетній платі, потенціометр B10K підключений до 3V3, GND і GPIO 1"> |
 
 ## Як працює код
 
@@ -237,6 +239,7 @@ Wokwi не моделює вбудований датчик температур
 | Файл | Опис |
 |---|---|
 | [`main/main.cpp`](main/main.cpp) | прошивка |
+| [`schema.png`](schema.png) | схема у Wokwi |
 | [`photo.jpeg`](photo.jpeg) | фото зібраної схеми |
 | [`sdkconfig.defaults`](sdkconfig.defaults) | налаштування ESP-IDF |
 | [`diagram.json`](diagram.json) | схема для Wokwi: потенціометр і кнопка на GPIO 0, яка замінює BOOT у симуляторі |

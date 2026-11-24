@@ -21,7 +21,9 @@
 
 Кнопка і світлодіод стоять так само, як у ДЗ 6.4. Потенціометр стоїть так само, як у ДЗ 6.3. Кнопка-датчик замінює оптичний датчик з умови.
 
-<img src="photo.jpeg" width="500" alt="Фото: ESP32-S3-DevKitC-1 на макетній платі, потенціометр 10 кОм на GPIO 1, тактова кнопка на GPIO 16, червоний світлодіод через резистор 220 Ом на GPIO 4">
+| Схема (Wokwi) | Зібрана плата |
+|---|---|
+| <img src="schema.png" width="400" alt="Схема у Wokwi: ESP32-S3-DevKitC-1, кнопки PART на GPIO 16 і BOOT на GPIO 0, світлодіод на GPIO 4, потенціометр на GPIO 1"> | <img src="photo.jpeg" width="400" alt="Фото: ESP32-S3-DevKitC-1 на макетній платі, потенціометр 10 кОм на GPIO 1, тактова кнопка на GPIO 16, червоний світлодіод через резистор 220 Ом на GPIO 4"> |
 
 ## Як працює код
 
@@ -179,6 +181,7 @@ W (353786) adc: conveyor halted, task stopped
 | Файл | Опис |
 |---|---|
 | [`main/main.cpp`](main/main.cpp) | прошивка |
+| [`schema.png`](schema.png) | схема у Wokwi |
 | [`photo.jpeg`](photo.jpeg) | фото зібраної схеми |
 | [`sdkconfig.defaults`](sdkconfig.defaults) | налаштування ESP-IDF |
 | [`diagram.json`](diagram.json) | схема для Wokwi |

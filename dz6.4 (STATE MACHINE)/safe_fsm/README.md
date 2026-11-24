@@ -18,7 +18,9 @@
 
 Світлодіод світиться, поки сейф відкритий.
 
-<img src="photo.jpeg" width="500" alt="Фото: ESP32-S3-DevKitC-1 на макетній платі, тактова кнопка на GPIO 16, червоний світлодіод через резистор 220 Ом на GPIO 4">
+| Схема (Wokwi) | Зібрана плата |
+|---|---|
+| <img src="schema.png" width="400" alt="Схема у Wokwi: ESP32-S3-DevKitC-1, тактова кнопка на GPIO 16, світлодіод через резистор 220 Ом на GPIO 4"> | <img src="photo.jpeg" width="400" alt="Фото: ESP32-S3-DevKitC-1 на макетній платі, тактова кнопка на GPIO 16, червоний світлодіод через резистор 220 Ом на GPIO 4"> |
 
 ## Як працює код
 
@@ -205,6 +207,7 @@ I (30002) safe: SHORT    200 ms  OPEN -> LOCKED, safe is closed
 | Файл | Опис |
 |---|---|
 | [`main/main.cpp`](main/main.cpp) | прошивка |
+| [`schema.png`](schema.png) | схема у Wokwi |
 | [`photo.jpeg`](photo.jpeg) | фото зібраної схеми |
 | [`sdkconfig.defaults`](sdkconfig.defaults) | налаштування ESP-IDF |
 | [`diagram.json`](diagram.json) | схема для Wokwi |

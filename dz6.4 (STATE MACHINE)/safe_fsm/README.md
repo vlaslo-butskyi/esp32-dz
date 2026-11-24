@@ -24,88 +24,26 @@
 
 ## Як працює код
 
-Файл: [`main/main.cpp`](main/main.cpp)
+Файли: [`main/main.c`](main/main.c) і спільні автомати в [`../common`](../common/). Діаграми станів, таблицю переходів, таймаут і тести на ПК описує [README спільних автоматів](../common/).
 
-### Автомат кнопки (Producer)
-
-```mermaid
-stateDiagram-v2
-    [*] --> RELEASED
-    RELEASED --> PRESSED: натиснута / PRESS
-    PRESSED --> RELEASED: відпущена / SHORT
-    PRESSED --> HELD: 1000 мс / LONG
-    HELD --> RELEASED: відпущена
-```
-
-- `vTaskDelayUntil` задає період опитування 10 мс.
-- Усі інтервали задача рахує через різницю тіків `xTaskGetTickCount` і порівнює через `>=`. Тому інший період опитування не ламає інтервали.
-- Debounce приймає новий рівень, коли рівень не змінювався 30 мс. Debounce працює і для натискання, і для відпускання.
-- Подія `LONG` приходить після 1000 мс утримання. Задача не чекає на відпускання.
-- Тривалість натискання задача рахує від першого відліку нового рівня.
-
-### Автомат сейфа (Consumer)
-
-```mermaid
-stateDiagram-v2
-    [*] --> LOCKED
-    LOCKED --> SHORT_1: SHORT
-    SHORT_1 --> SHORT_2: SHORT
-    SHORT_2 --> OPEN: LONG
-    OPEN --> LOCKED: SHORT або TIMEOUT 5 с
-    LOCKED --> LOCKED: LONG, помилка
-    SHORT_1 --> LOCKED: LONG, помилка / TIMEOUT 3 с
-    SHORT_2 --> LOCKED: SHORT, помилка / TIMEOUT 3 с
-```
-
-| Стан | `SHORT` | `LONG` | `TIMEOUT` | `PRESS` |
-|---|---|---|---|---|
-| `LOCKED` | `SHORT_1` | `LOCKED`, помилка | таймауту немає | без змін |
-| `SHORT_1` | `SHORT_2` | `LOCKED`, помилка | `LOCKED` через 3 с | без змін |
-| `SHORT_2` | `LOCKED`, помилка | `OPEN` | `LOCKED` через 3 с | без змін |
-| `OPEN` | `LOCKED` | без змін | `LOCKED` через 5 с | без змін |
-
-Функція `safe_step()` повертає новий стан для пари «стан, подія». Кожен `case` відповідає одному стану діаграми. Кожен `if` відповідає одній стрілці.
-
-Помилка скидає автомат у `LOCKED`. Неправильне натискання не стає першим кроком нового пароля.
-
-### Таймаут
-
-Кожна подія з черги перезапускає таймаут. `safe` передає в `xQueueReceive` час, який залишився до таймауту. Якщо подія не прийшла, `safe` сам створює подію `TIMEOUT`. У стані `LOCKED` таймауту немає, тому `xQueueReceive` чекає з `portMAX_DELAY`.
-
-Подія `PRESS` потрібна тільки для таймауту. `LONG` приходить через 1 с після натискання. Без `PRESS` таймаут рахувався б від попереднього `SHORT`. Після паузи 2,5 с `LONG` прийшов би через 3,5 с, і сейф скинувся б під час утримання.
-
-### Перевірка під час збірки
-
-`safe_step()` не викликає FreeRTOS і GPIO. Тому `static_assert` перевіряє автомат сейфа під час збірки. Перевірка подає 14 послідовностей подій і порівнює кінцевий стан з очікуваним.
-
-| Послідовність | Очікуваний стан |
-|---|---|
-| `SHORT SHORT LONG`, з `PRESS` і без | `OPEN` |
-| `LONG`; `SHORT LONG`; `SHORT SHORT SHORT LONG` | `LOCKED` |
-| `SHORT LONG`, потім `SHORT SHORT LONG` | `OPEN` |
-| `SHORT TIMEOUT`; `SHORT SHORT TIMEOUT LONG` | `LOCKED` |
-| `OPEN`, потім `SHORT` або `TIMEOUT` | `LOCKED` |
-
-Перевірку перевірено помилкою: перехід `SHORT_2` за `SHORT` замінили на `SHORT_2`. Збірка зупинилась з повідомленням `static assertion failed: third S is wrong`.
-
-### Параметри
+`main.c` містить тільки периферію, чергу, задачі й лог:
+- `button_task` кожні 10 мс читає GPIO 16 і викликає `button_poll()`. Період задає `vTaskDelayUntil`.
+- `queue_send` кладе подію в чергу через `xQueueSend` з таймаутом 0. Якщо черга повна, функція виводить `queue full` і повертає `false`. Тоді `button_poll()` надішле `OVERFLOW`.
+- `safe_task` чекає в `xQueueReceive` стільки, скільки повернула `safe_wait_ms()`. Подію або `EVENT_TIMEOUT` задача передає в `safe_handle()`.
+- Після переходу `safe_task` вмикає або вимикає світлодіод. Рядок для логу дає `safe_describe()`, рівень `W` іде в `ESP_LOGW`, рівень `I` іде в `ESP_LOGI`.
 
 | Параметр | Значення | Причина |
 |---|---|---|
-| період опитування | 10 мс | |
-| debounce | 30 мс | 3 опитування, брязкіт кнопки триває близько 2 мс |
-| межа `LONG` | 1000 мс | |
-| таймаут введення | 3000 мс | з умови |
-| сейф відкритий | 5000 мс | потім закривається сам |
 | черга | 8 подій | `button` не чекає місця в черзі |
 | пріоритет `button` | 5 | опитування не залежить від `safe` |
 | пріоритет `safe` | 4 | |
 | ядро обох задач | 1 | |
+| стек задачі | 3072 байти | |
 | тік | 1 мс | `CONFIG_FREERTOS_HZ=1000` у [`sdkconfig.defaults`](sdkconfig.defaults) |
 
 ## Лог плати
 
-Прошивку зібрав нативний ESP-IDF 5.5.5. Плата записала 2 логи, кнопку натискала людина.
+Плата записала 2 логи, кнопку натискала людина. Логи записала перша версія прошивки на C++, до перенесення автоматів у `common`. Ця версія мала ті самі автомати, переходи й формат логу. Після переробки симулятор дав лог, ідентичний до мілісекунди.
 
 | Лог | Натискання | Результат |
 |---|---|---|
@@ -136,7 +74,7 @@ I (71712) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
 
 ## Результати в симуляторі
 
-Прошивку перевірено в Wokwi через `wokwi-cli`. Сценарій [`scenario.yaml`](scenario.yaml) натискає кнопку 15 разів у 5 випадках. Кнопка Wokwi має брязкіт. Повний лог: [`wokwi.log`](wokwi.log).
+Прошивку перевірено в Wokwi через `wokwi-cli` до і після перенесення автоматів у `common`. Обидва прогони дали однакові події, переходи й час кожного рядка. Сценарій [`scenario.yaml`](scenario.yaml) натискає кнопку 15 разів у 5 випадках. Кнопка Wokwi має брязкіт. Повний лог: [`wokwi.log`](wokwi.log).
 
 | Випадок | Натискання | Результат |
 |---|---|---|
@@ -149,13 +87,13 @@ I (71712) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
 Фрагмент лога, випадок 5:
 
 ```
-I (24502) safe: SHORT    200 ms  LOCKED -> SHORT_1
-I (24902) safe: PRESS            SHORT_1, timer restarted
-I (25102) safe: SHORT    200 ms  SHORT_1 -> SHORT_2
-I (27602) safe: PRESS            SHORT_2, timer restarted
-I (28572) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
-I (29802) safe: PRESS            OPEN, timer restarted
-I (30002) safe: SHORT    200 ms  OPEN -> LOCKED, safe is closed
+I (24502) safe: SHORT     200 ms  LOCKED -> SHORT_1
+I (24902) safe: PRESS             SHORT_1, timer restarted
+I (25102) safe: SHORT     200 ms  SHORT_1 -> SHORT_2
+I (27602) safe: PRESS             SHORT_2, timer restarted
+I (28572) safe: LONG     1000 ms  SHORT_2 -> OPEN, safe is open
+I (29802) safe: PRESS             OPEN, timer restarted
+I (30002) safe: SHORT     200 ms  OPEN -> LOCKED, safe is closed
 ```
 
 Лог показує такі факти:
@@ -206,7 +144,9 @@ I (30002) safe: SHORT    200 ms  OPEN -> LOCKED, safe is closed
 
 | Файл | Опис |
 |---|---|
-| [`main/main.cpp`](main/main.cpp) | прошивка |
+| [`main/main.c`](main/main.c) | прошивка: периферія, черга, задачі, лог |
+| [`../common`](../common/) | автомати кнопки й сейфа, тести на ПК |
+| [`CMakeLists.txt`](CMakeLists.txt) | проєкт ESP-IDF, додає `../common` як компонент |
 | [`schema.png`](schema.png) | схема у Wokwi |
 | [`photo.jpeg`](photo.jpeg) | фото зібраної схеми |
 | [`sdkconfig.defaults`](sdkconfig.defaults) | налаштування ESP-IDF |

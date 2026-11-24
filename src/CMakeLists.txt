@@ -44,4 +44,16 @@ endif()
 
 message(STATUS "DZ_VARIANT: ${DZ_VARIANT} (${variant_main})")
 
-idf_component_register(SRCS "${variant_main}")
+# Спільний код кількох варіантів одного ДЗ (з ДЗ 6.4): папка common поруч з варіантами.
+# Нативна збірка бере її як окремий компонент через EXTRA_COMPONENT_DIRS, тут вона
+# стає частиною того самого компонента src.
+set(common_dir "${CMAKE_SOURCE_DIR}/${DZ_VARIANT}/../common")
+set(common_srcs "")
+set(common_inc "")
+if(EXISTS "${common_dir}")
+    file(GLOB common_srcs "${common_dir}/*.c")
+    set(common_inc "${common_dir}")
+    message(STATUS "DZ_VARIANT common: ${common_dir}")
+endif()
+
+idf_component_register(SRCS "${variant_main}" ${common_srcs} INCLUDE_DIRS ${common_inc})

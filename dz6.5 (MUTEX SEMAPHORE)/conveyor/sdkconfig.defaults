@@ -1,5 +1,3 @@
 CONFIG_IDF_TARGET="esp32s3"
 # Тік 1 мс, як у лекції. Чистий ESP-IDF за замовчуванням ставить 10 мс.
 CONFIG_FREERTOS_HZ=1000
-# ISR датчика викликає gpio_get_level(). Ця опція кладе функцію в IRAM.
-CONFIG_GPIO_CTRL_FUNC_IN_IRAM=y

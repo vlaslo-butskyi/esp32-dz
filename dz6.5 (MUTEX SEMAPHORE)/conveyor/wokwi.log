@@ -13,15 +13,15 @@ I (13) cpu_start: Pro cpu start user code
 I (14) cpu_start: cpu freq: 160000000 Hz
 I (14) app_init: Application information:
 I (17) app_init: Project name:     dz-espidf
-I (21) app_init: App version:      0c16715-dirty
-I (25) app_init: Compile time:     Nov 24 2026 16:28:59
-I (30) app_init: ELF file SHA256:  3a320fe7c...
+I (21) app_init: App version:      394f746-dirty
+I (25) app_init: Compile time:     Nov 25 2026 01:11:33
+I (30) app_init: ELF file SHA256:  7ff038372...
 I (34) app_init: ESP-IDF:          6.1.0
 I (38) efuse_init: Min chip rev:     v0.0
 I (42) efuse_init: Max chip rev:     v0.99 
 I (46) efuse_init: Chip rev:         v0.0
 I (50) heap_init: Initializing. RAM available for dynamic allocation:
-I (56) heap_init: At 3FC94460 len 000552B0 (340 KiB): RAM
+I (56) heap_init: At 3FC94150 len 000555C0 (341 KiB): RAM
 I (61) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
 I (66) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
 I (71) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
@@ -47,6 +47,6 @@ I (11104) report: parts 16, rate 96.0/min; pot 3134 mV
 I (12104) report: parts 20, rate 114.0/min; pot 3134 mV
 I (13104) report: parts 20, rate 102.0/min; pot 3134 mV
 E (13617) report: SYSTEM HALTED!
-W (13618) estop: parts 20, ISR -> estop 16 us, mutex 48 us
+W (13618) estop: parts 20, ISR -> estop 15 us, mutex 68 us
 W (14103) report: conveyor halted, task stopped
 W (14606) adc: conveyor halted, task stopped

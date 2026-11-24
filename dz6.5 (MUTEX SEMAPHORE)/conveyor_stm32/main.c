@@ -10,8 +10,10 @@
 //   - спінлок замінює taskENTER_CRITICAL: він маскує переривання до configMAX_SYSCALL;
 //   - задачі не прив'язані до ядер, report і adc працюють по черзі на одному ядрі.
 // Лог іде в USART1 (PA9). UART має свій mutex. Задача ніколи не тримає два mutex одночасно.
+// Фільтр брязкоту, швидкість і текст звіту - у ../common, спільні з ESP32-версією.
 
 #include <inttypes.h>
+#include <stdbool.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
@@ -23,52 +25,47 @@
 #include "semphr.h"
 #include "task.h"
 
-struct Config {
-  static constexpr uint16_t PART_PIN   = GPIO_PIN_12;  // PB12, кнопка на GND, натиснута = 0
-  static constexpr uint16_t STOP_PIN   = GPIO_PIN_0;   // KEY на платі, натиснута = 0
-  static constexpr uint16_t LED_PIN    = GPIO_PIN_13;  // світлодіод плати, горить від 0
-  static constexpr uint16_t POT_PIN    = GPIO_PIN_1;   // PA1 = ADC1, канал 1
-  static constexpr uint16_t LOG_TX_PIN = GPIO_PIN_9;   // USART1_TX, AF7
+#include "press_filter.h"
+#include "rate.h"
+#include "report.h"
 
-  static constexpr uint32_t POT_CHANNEL = ADC_CHANNEL_1;
-  static constexpr int      POT_SAMPLES = 16;
-  static constexpr int      REF_SAMPLES = 4;
+#define PART_PIN   GPIO_PIN_12  // PB12, кнопка на GND, натиснута = 0
+#define STOP_PIN   GPIO_PIN_0   // KEY на платі, натиснута = 0
+#define LED_PIN    GPIO_PIN_13  // світлодіод плати, горить від 0
+#define POT_PIN    GPIO_PIN_1   // PA1 = ADC1, канал 1
+#define LOG_TX_PIN GPIO_PIN_9   // USART1_TX, AF7
 
-  // Debounce в ISR: фронт починає нову деталь, якщо перед ним лінія мовчала 30 мс
-  // і стояла у стані «відпущено».
-  static constexpr TickType_t PART_QUIET_MS = 30;
-  static constexpr uint32_t   IRQ_PRIO      = 6;  // не вище за configLIBRARY_MAX_SYSCALL (5)
+#define POT_CHANNEL ADC_CHANNEL_1
+#define POT_SAMPLES 16
+#define REF_SAMPLES 4
 
-  static constexpr uint32_t REPORT_PERIOD_MS = 1000;
-  static constexpr uint32_t READY_TIMEOUT_MS = 1500;  // adc: звіт Task 1 не прийшов
-  static constexpr uint32_t MUTEX_TIMEOUT_MS = 100;
-  static constexpr uint32_t RATE_WINDOW_S    = 10;    // швидкість за останні 10 с
-  static constexpr size_t   REPORT_SIZE      = 64;
+#define IRQ_PRIO 6  // не вище за configLIBRARY_MAX_SYSCALL (5)
 
-  static constexpr UBaseType_t PRIO_REPORT = 2;
-  static constexpr UBaseType_t PRIO_ADC    = 2;
-  static constexpr UBaseType_t PRIO_ESTOP  = 4;
-  static constexpr configSTACK_DEPTH_TYPE STACK_WORDS = 384;  // у словах: 1,5 КБ
+#define REPORT_PERIOD_MS UINT32_C(1000)
+#define READY_TIMEOUT_MS UINT32_C(1500)  // adc: звіт Task 1 не прийшов
+#define MUTEX_TIMEOUT_MS UINT32_C(100)
 
-  static constexpr uint32_t LOG_BAUD = 115200;
-};
+#define PRIO_REPORT ((UBaseType_t)2)
+#define PRIO_ADC    ((UBaseType_t)2)
+#define PRIO_ESTOP  ((UBaseType_t)4)
+#define STACK_WORDS 384  // у словах: 1,5 КБ
 
-// GPIOA, GPIOB і GPIOC - адреси через приведення типу, constexpr їх не приймає.
+#define LOG_BAUD 115200
+
 static GPIO_TypeDef *const PART_PORT = GPIOB;
 static GPIO_TypeDef *const STOP_PORT = GPIOA;
 static GPIO_TypeDef *const LED_PORT  = GPIOC;
 static GPIO_TypeDef *const POT_PORT  = GPIOA;
 static GPIO_TypeDef *const LOG_PORT  = GPIOA;
 
-static_assert(Config::READY_TIMEOUT_MS > Config::REPORT_PERIOD_MS,
+_Static_assert(READY_TIMEOUT_MS > REPORT_PERIOD_MS,
               "adc must wait longer than one report period");
-static_assert(Config::MUTEX_TIMEOUT_MS < Config::REPORT_PERIOD_MS,
+_Static_assert(MUTEX_TIMEOUT_MS < REPORT_PERIOD_MS,
               "a mutex timeout must fit into one report period");
-static_assert(Config::RATE_WINDOW_S > 0, "rate window must not be empty");
-static_assert(Config::PRIO_ESTOP < configMAX_PRIORITIES, "priority out of range");
-static_assert(Config::PRIO_ESTOP > Config::PRIO_REPORT && Config::PRIO_ESTOP > Config::PRIO_ADC,
+_Static_assert(PRIO_ESTOP < configMAX_PRIORITIES, "priority out of range");
+_Static_assert(PRIO_ESTOP > PRIO_REPORT && PRIO_ESTOP > PRIO_ADC,
               "estop must outrank the conveyor tasks");
-static_assert(Config::IRQ_PRIO >= configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY,
+_Static_assert(IRQ_PRIO >= configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY,
               "ISR that calls FromISR API must not outrank configMAX_SYSCALL_INTERRUPT_PRIORITY");
 
 // ---------------------------------------------------------------------------
@@ -77,7 +74,7 @@ static_assert(Config::IRQ_PRIO >= configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY,
 static volatile uint32_t parts;  // лише в критичній секції
 
 static SemaphoreHandle_t report_mutex;
-static char              report_text[Config::REPORT_SIZE];  // лише під report_mutex
+static char              report_text[REPORT_SIZE];  // лише під report_mutex
 // Пише тільки estop, один раз і до спроби взяти mutex: зупинка не чекає на mutex.
 // report і adc читають прапорець під mutex, разом із записом буфера.
 static volatile bool     halted;
@@ -116,7 +113,7 @@ static void log_line(char level, const char *tag, const char *fmt, ...)
   line[n++] = '\r';
   line[n++] = '\n';
 
-  if (xSemaphoreTake(uart_mutex, pdMS_TO_TICKS(Config::MUTEX_TIMEOUT_MS)) == pdTRUE) {
+  if (xSemaphoreTake(uart_mutex, pdMS_TO_TICKS(MUTEX_TIMEOUT_MS)) == pdTRUE) {
     HAL_UART_Transmit(&huart1, (uint8_t *)line, n, HAL_MAX_DELAY);
     xSemaphoreGive(uart_mutex);
   }
@@ -130,26 +127,17 @@ static uint32_t cycles_to_us(uint32_t cycles)
 // ---------------------------------------------------------------------------
 // ISR. Лише час, рівень піна, лічильник і семафор. Лог і обчислення - у задачах.
 // ---------------------------------------------------------------------------
+static press_filter_t part_filter;  // чіпає тільки part_isr після gpio_init
+
 static void part_isr(void)
 {
-  // Ці дві змінні бачить тільки ISR, тому захист їм не потрібен.
-  static TickType_t    last_edge   = 0;
-  static GPIO_PinState quiet_level = GPIO_PIN_SET;  // рівень після останнього фронту
-
-  TickType_t    now   = xTaskGetTickCountFromISR();
-  GPIO_PinState level = HAL_GPIO_ReadPin(PART_PORT, Config::PART_PIN);
-
-  // Нова деталь: лінія мовчала 30 мс і стояла «відпущено». Брязкіт при натисканні і при
-  // відпусканні дає фронти частіше за 30 мс, тому другу деталь він не додає.
-  if (now - last_edge >= pdMS_TO_TICKS(Config::PART_QUIET_MS) && quiet_level == GPIO_PIN_SET) {
+  uint32_t now_ms   = xTaskGetTickCountFromISR() * portTICK_PERIOD_MS;
+  bool     released = HAL_GPIO_ReadPin(PART_PORT, PART_PIN) == GPIO_PIN_SET;
+  if (press_filter_edge(&part_filter, released, now_ms)) {
     UBaseType_t saved = taskENTER_CRITICAL_FROM_ISR();
     parts = parts + 1;  // Read-Modify-Write, тому в критичній секції
     taskEXIT_CRITICAL_FROM_ISR(saved);
   }
-  // Після останнього фронту серії рівень більше не змінюється. Тому це значення є
-  // рівнем лінії під час наступної паузи.
-  last_edge   = now;
-  quiet_level = level;
 }
 
 static void stop_isr(void)
@@ -163,16 +151,16 @@ static void stop_isr(void)
   portYIELD_FROM_ISR(woken);  // estop отримає процесор одразу після виходу з ISR
 }
 
-extern "C" void EXTI15_10_IRQHandler(void)
+void EXTI15_10_IRQHandler(void)
 {
   // Скинути до читання піна: новий фронт викличе ISR знову.
-  __HAL_GPIO_EXTI_CLEAR_IT(Config::PART_PIN);
+  __HAL_GPIO_EXTI_CLEAR_IT(PART_PIN);
   part_isr();
 }
 
-extern "C" void EXTI0_IRQHandler(void)
+void EXTI0_IRQHandler(void)
 {
-  __HAL_GPIO_EXTI_CLEAR_IT(Config::STOP_PIN);
+  __HAL_GPIO_EXTI_CLEAR_IT(STOP_PIN);
   stop_isr();
 }
 
@@ -187,35 +175,24 @@ static uint32_t read_parts(void)
 // ---------------------------------------------------------------------------
 // Task 1: лічильник -> швидкість -> початок рядка звіту.
 // ---------------------------------------------------------------------------
-static void report_task(void *)
+static void report_task(void *arg)
 {
-  uint32_t   past[Config::RATE_WINDOW_S];  // лічильник 1..10 с тому, кільцевий буфер
-  uint32_t   start   = read_parts();
-  uint32_t   head    = 0;
-  uint32_t   seconds = 0;
-  TickType_t wake    = xTaskGetTickCount();
-  for (uint32_t &p : past) {
-    p = start;
-  }
+  (void)arg;
+  rate_t     rate;
+  TickType_t wake = xTaskGetTickCount();
+  rate_init(&rate, read_parts());
 
   for (;;) {
-    vTaskDelayUntil(&wake, pdMS_TO_TICKS(Config::REPORT_PERIOD_MS));
+    vTaskDelayUntil(&wake, pdMS_TO_TICKS(REPORT_PERIOD_MS));
 
-    uint32_t count = read_parts();
-    if (seconds < Config::RATE_WINDOW_S) {
-      seconds++;
-    }
-    uint32_t delta = count - past[head];  // деталі за останні `seconds` секунд
-    past[head]     = count;
-    head           = (head + 1) % Config::RATE_WINDOW_S;
-    uint32_t rate_x10 = delta * 600 / seconds;  // деталі/хв × 10
+    uint32_t count    = read_parts();
+    uint32_t rate_x10 = rate_update(&rate, count);
 
     // Рядок формується до mutex: критична секція - лише копіювання.
-    char line[Config::REPORT_SIZE];
-    snprintf(line, sizeof(line), "parts %" PRIu32 ", rate %" PRIu32 ".%" PRIu32 "/min", count,
-             rate_x10 / 10, rate_x10 % 10);
+    char line[REPORT_SIZE];
+    report_begin(line, sizeof line, count, rate_x10);
 
-    if (xSemaphoreTake(report_mutex, pdMS_TO_TICKS(Config::MUTEX_TIMEOUT_MS)) != pdTRUE) {
+    if (xSemaphoreTake(report_mutex, pdMS_TO_TICKS(MUTEX_TIMEOUT_MS)) != pdTRUE) {
       log_line('W', "report", "mutex timeout, report skipped");
       continue;
     }
@@ -223,13 +200,13 @@ static void report_task(void *)
     // SYSTEM HALTED! між перевіркою і записом, і звіт переписав би його.
     bool stop = halted;
     if (!stop) {
-      memcpy(report_text, line, sizeof(line));
+      memcpy(report_text, line, sizeof line);
     }
     xSemaphoreGive(report_mutex);
 
     if (stop) {
       log_line('W', "report", "conveyor halted, task stopped");
-      vTaskDelete(nullptr);
+      vTaskDelete(NULL);
     }
     xSemaphoreGive(report_ready);
   }
@@ -240,7 +217,7 @@ static void report_task(void *)
 // ---------------------------------------------------------------------------
 static bool adc_average(uint32_t channel, int samples, uint32_t *out)
 {
-  ADC_ChannelConfTypeDef ch = {};
+  ADC_ChannelConfTypeDef ch = {0};
   ch.Channel      = channel;
   ch.Rank         = 1;
   ch.SamplingTime = ADC_SAMPLETIME_480CYCLES;  // VREFINT потребує не менше 10 мкс
@@ -268,47 +245,42 @@ static int32_t read_pot_mv(void)
 {
   uint32_t vref = 0;
   uint32_t raw  = 0;
-  if (!adc_average(ADC_CHANNEL_VREFINT, Config::REF_SAMPLES, &vref) ||
-      !adc_average(Config::POT_CHANNEL, Config::POT_SAMPLES, &raw) || vref == 0) {
+  if (!adc_average(ADC_CHANNEL_VREFINT, REF_SAMPLES, &vref) ||
+      !adc_average(POT_CHANNEL, POT_SAMPLES, &raw) || vref == 0) {
     return -1;
   }
   uint32_t vdda_mv = VREFINT_CAL_VREF * *VREFINT_CAL_ADDR / vref;
   return (int32_t)(raw * vdda_mv / 4095);
 }
 
-static void adc_task(void *)
+static void adc_task(void *arg)
 {
+  (void)arg;
   for (;;) {
-    bool fresh = xSemaphoreTake(report_ready, pdMS_TO_TICKS(Config::READY_TIMEOUT_MS)) == pdTRUE;
+    bool fresh = xSemaphoreTake(report_ready, pdMS_TO_TICKS(READY_TIMEOUT_MS)) == pdTRUE;
 
     // АЦП і форматування - до mutex. 20 вимірів довші за копіювання рядка.
-    char tail[24];
-    snprintf(tail, sizeof(tail), "; pot %" PRId32 " mV", read_pot_mv());
+    char tail[TAIL_SIZE];
+    report_pot(tail, sizeof tail, read_pot_mv());
 
-    if (xSemaphoreTake(report_mutex, pdMS_TO_TICKS(Config::MUTEX_TIMEOUT_MS)) != pdTRUE) {
+    if (xSemaphoreTake(report_mutex, pdMS_TO_TICKS(MUTEX_TIMEOUT_MS)) != pdTRUE) {
       log_line('W', "adc", "mutex timeout, ADC value skipped");
       continue;
     }
-    bool   stop     = halted;
-    bool   appended = false;
-    size_t len      = strlen(report_text);
-    size_t add      = strlen(tail);
-    if (!stop && fresh && len + add < sizeof(report_text)) {
-      memcpy(report_text + len, tail, add + 1);
-      appended = true;
-    }
-    char copy[Config::REPORT_SIZE];
-    memcpy(copy, report_text, sizeof(copy));
+    bool stop     = halted;
+    bool appended = !stop && fresh && report_append(report_text, sizeof report_text, tail);
+    char copy[REPORT_SIZE];
+    memcpy(copy, report_text, sizeof copy);
     xSemaphoreGive(report_mutex);
 
     // Лог після Give, з копії буфера: log_line бере uart_mutex, а два mutex разом
     // задача не тримає.
     if (stop) {
       log_line('W', "adc", "conveyor halted, task stopped");
-      vTaskDelete(nullptr);
+      vTaskDelete(NULL);
     }
     if (!fresh) {
-      log_line('W', "adc", "no report from Task 1 for %" PRIu32 " ms", Config::READY_TIMEOUT_MS);
+      log_line('W', "adc", "no report from Task 1 for %" PRIu32 " ms", READY_TIMEOUT_MS);
     } else if (!appended) {
       log_line('W', "adc", "report buffer full, ADC value skipped");
     } else {
@@ -323,11 +295,12 @@ static void adc_task(void *)
 static void led_set(bool on)
 {
   // Світлодіод плати підключений до 3V3 через резистор: горить, коли PC13 = 0.
-  HAL_GPIO_WritePin(LED_PORT, Config::LED_PIN, on ? GPIO_PIN_RESET : GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LED_PORT, LED_PIN, on ? GPIO_PIN_RESET : GPIO_PIN_SET);
 }
 
-static void estop_task(void *)
+static void estop_task(void *arg)
 {
+  (void)arg;
   // portMAX_DELAY тут правильний: без події у задачі немає роботи.
   xSemaphoreTake(stop_signal, portMAX_DELAY);
   uint32_t woke = DWT->CYCCNT;
@@ -340,11 +313,11 @@ static void estop_task(void *)
 
   // Якщо mutex тримає report або adc, FreeRTOS піднімає її пріоритет до 4, поки
   // вона не віддасть mutex (успадкування пріоритету).
-  char copy[Config::REPORT_SIZE];
-  bool written = xSemaphoreTake(report_mutex, pdMS_TO_TICKS(Config::MUTEX_TIMEOUT_MS)) == pdTRUE;
+  char copy[REPORT_SIZE];
+  bool written = xSemaphoreTake(report_mutex, pdMS_TO_TICKS(MUTEX_TIMEOUT_MS)) == pdTRUE;
   if (written) {
-    snprintf(report_text, sizeof(report_text), "SYSTEM HALTED!");
-    memcpy(copy, report_text, sizeof(copy));
+    snprintf(report_text, sizeof report_text, "%s", REPORT_HALTED);
+    memcpy(copy, report_text, sizeof copy);
     xSemaphoreGive(report_mutex);
   }
   uint32_t done = DWT->CYCCNT;
@@ -352,11 +325,11 @@ static void estop_task(void *)
   if (written) {
     log_line('E', "report", "%s", copy);
   } else {
-    log_line('E', "estop", "mutex timeout, SYSTEM HALTED! is not in the report buffer");
+    log_line('E', "estop", "mutex timeout, " REPORT_HALTED " is not in the report buffer");
   }
   log_line('W', "estop", "parts %" PRIu32 ", ISR -> estop %" PRIu32 " us, mutex %" PRIu32 " us",
            read_parts(), cycles_to_us(woke - stop_cycles), cycles_to_us(done - woke));
-  vTaskDelete(nullptr);
+  vTaskDelete(NULL);
 }
 
 // ---------------------------------------------------------------------------
@@ -364,7 +337,7 @@ static void estop_task(void *)
 // ---------------------------------------------------------------------------
 static void start(TaskFunction_t fn, const char *name, UBaseType_t prio)
 {
-  if (xTaskCreate(fn, name, Config::STACK_WORDS, nullptr, prio, nullptr) != pdPASS) {
+  if (xTaskCreate(fn, name, STACK_WORDS, NULL, prio, NULL) != pdPASS) {
     Error_Handler();
   }
 }
@@ -392,8 +365,8 @@ int main(void)
   report_mutex = xSemaphoreCreateMutex();
   report_ready = xSemaphoreCreateBinary();
   stop_signal  = xSemaphoreCreateBinary();
-  if (uart_mutex == nullptr || report_mutex == nullptr || report_ready == nullptr ||
-      stop_signal == nullptr) {
+  if (uart_mutex == NULL || report_mutex == NULL || report_ready == NULL ||
+      stop_signal == NULL) {
     Error_Handler();
   }
 
@@ -402,9 +375,9 @@ int main(void)
       "\r\n=== dz6.5 conveyor_stm32: part sensor PB12, emergency stop KEY, alarm LED PC13 ===\r\n";
   HAL_UART_Transmit(&huart1, (uint8_t *)banner, sizeof banner - 1, HAL_MAX_DELAY);
 
-  start(estop_task, "estop", Config::PRIO_ESTOP);
-  start(adc_task, "adc", Config::PRIO_ADC);
-  start(report_task, "report", Config::PRIO_REPORT);
+  start(estop_task, "estop", PRIO_ESTOP);
+  start(adc_task, "adc", PRIO_ADC);
+  start(report_task, "report", PRIO_REPORT);
 
   // xTaskCreate маскує переривання до старту планувальника, тому EXTI не спрацює раніше.
   irq_init();
@@ -416,9 +389,9 @@ int main(void)
 
 // SysTick потрібен обом: HAL рахує в ньому HAL_GetTick() (на ньому тримаються
 // тайм-аути HAL_RCC, HAL_UART і HAL_ADC), а FreeRTOS - свій тік.
-extern "C" void xPortSysTickHandler(void);
+void xPortSysTickHandler(void);
 
-extern "C" void SysTick_Handler(void)
+void SysTick_Handler(void)
 {
   HAL_IncTick();
   if (xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED) {
@@ -429,7 +402,7 @@ extern "C" void SysTick_Handler(void)
 static void SystemClock_Config(void)
 {
   // HSI 16 МГц без PLL, як у ДЗ 2.8, 2.9 і 6.1-6.4.
-  RCC_OscInitTypeDef osc = {};
+  RCC_OscInitTypeDef osc = {0};
   osc.OscillatorType      = RCC_OSCILLATORTYPE_HSI;
   osc.HSIState            = RCC_HSI_ON;
   osc.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
@@ -438,7 +411,7 @@ static void SystemClock_Config(void)
     Error_Handler();
   }
 
-  RCC_ClkInitTypeDef clk = {};
+  RCC_ClkInitTypeDef clk = {0};
   clk.ClockType = RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 |
                   RCC_CLOCKTYPE_PCLK2;
   clk.SYSCLKSource   = RCC_SYSCLKSOURCE_HSI;
@@ -456,29 +429,30 @@ static void gpio_init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
 
-  GPIO_InitTypeDef led = {};
-  led.Pin   = Config::LED_PIN;
+  GPIO_InitTypeDef led = {0};
+  led.Pin   = LED_PIN;
   led.Mode  = GPIO_MODE_OUTPUT_PP;
   led.Pull  = GPIO_NOPULL;
   led.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_WritePin(LED_PORT, Config::LED_PIN, GPIO_PIN_SET);  // вимкнений
+  HAL_GPIO_WritePin(LED_PORT, LED_PIN, GPIO_PIN_SET);  // вимкнений
   HAL_GPIO_Init(LED_PORT, &led);
 
   // EXTI налаштовується тут, але NVIC вмикає irq_init() після створення семафорів.
-  GPIO_InitTypeDef part = {};
-  part.Pin  = Config::PART_PIN;
-  part.Mode = GPIO_MODE_IT_RISING_FALLING;  // debounce в ISR дивиться на обидва фронти
+  GPIO_InitTypeDef part = {0};
+  part.Pin  = PART_PIN;
+  part.Mode = GPIO_MODE_IT_RISING_FALLING;  // фільтр брязкоту дивиться на обидва фронти
   part.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(PART_PORT, &part);
+  press_filter_init(&part_filter, HAL_GPIO_ReadPin(PART_PORT, PART_PIN) == GPIO_PIN_SET);
 
-  GPIO_InitTypeDef stop = {};
-  stop.Pin  = Config::STOP_PIN;
+  GPIO_InitTypeDef stop = {0};
+  stop.Pin  = STOP_PIN;
   stop.Mode = GPIO_MODE_IT_FALLING;  // натискання KEY = перехід 1 -> 0
   stop.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(STOP_PORT, &stop);
 
-  GPIO_InitTypeDef pot = {};
-  pot.Pin  = Config::POT_PIN;
+  GPIO_InitTypeDef pot = {0};
+  pot.Pin  = POT_PIN;
   pot.Mode = GPIO_MODE_ANALOG;
   pot.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(POT_PORT, &pot);
@@ -487,9 +461,9 @@ static void gpio_init(void)
 static void irq_init(void)
 {
   // Фронти, які прийшли до цього моменту, не рахуються.
-  __HAL_GPIO_EXTI_CLEAR_IT(Config::PART_PIN | Config::STOP_PIN);
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, Config::IRQ_PRIO, 0);
-  HAL_NVIC_SetPriority(EXTI0_IRQn, Config::IRQ_PRIO, 0);
+  __HAL_GPIO_EXTI_CLEAR_IT(PART_PIN | STOP_PIN);
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, IRQ_PRIO, 0);
+  HAL_NVIC_SetPriority(EXTI0_IRQn, IRQ_PRIO, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
   HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 }
@@ -498,8 +472,8 @@ static void uart_init(void)
 {
   __HAL_RCC_USART1_CLK_ENABLE();
 
-  GPIO_InitTypeDef tx = {};
-  tx.Pin       = Config::LOG_TX_PIN;
+  GPIO_InitTypeDef tx = {0};
+  tx.Pin       = LOG_TX_PIN;
   tx.Mode      = GPIO_MODE_AF_PP;
   tx.Pull      = GPIO_NOPULL;
   tx.Speed     = GPIO_SPEED_FREQ_HIGH;
@@ -507,7 +481,7 @@ static void uart_init(void)
   HAL_GPIO_Init(LOG_PORT, &tx);
 
   huart1.Instance          = USART1;
-  huart1.Init.BaudRate     = Config::LOG_BAUD;
+  huart1.Init.BaudRate     = LOG_BAUD;
   huart1.Init.WordLength   = UART_WORDLENGTH_8B;
   huart1.Init.StopBits     = UART_STOPBITS_1;
   huart1.Init.Parity       = UART_PARITY_NONE;
@@ -545,11 +519,16 @@ static void adc_init(void)
 static void Error_Handler(void)
 {
   __disable_irq();
-  LED_PORT->BSRR = (uint32_t)Config::LED_PIN << 16;  // скинути PC13 = увімкнути
+  LED_PORT->BSRR = (uint32_t)LED_PIN << 16;  // скинути PC13 = увімкнути
   while (1) {
   }
 }
 
-extern "C" void rtos_assert_failed(void) { Error_Handler(); }
-extern "C" void vApplicationMallocFailedHook(void) { Error_Handler(); }
-extern "C" void vApplicationStackOverflowHook(TaskHandle_t, char *) { Error_Handler(); }
+void rtos_assert_failed(void) { Error_Handler(); }
+void vApplicationMallocFailedHook(void) { Error_Handler(); }
+void vApplicationStackOverflowHook(TaskHandle_t task, char *name)
+{
+  (void)task;
+  (void)name;
+  Error_Handler();
+}

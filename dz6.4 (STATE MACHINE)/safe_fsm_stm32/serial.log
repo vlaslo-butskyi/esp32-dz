@@ -1,0 +1,81 @@
+
+=== dz6.4 safe_fsm_stm32: password SHORT SHORT LONG (>= 1000 ms), timeout 3000 ms ===
+I (19971) safe: PRESS            LOCKED
+I (20111) safe: SHORT    140 ms  LOCKED -> SHORT_1
+I (20551) safe: PRESS            SHORT_1, timer restarted
+I (21161) safe: SHORT    610 ms  SHORT_1 -> SHORT_2
+I (23851) safe: PRESS            SHORT_2, timer restarted
+W (24001) safe: SHORT    150 ms  SHORT_2 -> LOCKED, wrong input
+I (24251) safe: PRESS            LOCKED
+I (24401) safe: SHORT    150 ms  LOCKED -> SHORT_1
+I (24601) safe: PRESS            SHORT_1, timer restarted
+W (25571) safe: LONG    1000 ms  SHORT_1 -> LOCKED, wrong input
+I (29731) safe: PRESS            LOCKED
+I (29911) safe: SHORT    180 ms  LOCKED -> SHORT_1
+I (32631) safe: PRESS            SHORT_1, timer restarted
+I (32811) safe: SHORT    180 ms  SHORT_1 -> SHORT_2
+I (32981) safe: PRESS            SHORT_2, timer restarted
+I (33951) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
+I (38081) safe: PRESS            OPEN, timer restarted
+I (38241) safe: SHORT    160 ms  OPEN -> LOCKED, safe is closed
+I (38451) safe: PRESS            LOCKED
+I (38581) safe: SHORT    130 ms  LOCKED -> SHORT_1
+I (38811) safe: PRESS            SHORT_1, timer restarted
+I (38961) safe: SHORT    150 ms  SHORT_1 -> SHORT_2
+I (39241) safe: PRESS            SHORT_2, timer restarted
+I (40211) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
+I (45211) safe: TIMEOUT 5000 ms  OPEN -> LOCKED, safe is closed
+I (46621) safe: PRESS            LOCKED
+I (46791) safe: SHORT    170 ms  LOCKED -> SHORT_1
+W (49791) safe: TIMEOUT 3000 ms  SHORT_1 -> LOCKED, input timeout
+I (50991) safe: PRESS            LOCKED
+W (51961) safe: LONG    1000 ms  LOCKED -> LOCKED, wrong input
+I (57761) safe: PRESS            LOCKED
+I (57911) safe: SHORT    150 ms  LOCKED -> SHORT_1
+I (58091) safe: PRESS            SHORT_1, timer restarted
+I (58271) safe: SHORT    180 ms  SHORT_1 -> SHORT_2
+I (59831) safe: PRESS            SHORT_2, timer restarted
+I (60801) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
+I (65801) safe: TIMEOUT 5000 ms  OPEN -> LOCKED, safe is closed
+I (67131) safe: PRESS            LOCKED
+I (67311) safe: SHORT    180 ms  LOCKED -> SHORT_1
+I (67481) safe: PRESS            SHORT_1, timer restarted
+I (67671) safe: SHORT    190 ms  SHORT_1 -> SHORT_2
+I (67991) safe: PRESS            SHORT_2, timer restarted
+I (68961) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
+I (70501) safe: PRESS            OPEN, timer restarted
+I (70641) safe: SHORT    140 ms  OPEN -> LOCKED, safe is closed
+I (70781) safe: PRESS            LOCKED
+I (70961) safe: SHORT    180 ms  LOCKED -> SHORT_1
+I (72231) safe: PRESS            SHORT_1, timer restarted
+W (73201) safe: LONG    1000 ms  SHORT_1 -> LOCKED, wrong input
+I (76301) safe: PRESS            LOCKED
+I (76551) safe: SHORT    250 ms  LOCKED -> SHORT_1
+I (77141) safe: PRESS            SHORT_1, timer restarted
+I (77461) safe: SHORT    320 ms  SHORT_1 -> SHORT_2
+I (77941) safe: PRESS            SHORT_2, timer restarted
+W (78171) safe: SHORT    230 ms  SHORT_2 -> LOCKED, wrong input
+I (82991) safe: PRESS            LOCKED
+I (83161) safe: SHORT    170 ms  LOCKED -> SHORT_1
+I (83411) safe: PRESS            SHORT_1, timer restarted
+I (83591) safe: SHORT    180 ms  SHORT_1 -> SHORT_2
+I (84531) safe: PRESS            SHORT_2, timer restarted
+W (84851) safe: SHORT    320 ms  SHORT_2 -> LOCKED, wrong input
+I (85491) safe: PRESS            LOCKED
+I (85881) safe: SHORT    390 ms  LOCKED -> SHORT_1
+I (86651) safe: PRESS            SHORT_1, timer restarted
+W (87621) safe: LONG    1000 ms  SHORT_1 -> LOCKED, wrong input
+I (88771) safe: PRESS            LOCKED
+W (89741) safe: LONG    1000 ms  LOCKED -> LOCKED, wrong input
+I (91541) safe: PRESS            LOCKED
+I (91691) safe: SHORT    150 ms  LOCKED -> SHORT_1
+I (93321) safe: PRESS            SHORT_1, timer restarted
+W (94291) safe: LONG    1000 ms  SHORT_1 -> LOCKED, wrong input
+I (95761) safe: PRESS            LOCKED
+I (95941) safe: SHORT    180 ms  LOCKED -> SHORT_1
+I (96101) safe: PRESS            SHORT_1, timer restarted
+I (96271) safe: SHORT    170 ms  SHORT_1 -> SHORT_2
+I (97101) safe: PRESS            SHORT_2, timer restarted
+I (98071) safe: LONG    1000 ms  SHORT_2 -> OPEN, safe is open
+I (99131) safe: PRESS            OPEN, timer restarted
+I (99331) safe: SHORT    200 ms  OPEN -> LOCKED, safe is closed
